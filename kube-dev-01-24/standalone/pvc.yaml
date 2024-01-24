@@ -1,0 +1,10 @@
+piVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: zk-data
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
