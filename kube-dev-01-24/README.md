@@ -5,15 +5,15 @@
 After this tutorial, you will learn
 1. Basic concepts in Kubernetes.
 2. How to deploy an application(ZooKeeper) on Kubernetes using Pod and PVC
-3. How to deploy replicated application(ZooKeeper ensemble) on Kubernetes using StatefulSet.
+3. How to deploy a replicated application(ZooKeeper ensemble) on Kubernetes using StatefulSet.
 
 ## **Recap - What is Kubernetes?**
 
-From last lecture’s overview, we discussed VMs and containers. Containers ….
+From the last lecture’s overview, we discussed VMs and containers. Containers ….
 
 We learned the high-level overview of the design of cluster managers, Borg, Omega, and Kubernetes which manage 100s or 1000s of containerized applications in a cluster.
 
-This lecture, we will dive into Kubernetes and see it in action.
+In this lecture, we will dive into Kubernetes and see it in action.
 
 ## **Setting up local Kubernetes cluster**
 
@@ -24,7 +24,7 @@ We will use it to create a local Kubernetes cluster to play with.
 
 **All problems in computer science can be solved by another level of indirection. — Butler Lampson**
 
-What Kind does is to create Kubernetes “node” containers which behave like a machine in a cluster. Each node runs a Kubernetes daemon and joins together to form a Kubernetes cluster. 
+What Kind does is to create Kubernetes “node” containers that behave like a machine in a cluster. Each node runs a Kubernetes daemon and joins together to form a Kubernetes cluster. 
 
 - Install [Golang](https://go.dev/doc/install)
 - Install [Docker](https://docs.docker.com/engine/install/)
@@ -48,11 +48,11 @@ What Kind does is to create Kubernetes “node” containers which behave like a
 
 ### **Kubectl tool — Interacting with Kubernetes**
 
-Next we will learn the command line tool to interact with the Kubernetes cluster
+Next, we will learn the command line tool to interact with the Kubernetes cluster
 
 - Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 - Inspect the current Pod resource: `kubectl get pods -A -o wide`
-    - We will be able to see all the Pods currently running in the cluster. Since we haven't deployed anything, currently there are only the kubernetes core controllers running.
+    - We will be able to see all the Pods currently running in the cluster. Since we haven't deployed anything, currently there are only the Kubernetes core controllers running.
 
 ## **Pod — Deploying Containers on Kubernetes**
 
@@ -60,20 +60,20 @@ OK, now we have a Kubernetes cluster. Let’s try to ask Kubernetes to deploy an
 
 ### State-Reconciliation Principle
 
-Remember in Kubernetes, there is a centralized data store(etcd) which stores the desired state of all resources.
-The controllers in Kubernetes monitor the resources' specification stored in the etcd, and reconciles the system state to match the desired state.
+Remember in Kubernetes, there is a centralized data store(etcd) that stores the desired state of all resources.
+The controllers in Kubernetes monitor the resources' specifications stored in the etcd, and reconcile the system state to match the desired state.
 
-Kubernetes has many native resources, and Pod is the smallest unit of computing resource.
+Kubernetes has many native resources, and Pod is the smallest unit of computing resources.
 A Pod can be considered as a collection of co-located containers.
 When we create a Pod specification in etcd, the Pod controller will realize that the current system state (system containers) does not match the desired state in etcd. Specifically, there is one Pod in the etcd, but there is currently no container corresponding to that.
-Then the Pod controller creates a new container according to Pod specification, so that the system state matches the desired state.
+Then the Pod controller creates a new container according to Pod specification so that the system state matches the desired state.
 
 Another important resource in Kubernetes is PersistentVolumeClaim(PVC).
-The PersistentVolumeClaim controller will create volumes which can be used as storage according the PVC specification.
+The PersistentVolumeClaim controller will create volumes that can be used as storage according to the PVC specification.
 
 ### **Writing the Pod/PersistentVolumeClaim Resource Spec to Run a Standalone ZooKeeper**
 
-Let’s take the ZooKeeper as example, and deploy it on Kubernetes using the Pod and PVC resources.
+Let’s take the ZooKeeper as an example, and deploy it on Kubernetes using the Pod and PVC resources.
 
 We can describe the Pod resources as YAML files.
 
@@ -163,25 +163,24 @@ To perform a write using the ZooKeeper CLI, run `kubectl exec zk-0 -- [zkCli.sh]
 
 ### Manually creating 3 Pods, and joining them as an ensemble
 
-We can manually replicate the resource definitions we wrote for the Pod and PVC
-for three times.
-You can find the resource definitions in the repo: [Pods](3-node/zk-pods.yaml) [PVCs](3-node/pvc.yaml)
+We can manually replicate the resource definitions we wrote for the Pod and PVC three times.
+You can find the resource definitions in the repo: [3-node/zk-pods.yaml](3-node/zk-pods.yaml) [3-node/pvc.yaml](3-node/pvc.yaml)
 
 Pay attention to the changed fields in the Pods and PVCs.
 
 You will notice that we added an additional Service resource when creating 3 Pods.
-This Service resource provides a FQDN for each Pod we create, so that they know how to communicate with each other and form an ensemble.
+This Service resource provides an FQDN for each Pod we create so that they know how to communicate with each other and form an ensemble.
 
 ### Introducing StatefulSet
 
 Manually creating 3 Pods requires a lot of manual effort, and does not scale well if you want more replicas.
 Let's look at another resource, `StatefulSet``, defined by Kubernetes, which can simplify the management process.
 
-The StatefulSet resource allows to templating the Pod resources and PVC resources,
+The StatefulSet resource allows templating the Pod resources and PVC resources,
 and automatically creating multiple Pods and PVCs according to the specified replica number.
 
 Let's try to deploy the same 3-replica ZooKeeper ensemble with the StatefulSet resource.
-You can find the StatefulSet resource definition [here](stateful_set/stateful_set.yaml).
+You can find the StatefulSet resource definition [stateful_set/stateful_set.yaml](stateful_set/stateful_set.yaml).
 
 Run `kubectl apply -f stateful_set/stateful_set.yaml` to create the StatefulSet resource in etcd.
 And run `kubectl get pods` to wait for all Pods to get ready.
