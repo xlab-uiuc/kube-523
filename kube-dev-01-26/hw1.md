@@ -69,6 +69,50 @@ spec:
 
 Run `kubectl get all -l app=zookeeper` to get all resources related to the ZookeeperCluster.
 
+
 ## Validate the deployed application by collecting the system state
 
-We will provide a program later to collect the system state and do some validation.
+We provide a program to collect the system state from the Kubernetes cluster under a specific namespace(default to `default` namespace), and check if the Kubernetes resources are healthy.
+
+### Environment Setup
+
+1. First, clone the Acto repo to your local disk: `git clone https://github.com/xlab-uiuc/acto.git`
+2. Follow the setup steps described in the [Acto’s README](https://github.com/xlab-uiuc/acto?tab=readme-ov-file#prerequisites) to set up the environment.
+
+### Execute the test program to collect the system state
+
+1. Follow the steps in the previous sections to
+    1. Create kind cluster
+    2. Install the operator and CRD
+    3. Deploy an example custom resource
+2. Go into Acto’s top-level directory `cd acto`
+3. Test the program with the Kubernetes’ control-plane namespace `python3 -m acto.cli.collect_system_state --namespace kube-system`
+    
+    This step works as a sanity check to validate your environment is correctly setup, and the `collect_system_state` program is working correctly. If there are some errors at this step, it means either the environment is not correctly setup, or there is a bug in the `collect_system_state` program. If you believe there is a bug in the program, please let us know on the piazza. 
+    
+4. Run the program to collect the system state `python3 -m acto.cli.collect_system_state`
+    
+    The `collect_system_state` program can be run with the following four arguments:
+    
+    ```yaml
+    usage: collect_system_state.py [-h] [--output OUTPUT] [--kubeconfig KUBECONFIG] [--kubecontext KUBECONTEXT] [--namespace NAMESPACE]
+    
+    Collect the system state of a Kubernetes cluster under a namespace and dump it to a file. Check the health of the system state.
+    
+    options:
+      -h, --help            show this help message and exit
+      --output OUTPUT       Path to dump the system state to
+      --kubeconfig KUBECONFIG
+                            Path to the kubeconfig file
+      --kubecontext KUBECONTEXT
+                            Name of the Kubernetes context to use
+      --namespace NAMESPACE
+                            Namespace to collect the system state under
+    ```
+    
+    All arguments are optional. Note that if your operator and the custom resource are deployed in a non-default namespace, please specify the namespace via the `--namespace` argument. The `--kubeconfig` and `--kubecontext` arguments are for the case where you used non-default kubeconfig and kubecontext to create the kind cluster. If you used `kind create cluster --config config.yaml` to create the cluster, `--kubeconfig` and `--kubecontext` are not needed.
+    
+    The `collect_system_state` performs some very simple health check to ensure the system resources are healthy. If it terminates with some error message, it means there are some problems with your deployed application. 
+    If you believe it is the problem of the `collect_system_state` program, please let us know on piazza.
+    
+5. Name the dumped system state file to `{netid}-system-state.json`, upload it to the shared Google Drive folder.
