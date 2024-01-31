@@ -157,7 +157,7 @@ Or you can try to use the ZooKeeper CLI inside the ZooKeeper container.
 
 To run an exec command inside the ZooKeeper container, you can make use of the `kubectl` CLI, by running `kubectl exec {POD} -- {CMD}`
 
-To perform a write using the ZooKeeper CLI, run `kubectl exec zk-0 -- [zkCli.sh](http://zkcli.sh/) create /hello world`
+To perform a write using the ZooKeeper CLI, run `kubectl exec zk-0 -- zkCli.sh create /hello world`
 
 ## **Deploying 3-node ZooKeeper ensemble**
 
@@ -194,7 +194,7 @@ To create a path `/hello` with data `world` on `zk-0`, run:
 
 After the create is completed, try to read the data from the path `/hello`,
 and you will see the command returns `world` along with a bunch of metadata.
-`kubectl exec zk-1 -- zkCli.sh read /hello`
+`kubectl exec zk-1 -- zkCli.sh get /hello`
 
 ## If you want to explore more, there are some optional tasks for you to try:
 - Creating a Service resource in Kubernetes to expose this application as a service
