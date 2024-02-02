@@ -115,4 +115,4 @@ We provide a program to collect the system state from the Kubernetes cluster und
     The `collect_system_state` performs some very simple health check to ensure the system resources are healthy. If it terminates with some error message, it means there are some problems with your deployed application. 
     If you believe it is the problem of the `collect_system_state` program, please let us know on piazza.
     
-5. Name the dumped system state file to `{netid}-system-state.json`, upload it to the shared Google Drive folder.
+5. Name the dumped system state file to `{netid}-system-state.json`, ~~upload it to the shared Google Drive folder.~~ create a PR to this repo to upload the system state to the corresponding directory under the [operators](../../operators) dir (e.g. [operators/pravega_zookeeper-operator](../../operators/pravega_zookeeper-operator/))
