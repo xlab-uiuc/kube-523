@@ -14788,7 +14788,464 @@
     "job": {},
     "network_policy": {},
     "persistent_volume_claim": {},
-    "persistent_volume": {},
+    "persistent_volume": {
+        "pvc-c78969e0-828c-41dd-9928-2f89df5b19ac": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/provisioned-by": "rancher.io/local-path"
+                },
+                "creation_timestamp": "2024-02-08T02:29:50+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:status": {
+                                "f:phase": {}
+                            }
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": "status",
+                        "time": "2024-02-08T02:29:50+00:00"
+                    },
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:pv.kubernetes.io/provisioned-by": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:accessModes": {},
+                                "f:capacity": {
+                                    ".": {},
+                                    "f:storage": {}
+                                },
+                                "f:claimRef": {
+                                    ".": {},
+                                    "f:apiVersion": {},
+                                    "f:kind": {},
+                                    "f:name": {},
+                                    "f:namespace": {},
+                                    "f:resourceVersion": {},
+                                    "f:uid": {}
+                                },
+                                "f:hostPath": {
+                                    ".": {},
+                                    "f:path": {},
+                                    "f:type": {}
+                                },
+                                "f:nodeAffinity": {
+                                    ".": {},
+                                    "f:required": {}
+                                },
+                                "f:persistentVolumeReclaimPolicy": {},
+                                "f:storageClassName": {},
+                                "f:volumeMode": {}
+                            }
+                        },
+                        "manager": "local-path-provisioner",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-08T02:29:50+00:00"
+                    }
+                ],
+                "name": "pvc-c78969e0-828c-41dd-9928-2f89df5b19ac",
+                "namespace": null,
+                "owner_references": null,
+                "resource_version": "32322",
+                "self_link": null,
+                "uid": "7fbf3e21-0ed8-4e73-9e7d-b24e79ac4ec1"
+            },
+            "spec": {
+                "access_modes": [
+                    "ReadWriteOnce"
+                ],
+                "aws_elastic_block_store": null,
+                "azure_disk": null,
+                "azure_file": null,
+                "capacity": {
+                    "storage": "5Gi"
+                },
+                "cephfs": null,
+                "cinder": null,
+                "claim_ref": {
+                    "api_version": "v1",
+                    "field_path": null,
+                    "kind": "PersistentVolumeClaim",
+                    "name": "server-data-demo-dc1-default-sts-0",
+                    "namespace": "k8ssandra-operator",
+                    "resource_version": "32273",
+                    "uid": "c78969e0-828c-41dd-9928-2f89df5b19ac"
+                },
+                "csi": null,
+                "fc": null,
+                "flex_volume": null,
+                "flocker": null,
+                "gce_persistent_disk": null,
+                "glusterfs": null,
+                "host_path": {
+                    "path": "/var/local-path-provisioner/pvc-c78969e0-828c-41dd-9928-2f89df5b19ac_k8ssandra-operator_server-data-demo-dc1-default-sts-0",
+                    "type": "DirectoryOrCreate"
+                },
+                "iscsi": null,
+                "local": null,
+                "mount_options": null,
+                "nfs": null,
+                "node_affinity": {
+                    "required": {
+                        "node_selector_terms": [
+                            {
+                                "match_expressions": [
+                                    {
+                                        "key": "kubernetes.io/hostname",
+                                        "operator": "In",
+                                        "values": [
+                                            "k8ssandra-0-worker4"
+                                        ]
+                                    }
+                                ],
+                                "match_fields": null
+                            }
+                        ]
+                    }
+                },
+                "persistent_volume_reclaim_policy": "Delete",
+                "photon_persistent_disk": null,
+                "portworx_volume": null,
+                "quobyte": null,
+                "rbd": null,
+                "scale_io": null,
+                "storage_class_name": "standard",
+                "storageos": null,
+                "volume_mode": "Filesystem",
+                "vsphere_volume": null
+            },
+            "status": {
+                "message": null,
+                "phase": "Bound",
+                "reason": null
+            }
+        },
+        "pvc-d98c32dc-15bb-4d1c-80bf-e16b007e1723": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/provisioned-by": "rancher.io/local-path"
+                },
+                "creation_timestamp": "2024-02-08T02:29:50+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:status": {
+                                "f:phase": {}
+                            }
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": "status",
+                        "time": "2024-02-08T02:29:50+00:00"
+                    },
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:pv.kubernetes.io/provisioned-by": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:accessModes": {},
+                                "f:capacity": {
+                                    ".": {},
+                                    "f:storage": {}
+                                },
+                                "f:claimRef": {
+                                    ".": {},
+                                    "f:apiVersion": {},
+                                    "f:kind": {},
+                                    "f:name": {},
+                                    "f:namespace": {},
+                                    "f:resourceVersion": {},
+                                    "f:uid": {}
+                                },
+                                "f:hostPath": {
+                                    ".": {},
+                                    "f:path": {},
+                                    "f:type": {}
+                                },
+                                "f:nodeAffinity": {
+                                    ".": {},
+                                    "f:required": {}
+                                },
+                                "f:persistentVolumeReclaimPolicy": {},
+                                "f:storageClassName": {},
+                                "f:volumeMode": {}
+                            }
+                        },
+                        "manager": "local-path-provisioner",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-08T02:29:50+00:00"
+                    }
+                ],
+                "name": "pvc-d98c32dc-15bb-4d1c-80bf-e16b007e1723",
+                "namespace": null,
+                "owner_references": null,
+                "resource_version": "32330",
+                "self_link": null,
+                "uid": "c2839b81-0bc2-4f5d-badb-624b953f80a4"
+            },
+            "spec": {
+                "access_modes": [
+                    "ReadWriteOnce"
+                ],
+                "aws_elastic_block_store": null,
+                "azure_disk": null,
+                "azure_file": null,
+                "capacity": {
+                    "storage": "5Gi"
+                },
+                "cephfs": null,
+                "cinder": null,
+                "claim_ref": {
+                    "api_version": "v1",
+                    "field_path": null,
+                    "kind": "PersistentVolumeClaim",
+                    "name": "server-data-demo-dc1-default-sts-1",
+                    "namespace": "k8ssandra-operator",
+                    "resource_version": "32287",
+                    "uid": "d98c32dc-15bb-4d1c-80bf-e16b007e1723"
+                },
+                "csi": null,
+                "fc": null,
+                "flex_volume": null,
+                "flocker": null,
+                "gce_persistent_disk": null,
+                "glusterfs": null,
+                "host_path": {
+                    "path": "/var/local-path-provisioner/pvc-d98c32dc-15bb-4d1c-80bf-e16b007e1723_k8ssandra-operator_server-data-demo-dc1-default-sts-1",
+                    "type": "DirectoryOrCreate"
+                },
+                "iscsi": null,
+                "local": null,
+                "mount_options": null,
+                "nfs": null,
+                "node_affinity": {
+                    "required": {
+                        "node_selector_terms": [
+                            {
+                                "match_expressions": [
+                                    {
+                                        "key": "kubernetes.io/hostname",
+                                        "operator": "In",
+                                        "values": [
+                                            "k8ssandra-0-worker3"
+                                        ]
+                                    }
+                                ],
+                                "match_fields": null
+                            }
+                        ]
+                    }
+                },
+                "persistent_volume_reclaim_policy": "Delete",
+                "photon_persistent_disk": null,
+                "portworx_volume": null,
+                "quobyte": null,
+                "rbd": null,
+                "scale_io": null,
+                "storage_class_name": "standard",
+                "storageos": null,
+                "volume_mode": "Filesystem",
+                "vsphere_volume": null
+            },
+            "status": {
+                "message": null,
+                "phase": "Bound",
+                "reason": null
+            }
+        },
+        "pvc-ee460c26-8850-48d0-8792-569a6010ecd7": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/provisioned-by": "rancher.io/local-path"
+                },
+                "creation_timestamp": "2024-02-08T02:29:51+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:status": {
+                                "f:phase": {}
+                            }
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": "status",
+                        "time": "2024-02-08T02:29:51+00:00"
+                    },
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:pv.kubernetes.io/provisioned-by": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:accessModes": {},
+                                "f:capacity": {
+                                    ".": {},
+                                    "f:storage": {}
+                                },
+                                "f:claimRef": {
+                                    ".": {},
+                                    "f:apiVersion": {},
+                                    "f:kind": {},
+                                    "f:name": {},
+                                    "f:namespace": {},
+                                    "f:resourceVersion": {},
+                                    "f:uid": {}
+                                },
+                                "f:hostPath": {
+                                    ".": {},
+                                    "f:path": {},
+                                    "f:type": {}
+                                },
+                                "f:nodeAffinity": {
+                                    ".": {},
+                                    "f:required": {}
+                                },
+                                "f:persistentVolumeReclaimPolicy": {},
+                                "f:storageClassName": {},
+                                "f:volumeMode": {}
+                            }
+                        },
+                        "manager": "local-path-provisioner",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-08T02:29:51+00:00"
+                    }
+                ],
+                "name": "pvc-ee460c26-8850-48d0-8792-569a6010ecd7",
+                "namespace": null,
+                "owner_references": null,
+                "resource_version": "32341",
+                "self_link": null,
+                "uid": "fb3508b9-c911-4bd1-9f7e-423562ea26a5"
+            },
+            "spec": {
+                "access_modes": [
+                    "ReadWriteOnce"
+                ],
+                "aws_elastic_block_store": null,
+                "azure_disk": null,
+                "azure_file": null,
+                "capacity": {
+                    "storage": "5Gi"
+                },
+                "cephfs": null,
+                "cinder": null,
+                "claim_ref": {
+                    "api_version": "v1",
+                    "field_path": null,
+                    "kind": "PersistentVolumeClaim",
+                    "name": "server-data-demo-dc1-default-sts-2",
+                    "namespace": "k8ssandra-operator",
+                    "resource_version": "32288",
+                    "uid": "ee460c26-8850-48d0-8792-569a6010ecd7"
+                },
+                "csi": null,
+                "fc": null,
+                "flex_volume": null,
+                "flocker": null,
+                "gce_persistent_disk": null,
+                "glusterfs": null,
+                "host_path": {
+                    "path": "/var/local-path-provisioner/pvc-ee460c26-8850-48d0-8792-569a6010ecd7_k8ssandra-operator_server-data-demo-dc1-default-sts-2",
+                    "type": "DirectoryOrCreate"
+                },
+                "iscsi": null,
+                "local": null,
+                "mount_options": null,
+                "nfs": null,
+                "node_affinity": {
+                    "required": {
+                        "node_selector_terms": [
+                            {
+                                "match_expressions": [
+                                    {
+                                        "key": "kubernetes.io/hostname",
+                                        "operator": "In",
+                                        "values": [
+                                            "k8ssandra-0-worker2"
+                                        ]
+                                    }
+                                ],
+                                "match_fields": null
+                            }
+                        ]
+                    }
+                },
+                "persistent_volume_reclaim_policy": "Delete",
+                "photon_persistent_disk": null,
+                "portworx_volume": null,
+                "quobyte": null,
+                "rbd": null,
+                "scale_io": null,
+                "storage_class_name": "standard",
+                "storageos": null,
+                "volume_mode": "Filesystem",
+                "vsphere_volume": null
+            },
+            "status": {
+                "message": null,
+                "phase": "Bound",
+                "reason": null
+            }
+        }
+    },
     "pod": {},
     "replica_set": {},
     "role_binding": {},
