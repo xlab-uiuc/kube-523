@@ -12,21 +12,20 @@ def analyze(schema: dict) -> None:
     stats = [0, 0, 0]                 #    totalNodeCount, leafNodeCount, totaldepths
 
     def dfs(node: dict, depth = 0) -> None:
-
         stats[0] += 1
-        properties = node.get("properties", {})
         nodeType = node.get("type")
+        children = node.get("properties", {}) if nodeType == "object" else node.get("items", {}).get("properties", {})
 
-        if nodeType != "object":      # primitive types
+        if nodeType not in  ["object", "array"] or len(children) == 0:      # leaf node
             stats[1] += 1
             stats[2] += depth
             return 
         
-        for p in properties.values():
-            dfs(p, depth + 1)
+        for c in children.values():
+            dfs(c, depth + 1)
     
     dfs(schema)
-    stats[2] = round(stats[2] / stats[1])
+    stats[2] = "{:0.2f}".format(stats[2] / stats[1])
 
     totalNodeCount, leafNodeCount, avgDepths = stats
 
