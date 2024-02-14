@@ -36,6 +36,6 @@
 
 ## Complexity Metrics
 
-Regard the CRD yaml file as a tree structure. Consider when the tree has a deeper width and height, the complexity of this tree will be higher. Another intuition is that when a node is far from the root of the tree, we think that the complexity of this node adds less to the complexity of the root node. This is well understood because the number of nodes in a tree may grow exponentially by level, so increasing number of nodes near the root will make this increase faster. 
+Regard the CRD yaml file as a tree structure. Consider when the tree has a deeper width and height, the complexity of this tree will be higher. Another intuition is that when a node is far from the root of the tree, we think that the complexity of this node adds less to the complexity of the root node. This is well understood because the number of nodes in a tree may grow exponentially by level, so increasing number of nodes near the root will make this increase faster.
 
-Take these factors into consideration, we set a attenuation coefficient $\alpha$ for each layer, $0 < \alpha < 1$.  Denote the heigh of tree as $h$, and $n_i$ is the number of nodes for level $i$, then the complexity $C$ is defined as $C = \sum_i^h \alpha^i \cdot n_i$. For each node, we can apply this formula to calculate its complexity metric.
+Take these factors into consideration, we set a attenuation coefficient $\alpha$ for each layer, $0 < \alpha < 1$.  Denote the heigh of tree as $h$, and $n_i$ is the number of nodes for level $i$, then the complexity $C$ is defined as $C = \sum\limits_{i}^{h} \alpha^i \cdot n_i$. For each node, we can apply this formula to calculate its complexity metric.
