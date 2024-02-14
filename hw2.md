@@ -16,7 +16,7 @@ General : `dataSourceRef`,` dataSource`,`storage`,`restore`,`manual`,`repos`,`re
 Since Percona-Postgres Operator will connect to database and need to have backup. It will have some fields related to these kinds of resources.
 
 ## Complexity Metric
-Standing on the point of a Database related operator, I may think how the system can effectively manage resources. I think the complexity comes from the automated process. I may investigate it from a **Powerful Database**'s pespective. \
+Standing on the point of a Database related operator, I may think how the system can effectively manage resources. I think the complexity comes from the automated process. I may investigate it from a **Powerful Database**'s pespective. 
 
 1. Volume
    
