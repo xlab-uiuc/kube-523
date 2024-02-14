@@ -29,16 +29,18 @@ Multiple replicas can contribute to high availablity. Also it allows instances u
 Affinity and anti-affinity rules play a critical role in defining how pods are scheduled and distributed.
 `spec.repoHost.affinity`, `spec.affinity.podAffinity`, `spec.affinity.pod-antiAffinity`
 
-3. Backup and Recovery \
+3. Backup and Recovery
+   
 `spec.backups.pgbackrest` configures automated backups using pgBackRest. \ 
 `spec.backups.pgbackrest.repos.schedules` specifies automative backup schedule. \ 
 `spec.backups.pgbackrest.repos.volume` specifies storage. \ 
 `spec.backups.pgbackrest.restore` specifies configuration for restoration.
 
-4. Monitoring and Logging \ 
+5. Monitoring and Logging \
+
 `spec.pmm.enabled` enables integration with Percona Monitoring and Management service.
 
-5. Extension \
+6. Extension \
 A lot of options are open to enable users to host the operator on different platforms, along with different backup options. \
 
 `openshift` for deploying with openshift. \
