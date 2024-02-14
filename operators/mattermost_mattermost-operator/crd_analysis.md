@@ -43,6 +43,6 @@ Dependency Complexity (DC): The number of external dependencies required for the
 2. Complexity Measurement
    
 Total Complexity Score(TCS) will be applied. It is computed by the following formula:
-CCS = ( CD × CvD ) + DC
+TCS = ( CD × CvD ) + DC
 
 TCS provides a quantitative measure of the CRD's complexity, reflecting its configuration depth, diversity, and external dependencies.
