@@ -1,3 +1,8 @@
+## Info
+Name : Sally Rong
+
+Netid: chenyan7
+
 ## Custom Resource Definition
 
 ### Kubernetes Basic Resources
