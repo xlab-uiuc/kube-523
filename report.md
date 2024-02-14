@@ -25,24 +25,32 @@ Data volumn and PVC is of priority for a database.
 
 2. High Availability and scalability
    
-Multiple replicas can contribute to high availablity. Also it allows instances up and down to adjust for workload requirements. \ 
-`instances` in level 1 has 3 `replicas`.
-`pgBouncer` in level 2 has 3 `replicas`. 
-Affinity and anti-affinity rules play a critical role in defining how pods are scheduled and distributed.
+Multiple replicas can contribute to high availablity. Also it allows instances up and down to adjust for workload requirements. 
+
+`instances` in level 1 has 3 `replicas`. 
+
+`pgBouncer` in level 2 has 3 `replicas`.  
+
+Affinity and anti-affinity rules play a critical role in defining how pods are scheduled and distributed. 
+
 `spec.repoHost.affinity`, `spec.affinity.podAffinity`, `spec.affinity.pod-antiAffinity`
 
 3. Backup and Recovery
    
-`spec.backups.pgbackrest` configures automated backups using pgBackRest. \ 
-`spec.backups.pgbackrest.repos.schedules` specifies automative backup schedule. \ 
-`spec.backups.pgbackrest.repos.volume` specifies storage. \ 
+`spec.backups.pgbackrest` configures automated backups using pgBackRest. 
+
+`spec.backups.pgbackrest.repos.schedules` specifies automative backup schedule. 
+
+`spec.backups.pgbackrest.repos.volume` specifies storage. 
+
 `spec.backups.pgbackrest.restore` specifies configuration for restoration.
 
 4. Monitoring and Logging 
 
 `spec.pmm.enabled` enables integration with Percona Monitoring and Management service.
 
-5. Extension 
+5. Extension
+   
 A lot of options are open to enable users to host the operator on different platforms, along with different backup options. 
 
 `openshift` for deploying with openshift.   
@@ -52,9 +60,13 @@ A lot of options are open to enable users to host the operator on different plat
 `spec.backups.pgbackrest.configuration.secret` ensures safety access.
 
 6. Safety
+   
 TLS configuration is required for secure communication.  
 
-`sshConfigMap` `sshSecret` `secretKeyRef` ensures safety connection with pods.
-`spec.proxy.pgBouncer.customTLSSecret` to encrypt connection with pgBouncer.
-`spec.backups.pgbackrest.configuration.secret` ensures safety access to backup space`
+`sshConfigMap` `sshSecret` `secretKeyRef` ensures safety connection with pods. 
+
+`spec.proxy.pgBouncer.customTLSSecret` to encrypt connection with pgBouncer. 
+
+`spec.backups.pgbackrest.configuration.secret` ensures safety access to backup space`. 
+
 `spec.pmm.secret` ensures safety access to monitor.
