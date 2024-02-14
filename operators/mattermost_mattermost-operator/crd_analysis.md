@@ -32,6 +32,7 @@ spec.pmm.serverHost, spec.pmm.serverUser: Configuration for connecting to an ext
 PART TWO: Complexity Metric and Measurement
 
 1. Complexity Metric
+   
 Configuration Depth (CD): The number of nested configuration levels which reflects the complexity of individual configurations.
 
 Configuration Diversity (CvD): The variety of different configurations present within the CRD, considering Kubernetes core, application-specific, and external configurations. 
@@ -39,6 +40,7 @@ Configuration Diversity (CvD): The variety of different configurations present w
 Dependency Complexity (DC): The number of external dependencies required for the CRD to function, such as external services (S3, monitoring services).
 
 2. Complexity Measurement
+   
 Total Complexity Score(TCS) will be applied. It is computed by the following formula:
 CCS = ( CD × CvD ) + DC
 
