@@ -28,6 +28,7 @@ Examples:
 spec.backup.storages.s3: Configuration for Amazon S3 as an external storage service for backups.
 spec.pmm.serverHost, spec.pmm.serverUser: Configuration for connecting to an external PMM server for monitoring.
 
+
 PART TWO: Complexity Metric and Measurement
 
 1. Complexity Metric
