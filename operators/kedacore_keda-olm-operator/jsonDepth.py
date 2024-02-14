@@ -25,18 +25,14 @@ def depth(x):
     return 0
 
 if __name__ == "__main__":
+    # Helpful source: https://www.geeksforgeeks.org/read-json-file-using-python/
     f = open('scaledobjectscrd.json')
  
     # returns JSON object as 
     # a dictionary
     data = json.load(f)
-    
-    # Iterating through the json
-    # list
     print("Depth of entire CRD:", depth(data))
     print("Breadth of entire CRD:", breadth(data))
-    # print(data["spec"]["versions"][0]["schema"]["openAPIV3Schema"])
-    # print("Depth of openAPIV3Schema: ", depth(data["spec"]["versions"]))
     print("Depth of openAPIV3Schema: ", depth(data["spec"]["versions"][0]["schema"]["openAPIV3Schema"]))
     print("Breadth of openAPIV3Schema: ", breadth(data["spec"]["versions"][0]["schema"]["openAPIV3Schema"]))
     print("Depth of horizontalPodAutoscalerConfig: ", depth(data["spec"]["versions"][0]["schema"]["openAPIV3Schema"]["properties"]["spec"]["properties"]["advanced"]["properties"]["horizontalPodAutoscalerConfig"]))
