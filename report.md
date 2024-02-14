@@ -18,11 +18,13 @@ Since Percona-Postgres Operator will connect to database and need to have backup
 ## Complexity Metric
 Standing on the point of a Database related operator, I may think how the system can effectively manage resources. I think the complexity comes from the automated process. I may investigate it from a **Powerful Database**'s pespective. \
 
-1. Volume \
+1. Volume
+   
 Data volumn and PVC is of priority for a database.
 `spec.volume.dataVolumeClaimSpec.{accessModes,resources}`, `spec.dataSource`,`spec.volumes` 
 
-2. High Availability and scalability \
+2. High Availability and scalability
+   
 Multiple replicas can contribute to high availablity. Also it allows instances up and down to adjust for workload requirements. \ 
 `instances` in level 1 has 3 `replicas`.
 `pgBouncer` in level 2 has 3 `replicas`. 
@@ -36,19 +38,22 @@ Affinity and anti-affinity rules play a critical role in defining how pods are s
 `spec.backups.pgbackrest.repos.volume` specifies storage. \ 
 `spec.backups.pgbackrest.restore` specifies configuration for restoration.
 
-5. Monitoring and Logging \
+4. Monitoring and Logging 
 
 `spec.pmm.enabled` enables integration with Percona Monitoring and Management service.
 
-6. Extension \
-A lot of options are open to enable users to host the operator on different platforms, along with different backup options. \
+5. Extension 
+A lot of options are open to enable users to host the operator on different platforms, along with different backup options. 
 
-`openshift` for deploying with openshift. \
-`spec.backups.pgbackrest.repos.s3`, `spec.backups.pgbackrest.repos.azure`,`spec.backups.pgbackrest.repos.gcs` are offered for backup on different clouds. \ 
+`openshift` for deploying with openshift.   
+
+`spec.backups.pgbackrest.repos.s3`, `spec.backups.pgbackrest.repos.azure`,`spec.backups.pgbackrest.repos.gcs` are offered for backup on different clouds.   
+
 `spec.backups.pgbackrest.configuration.secret` ensures safety access.
 
 6. Safety
-TLS configuration is required for secure communication.
+TLS configuration is required for secure communication.  
+
 `sshConfigMap` `sshSecret` `secretKeyRef` ensures safety connection with pods.
 `spec.proxy.pgBouncer.customTLSSecret` to encrypt connection with pgBouncer.
 `spec.backups.pgbackrest.configuration.secret` ensures safety access to backup space`
