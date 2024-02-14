@@ -6,6 +6,7 @@ The fields that directly interact with or configure core Kubernetes resources. T
 
 Examples:
 metadata: Defines metadata of the CRD instance.
+
 spec.volumeSpec: Configurations for persistent storage claims.
 spec.affinity: Scheduling preferences to determine how pods are placed relative to other pods.
 spec.secretsName, spec.sslSecretName: Reference to Kubernetes secrets for storing sensitive information.
