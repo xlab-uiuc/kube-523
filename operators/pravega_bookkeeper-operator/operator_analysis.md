@@ -41,7 +41,7 @@ These are configurations that are provided at deployment time and mostly unchang
 
 
 ## Complexity Metric
-From a cursory reading of the CRD, it is evident that not each string type or integer type is not equivalent and hence assigning equal importance to these fields is not fair. For example, some strings represents execution commands that must be run whereas others are mere names and labels. Keeping this in mind, a coarse categorization of these types could be as follows, 
+From the CRD, it is evident that not each string type or integer type is not equivalent and hence assigning equal importance to these fields is not fair. For example, some strings represents execution commands that must be run whereas others are mere names and labels. Keeping this in mind, a coarse categorization of these types could be as follows, 
 
 commands/env variable strings > integers > other strings > booleans
 
