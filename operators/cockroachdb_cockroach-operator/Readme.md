@@ -86,8 +86,10 @@ Employing these weights, the unified complexity score was formulated as:
 
 C = (1 * D) + (2 * I) + (1 * F) + (3 * U) + (3 * O)
 
-This calculation yielded a unified complexity score of 
+This calculation yielded a unified complexity score of
+
 **115** 
+
 encapsulating the CRD's multifaceted complexity from its structural depth to its operational and update intricacies.
 
 ## Reflections
