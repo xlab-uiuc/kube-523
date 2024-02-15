@@ -47,6 +47,6 @@ commands/env variable strings > integers > other strings > booleans
 
 Assigning weights of 10, 5, 2, 1 respectively, we can computed a weighted average complexity score as
 
-$$ \frac{10 \times \text{\#commands/env variables} + 3 \times \text{\#integers} + 2 \times \text{\#other strings} + 1 \times \text{\#booleans}}{\text{\#total number of parameters}} = \frac{ 10 \times 8  + 5 \times 174 + 2 \times 266  + 1 \times 16}{8 + 174 + 266 + 16} = 3.22$$
+$$ \frac{10 \times \text{commands/env variables} + 3 \times \text{integers} + 2 \times \text{other strings} + 1 \times \text{booleans}}{\text{total number of parameters}} = \frac{ 10 \times 8  + 5 \times 174 + 2 \times 266  + 1 \times 16}{8 + 174 + 266 + 16} = 3.22$$
 
 Of course, one can further split the integers up into classes of importance as some integer types represent important bookkeeper specific properties such as #replicas, whereas others represent less important parameters such as timeouts for various probes. Another improvement would be to take defaulted/compulsory parameters into account. I believe such a weighted metric with different classes of importance is the most interpretable metric.
