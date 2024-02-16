@@ -9,6 +9,11 @@ You would need to have a working environment to run Acto, and the Acto repo clon
 3. [Inspecting Acto’s Test Results](#3-inspecting-actos-test-results)
 4. [Deliverables](#deliverables)
 
+## Deadlines
+- Submit the test results without inspecting them -- next Thursday (02/22)
+- Submit the inspection results of 10 reports -- next next Tuesday (02/27)
+- Submit all the inspection results  -- next next next Tuesday (03/05)
+
 ## 1. Porting Your Operator to Acto by Writing `config.json`
 
 Acto requires the following essential information to test an operator:
