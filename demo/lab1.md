@@ -4,6 +4,11 @@ In this lab, we will use Acto to test the operator that you picked.
 
 You would need to have a working environment to run Acto, and the Acto repo cloned to your local disk. Since this lab would require a very long running time, we highly recommend you to use the CloudLab machine. We also provide an [Ansible Playbook](https://github.com/xlab-uiuc/acto/tree/main/scripts/ansible) to setup the environment automatically on CloudLab.
 
+1. [Porting Your Operator to Acto by Writing `config.json`](#1-porting-your-operator-to-acto-by-writing-configjson)
+2. [Running Acto](#2-running-acto)
+3. [Inspecting Acto’s Test Results](#3-inspecting-actos-test-results)
+4. [Deliverables](#deliverables)
+
 ## 1. Porting Your Operator to Acto by Writing `config.json`
 
 Acto requires the following essential information to test an operator:
