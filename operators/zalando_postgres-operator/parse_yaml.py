@@ -2,7 +2,7 @@
 
 import yaml
 
-with open('./postgresql.crd.yaml') as file:
+with open('./acid.zalan.do_postgresqls.yaml') as file:
     # The FullLoader parameter handles the conversion from YAML
     # scalar values to Python the dictionary format
     postgresql_crd = yaml.load(file, Loader=yaml.FullLoader)
