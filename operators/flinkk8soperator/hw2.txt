@@ -1,0 +1,75 @@
+HW2 CS523
+
+1. Find your CRD.
+
+2. Analyze your PR.
+In your PR message, please analyze your CRD and categorize the fields. You should feel free to come up with your own categorization.
+Follow MECE principles.
+
+1. Kubernetes Core Resources & Configurations
+These include settings and configurations that directly leverage Kubernetes' built-in resources and features, facilitating scheduling, security, and resource allocation.
+
+./:
+metadata: Utilizes Kubernetes' metadata structure for naming and annotations.
+./spec/versions/schema/openAPIV3Schema/properties/spec/properties/:
+serviceAccountName: Specifies Kubernetes service accounts for RBAC.
+securityContext: Applies Kubernetes security settings to the pods.
+volumes & volumeMounts: Uses Kubernetes' volume management for storage.
+imagePullSecrets: Kubernetes mechanism for accessing private image registries.
+./spec/versions/schema/openAPIV3Schema/properties/spec/properties/:
+~/jobManagerConfig&&taskManagerConfig/properties/:
+resources (requests & limits): Standard Kubernetes fields for managing pod resource consumption.
+affinity & tolerations: Kubernetes features for pod scheduling preferences and node selection.
+envConfig & envFrom: Leverages Kubernetes environment variable configurations for pods.
+
+2. Application-Specific Configurations
+These settings are specific to managing and configuring Flink applications, tailoring the Kubernetes environment to suit Flink's operational models.
+
+./spec/versions/schema/openAPIV3Schema/properties/spec/properties/:
+image, imagePullPolicy: Define the container image and pull policy for Flink applications.
+jarName, programArgs, entryClass: Flink-specific parameters for job execution.
+flinkVersion: Specifies the version of Flink being used.
+parallelism: Controls the parallelism level of Flink jobs.
+deploymentMode: Defines the strategy for deploying Flink applications (e.g., blue/green deployments).
+jobManagerConfig & taskManagerConfig: Configurations specific to Flink's JobManager and TaskManager components, including replicas, resources, and task slots.
+flinkConfig: Custom Flink configuration parameters for tuning the Flink cluster and jobs.
+
+3. Operational & Health Monitoring
+These fields are designed to enhance observability and manageability of Flink applications within a Kubernetes cluster.
+
+./spec/versions/:
+status Subresource: Reflects the current state and health of the Flink application.
+additionalPrinterColumns: Custom kubectl columns for displaying critical Flink application metrics and statuses.
+
+4. State & Data Management
+Configurations related to managing the state and persistent data of Flink applications, crucial for stateful stream processing.
+
+./spec/versions/schema/openAPIV3Schema/properties/spec/:
+savepointInfo: Manages Flink savepoints for stateful recovery and updates.
+volumes: Defines how external data sources and sinks are integrated with Flink pods.
+
+5. Networking & Communication
+Settings that influence the network behavior of Flink applications within Kubernetes, including service discovery and inter-component communication.
+
+./spec/versions/schema/openAPIV3Schema/properties/spec/:
+rpcPort, blobPort, queryPort, metricsQueryPort: Network port configurations for various Flink components.
+
+6. Deployment Strategy & Management
+These configurations control how Flink applications are deployed, updated, and managed within the Kubernetes environment.
+
+./spec/versions/schema/openAPIV3Schema/properties/spec/:
+restartNonce: A unique identifier to trigger application restarts or updates.
+deleteMode: Specifies the behavior when Flink applications are deleted (e.g., taking a savepoint).
+
+This categorization covers the breadth of configurations available in the FlinkApplication CRD, highlighting the integration between Kubernetes' core capabilities and Flink-specific requirements. It underscores the flexibility and control offered to developers and operators for deploying, managing, and scaling Flink applications in a Kubernetes-native manner.
+
+3. A research question.
+
+My Complexity metric:
+Number of fields/end leafs: Use the count of details to measure complexity. This is a very basic and niche measure for information/entropy represented by the file. About 530.
+Number of end internal nodes in application specific sections: Use the count of properties to measure complexity. This signals the "conceptual/abstract individuals" defined in the configuration file. About 30.
+Number of specific configurations: Use the count of Job and Task Manager Configuration details to measure complexity. This covers operational flexibility because manager configurations are important for efficient application execution. About 800.
+Number of dynamic/modifiable references: Use the count of properties that can be automatically adjusted to measure flexibility complexity. Both bolean, enum, and range-based values are counted. About 40.
+Number of total depth of each end internal nodes: Use tree properties to measure complexity, with spec being the root level. Estimated on everage of 20, so about 22000 in all.
+
+My Total Complexity = 530 * 0.05 + 30 + 800 * 0.05 + 40 + 22000 * 0.001 = 26.5 + 30 + 40 + 40 + 22 = 158.5.
