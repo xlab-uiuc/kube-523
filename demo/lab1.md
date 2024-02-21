@@ -62,6 +62,14 @@ The operator deploy for cass-operator is written in the following format, split 
 }
 ```
 
+**Added 02/20**
+In case your operator uses helm to deploy, please check out the `helm template` command to export the helm chart into YAML files:
+https://helm.sh/docs/helm/helm_template/
+
+```
+helm template --output-dir './yaml' ...
+```
+
 ### 1.2 Providing the Name of the CRD to be Tested
 
 You would also need to provide the full name of the CRD to be tested (Acto only supports to test one CRD at a time).
