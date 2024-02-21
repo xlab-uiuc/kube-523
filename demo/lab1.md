@@ -89,6 +89,9 @@ P.S. Check if your CRD is complete. Check if the schema defined in the CRD is op
 
 Provide a sample CR which will be used by Acto as the seed. This can be any valid CR, usually operator repos contain multiple sample CRs. Specify this through the `seed_custom_resource` property in the configuration.
 
+**Added 02/20**
+Please specify the `metadata.name` as `test-cluster` in the CR YAML
+
 For example, cass-operator provides a list of sample CRs in their [repo](https://github.com/k8ssandra/cass-operator/tree/master/config/samples)
 
 Copy one CR into the port directory, and specify the path of the copied CR in the `seed_custom_resource` property.
