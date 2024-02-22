@@ -1,0 +1,270 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-02-05T23:29:48Z"
+  generateName: kubeblocks-cf966665-
+  labels:
+    app.kubernetes.io/instance: kubeblocks
+    app.kubernetes.io/name: kubeblocks
+    pod-template-hash: cf966665
+  name: kubeblocks-cf966665-5tj58
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: kubeblocks-cf966665
+    uid: b6573daf-4b8a-4a6f-a1d8-a6f03dbc3360
+  resourceVersion: "37234"
+  uid: b25e2554-329c-46bc-81dd-79a85148aea4
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - preference:
+          matchExpressions:
+          - key: kb-controller
+            operator: In
+            values:
+            - "true"
+        weight: 100
+  containers:
+  - args:
+    - --health-probe-bind-address=:8081
+    - --metrics-bind-address=:8080
+    - --leader-elect
+    - --zap-devel=false
+    - --zap-time-encoding=iso8601
+    - --zap-encoder=console
+    - --extensions=true
+    - --apps=true
+    - --workloads=true
+    env:
+    - name: CM_NAMESPACE
+      value: default
+    - name: CM_AFFINITY
+      value: '{"nodeAffinity":{"preferredDuringSchedulingIgnoredDuringExecution":[{"preference":{"matchExpressions":[{"key":"kb-controller","operator":"In","values":["true"]}]},"weight":100}]}}'
+    - name: CM_TOLERATIONS
+      value: '[{"effect":"NoSchedule","key":"kb-controller","operator":"Equal","value":"true"}]'
+    - name: KUBEBLOCKS_IMAGE_PULL_POLICY
+      value: IfNotPresent
+    - name: KUBEBLOCKS_TOOLS_IMAGE
+      value: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-tools:0.8.1
+    - name: KUBEBLOCKS_DATASCRIPT_CLIENTS_IMAGE
+      value: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-datascript:0.8.1
+    - name: KUBEBLOCKS_SERVICEACCOUNT_NAME
+      value: kubeblocks
+    - name: ENABLE_RBAC_MANAGER
+      value: "true"
+    - name: ADDON_JOB_TTL
+    - name: ADDON_JOB_IMAGE_PULL_POLICY
+      value: IfNotPresent
+    - name: KUBEBLOCKS_ADDON_SA_NAME
+      value: kubeblocks-addon-installer
+    - name: KUBEBLOCKS_ADDON_HELM_INSTALL_OPTIONS
+      value: --atomic --cleanup-on-fail --wait --insecure-skip-tls-verify
+    - name: DP_ENCRYPTION_KEY
+      valueFrom:
+        secretKeyRef:
+          key: dataProtectionEncryptionKey
+          name: kubeblocks-secret
+    - name: KUBE_PROVIDER
+    - name: HOST_PORT_INCLUDE_RANGES
+      value: 1025-65536
+    - name: HOST_PORT_EXCLUDE_RANGES
+      value: 6443,10250,10257,10259,2379-2380,30000-32767
+    - name: HOST_PORT_CM_NAME
+      value: kubeblocks-host-ports
+    image: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks:0.8.1
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: health
+        scheme: HTTP
+      initialDelaySeconds: 15
+      periodSeconds: 20
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: manager
+    ports:
+    - containerPort: 9443
+      name: webhook-server
+      protocol: TCP
+    - containerPort: 8081
+      name: health
+      protocol: TCP
+    - containerPort: 8080
+      name: metrics
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /readyz
+        port: health
+        scheme: HTTP
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/kubeblocks
+      name: manager-config
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-955zr
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  initContainers:
+  - command:
+    - /bin/true
+    image: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-tools:0.8.1
+    imagePullPolicy: IfNotPresent
+    name: tools
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-955zr
+      readOnly: true
+  - command:
+    - /bin/true
+    image: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-datascript:0.8.1
+    imagePullPolicy: IfNotPresent
+    name: datascript
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-955zr
+      readOnly: true
+  nodeName: kind-worker3
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    runAsNonRoot: true
+  serviceAccount: kubeblocks
+  serviceAccountName: kubeblocks
+  terminationGracePeriodSeconds: 10
+  tolerations:
+  - effect: NoSchedule
+    key: kb-controller
+    operator: Equal
+    value: "true"
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - configMap:
+      defaultMode: 420
+      name: kubeblocks-manager-config
+    name: manager-config
+  - name: kube-api-access-955zr
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-15T00:52:27Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-15T00:52:34Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-15T00:52:34Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-05T23:29:48Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://3f178f40c39cf203100da56f56ce93aaaa41b614159efccc27006c21c07cbaee
+    image: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks:0.8.1
+    imageID: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks@sha256:cd67e689401c18fadb38cefc94a39ac4052b99fa9a3e0330eca0512a3bac7e5b
+    lastState:
+      terminated:
+        containerID: containerd://71cfda1fee74e72adb43a4a949648e0b92e8fe1950b1425be55270de129bdd0b
+        exitCode: 255
+        finishedAt: "2024-02-15T00:52:18Z"
+        reason: Unknown
+        startedAt: "2024-02-14T20:20:27Z"
+    name: manager
+    ready: true
+    restartCount: 9
+    started: true
+    state:
+      running:
+        startedAt: "2024-02-15T00:52:29Z"
+  hostIP: 172.18.0.5
+  initContainerStatuses:
+  - containerID: containerd://6b1fe6738a85bb861426590504c3cc06761bf9e05370438d724b1c8c66e271d3
+    image: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-tools:0.8.1
+    imageID: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-tools@sha256:36e3a1205a06b6f935d6faa70fdaec91d9c6bc6ee69abeb80d4380cf381f82bd
+    lastState: {}
+    name: tools
+    ready: true
+    restartCount: 7
+    state:
+      terminated:
+        containerID: containerd://6b1fe6738a85bb861426590504c3cc06761bf9e05370438d724b1c8c66e271d3
+        exitCode: 0
+        finishedAt: "2024-02-15T00:52:26Z"
+        reason: Completed
+        startedAt: "2024-02-15T00:52:26Z"
+  - containerID: containerd://0b55d4f1f571f7bcfb5ad19ff98d3b12f0ae484c5de05dd050c13d57cb0b3949
+    image: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-datascript:0.8.1
+    imageID: infracreate-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/kubeblocks-datascript@sha256:7efba78a791cd28d4cf864f28201e196e14f77f9fd01950407c5c4f3faf9a938
+    lastState: {}
+    name: datascript
+    ready: true
+    restartCount: 0
+    state:
+      terminated:
+        containerID: containerd://0b55d4f1f571f7bcfb5ad19ff98d3b12f0ae484c5de05dd050c13d57cb0b3949
+        exitCode: 0
+        finishedAt: "2024-02-15T00:52:28Z"
+        reason: Completed
+        startedAt: "2024-02-15T00:52:28Z"
+  phase: Running
+  podIP: 10.244.2.2
+  podIPs:
+  - ip: 10.244.2.2
+  qosClass: BestEffort
+  startTime: "2024-02-05T23:29:48Z"
