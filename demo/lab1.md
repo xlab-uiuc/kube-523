@@ -62,6 +62,14 @@ The operator deploy for cass-operator is written in the following format, split 
 }
 ```
 
+**Added 02/20**
+In case your operator uses helm to deploy, please check out the `helm template` command to export the helm chart into YAML files:
+https://helm.sh/docs/helm/helm_template/
+
+```
+helm template --output-dir './yaml' ...
+```
+
 ### 1.2 Providing the Name of the CRD to be Tested
 
 You would also need to provide the full name of the CRD to be tested (Acto only supports to test one CRD at a time).
@@ -88,6 +96,9 @@ P.S. Check if your CRD is complete. Check if the schema defined in the CRD is op
 ### 1.3 Providing a Seed CR
 
 Provide a sample CR which will be used by Acto as the seed. This can be any valid CR, usually operator repos contain multiple sample CRs. Specify this through the `seed_custom_resource` property in the configuration.
+
+**Added 02/20**
+Please specify the `metadata.name` as `test-cluster` in the CR YAML
 
 For example, cass-operator provides a list of sample CRs in their [repo](https://github.com/k8ssandra/cass-operator/tree/master/config/samples)
 
