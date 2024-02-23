@@ -1,0 +1,59 @@
+apiVersion: planetscale.com/v2
+kind: VitessCluster
+metadata:
+  name: example
+  namesapce: vitess-operator
+spec:
+  backup:
+    locations:
+    - gcs:
+        bucket: planetscale-enisoc-dev
+        authSecret:
+          name: enisoc-dev-vitess
+          key: key.json
+  cells:
+  - name: gcpuswest1b
+    gateway:
+      authentication:
+        static:
+          secret:
+            name: example-cluster-config
+            key: users.json
+      secureTransport:
+        tls:
+          certSecret:
+            name: example-cluster-config
+            key: cert.pem
+          keySecret:
+            name: example-cluster-config
+            key: key.pem
+  keyspaces:
+  - name: main
+    partitionings:
+    - equal:
+        parts: 2
+        shardTemplate:
+          databaseInitScriptSecret:
+            name: example-cluster-config
+            key: init_db.sql
+          tabletPools:
+          - cell: gcpuswest1b
+            type: replica
+            replicas: 3
+            vttablet:
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+            mysqld:
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+            dataVolumeClaimTemplate:
+              accessModes: ["ReadWriteOnce"]
+              reisources:
+                requests:
+                  storage: 10Gi
+  updateStrategy:
+    type: Immediate
