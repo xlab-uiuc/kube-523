@@ -10,7 +10,7 @@ You would need to have a working environment to run Acto, and the Acto repo clon
 4. [Deliverables](#deliverables)
 
 ## Deadlines
-- Submit the test results without inspecting them -- next Thursday (02/22)
+- Submit the test results without inspecting them -- next Friday (02/23)
   - Please finish running Acto and use the test result collection [script](https://github.com/xlab-uiuc/kube-523/blob/main/demo/lab1.md#31-gathering-test-results) to generate the `result.csv` file.
   - Create a PR to the repo to upload the `result.csv` file to the operator directory.
 - Submit the inspection results of 10 reports -- next next Tuesday (02/27)
