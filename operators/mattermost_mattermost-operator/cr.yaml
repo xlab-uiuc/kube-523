@@ -1,0 +1,387 @@
+apiVersion: ps.percona.com/v1alpha1
+kind: PerconaServerMySQL
+metadata:
+  name: cluster1
+  finalizers:
+    - delete-mysql-pods-in-order
+    # - delete-ssl
+spec:
+  allowUnsafeConfigurations: false
+#  pause: false
+  crVersion: 0.7.0
+  secretsName: cluster1-secrets
+  sslSecretName: cluster1-ssl
+  updateStrategy: SmartUpdate
+  upgradeOptions:
+    versionServiceEndpoint: https://check.percona.com
+    apply: disabled
+#  initImage: perconalab/percona-server-mysql-operator:main
+#  ignoreAnnotations:
+#    - service.beta.kubernetes.io/aws-load-balancer-backend-protocol
+#  ignoreLabels:
+#    - rack
+#  tls:
+#    SANs:
+#      - mysql-1.example.com
+#      - mysql-2.example.com
+#      - mysql-3.example.com
+#    issuerConf:
+#      name: special-selfsigned-issuer
+#      kind: ClusterIssuer
+#      group: cert-manager.io
+
+  mysql:
+    clusterType: group-replication
+    autoRecovery: true
+    image: perconalab/percona-server-mysql-operator:main-psmysql
+    imagePullPolicy: Always
+#    initImage: percona/percona-server-mysql-operator:0.7.0
+
+    size: 3
+
+    resources:
+      requests:
+        memory: 1G
+      limits:
+        memory: 2G
+
+#    readinessProbe:
+#      initialDelaySeconds: 30
+#      timeoutSeconds: 10
+#      periodSeconds: 10
+#      failureThreshold: 3
+#      successThreshold: 1
+#
+#    livenessProbe:
+#      initialDelaySeconds: 15
+#      timeoutSeconds: 10
+#      periodSeconds: 10
+#      failureThreshold: 3
+#      successThreshold: 1
+
+    affinity:
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+#      advanced:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: kubernetes.io/e2e-az-name
+#                operator: In
+#                values:
+#                - e2e-az1
+#                - e2e-az2
+
+#    expose:
+#      enabled: false
+#      type: ClusterIP
+#      annotations:
+#        service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+#      externalTrafficPolicy: Cluster
+#      internalTrafficPolicy: Cluster
+#      labels:
+#        rack: rack-22
+#      loadBalancerSourceRanges:
+#        - 10.0.0.0/8
+
+    volumeSpec:
+      persistentVolumeClaim:
+        resources:
+          requests:
+            storage: 2G
+
+#    configuration: |
+#      max_connections=250
+#      innodb_buffer_pool_size={{containerMemoryLimit * 3/4}}
+
+#    sidecars:
+#    - name: noop-memory
+#      image: busybox
+#      command: ["sleep", "30d"]
+#      volumeMounts:
+#      - name: "memory-vol"
+#        mountPath: "/var/log/app/memory"
+#      resources:
+#        requests:
+#          memory: 16M
+#    - name: noop-pvc
+#      image: busybox
+#      command: ["sleep", "30d"]
+#      volumeMounts:
+#      - name: "pvc-vol"
+#        mountPath: "/var/log/app/pvc"
+#    sidecarVolumes:
+#    - name: "memory-vol"
+#      emptyDir:
+#        medium: "Memory"
+#    sidecarPVCs:
+#    - name: pvc-vol
+#      spec:
+#        resources:
+#          requests:
+#            storage: 1G
+
+  proxy:
+    haproxy:
+      enabled: true
+
+      size: 3
+
+      image: perconalab/percona-server-mysql-operator:main-haproxy
+      imagePullPolicy: Always
+
+      resources:
+        requests:
+          memory: 1G
+          cpu: 600m
+#        limits:
+#          memory: 1G
+#          cpu: 700m
+
+#      env:
+#      - name: HA_CONNECTION_TIMEOUT
+#        value: "1000"
+#
+#      envFrom:
+#      - secretRef:
+#          name: haproxy-env-secret
+
+#      readinessProbe:
+#        timeoutSeconds: 3
+#        periodSeconds: 5
+#        failureThreshold: 3
+#        successThreshold: 1
+#
+#      livenessProbe:
+#        timeoutSeconds: 3
+#        periodSeconds: 5
+#        failureThreshold: 3
+#        successThreshold: 1
+
+#      configuration: |
+#
+#      the actual default configuration file can be found here https://github.com/percona/percona-server-mysql-operator/blob/main/build/haproxy-global.cfg
+#
+#        global
+#          maxconn 2048
+#          external-check
+#          insecure-fork-wanted
+#          stats socket /etc/haproxy/mysql/haproxy.sock mode 600 expose-fd listeners level admin
+#
+#        defaults
+#          default-server init-addr last,libc,none
+#          log global
+#          mode tcp
+#          retries 10
+#          timeout client 28800s
+#          timeout connect 100500
+#          timeout server 28800s
+#
+#        frontend mysql-primary-in
+#          bind *:3309 accept-proxy
+#          bind *:3306
+#          mode tcp
+#          option clitcpka
+#          default_backend mysql-primary
+#
+#        frontend mysql-replicas-in
+#          bind *:3307
+#          mode tcp
+#          option clitcpka
+#          default_backend mysql-replicas
+#
+#        frontend stats
+#          bind *:8404
+#          mode http
+#          http-request use-service prometheus-exporter if { path /metrics }
+
+      affinity:
+        antiAffinityTopologyKey: "kubernetes.io/hostname"
+#        advanced:
+#          nodeAffinity:
+#            requiredDuringSchedulingIgnoredDuringExecution:
+#              nodeSelectorTerms:
+#              - matchExpressions:
+#                - key: kubernetes.io/e2e-az-name
+#                  operator: In
+#                  values:
+#                  - e2e-az1
+#                  - e2e-az2
+
+#      expose:
+#        type: ClusterIP
+#        annotations:
+#          service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+#        externalTrafficPolicy: Cluster
+#        internalTrafficPolicy: Cluster
+#        labels:
+#          rack: rack-22
+#        loadBalancerIP: 127.0.0.1
+#        loadBalancerSourceRanges:
+#          - 10.0.0.0/8
+    router:
+      enabled: false
+      image: perconalab/percona-server-mysql-operator:main-router
+      imagePullPolicy: Always
+#      initImage: percona/percona-server-mysql-operator:0.7.0
+
+      size: 3
+
+      resources:
+        requests:
+          memory: 256M
+        limits:
+          memory: 256M
+
+      affinity:
+        antiAffinityTopologyKey: "kubernetes.io/hostname"
+#        advanced:
+#          nodeAffinity:
+#            requiredDuringSchedulingIgnoredDuringExecution:
+#              nodeSelectorTerms:
+#              - matchExpressions:
+#                - key: kubernetes.io/e2e-az-name
+#                  operator: In
+#                  values:
+#                  - e2e-az1
+#                  - e2e-az2
+
+#      configuration: |
+#        [default]
+#        logging_folder=/tmp/router/log
+#        [logger]
+#        level=DEBUG
+
+#      expose:
+#        type: ClusterIP
+#        annotations:
+#          service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+#        externalTrafficPolicy: Cluster
+#        internalTrafficPolicy: Cluster
+#        labels:
+#          rack: rack-22
+#        loadBalancerIP: 127.0.0.1
+#        loadBalancerSourceRanges:
+#          - 10.0.0.0/8
+
+  orchestrator:
+    enabled: false
+
+    image: perconalab/percona-server-mysql-operator:main-orchestrator
+    imagePullPolicy: Always
+#    serviceAccountName: percona-server-mysql-operator-orchestrator
+#    initImage: percona/percona-server-mysql-operator:0.7.0
+
+    size: 3
+
+    affinity:
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+#      advanced:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: kubernetes.io/e2e-az-name
+#                operator: In
+#                values:
+#                - e2e-az1
+#                - e2e-az2
+
+#    expose:
+#      type: ClusterIP
+#      annotations:
+#        service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+#      externalTrafficPolicy: Cluster
+#      internalTrafficPolicy: Cluster
+#      labels:
+#        rack: rack-22
+#      loadBalancerSourceRanges:
+#        - 10.0.0.0/8
+
+    resources:
+      requests:
+        memory: 128M
+      limits:
+        memory: 256M
+
+    volumeSpec:
+      persistentVolumeClaim:
+        resources:
+          requests:
+            storage: 1G
+
+  pmm:
+    enabled: false
+
+    image: percona/pmm-client:2.39.0
+    imagePullPolicy: Always
+
+    resources:
+      requests:
+        memory: 150M
+        cpu: 300m
+#      limits:
+#        memory: 256M
+#        cpu: 400m
+
+    serverHost: monitoring-service
+    serverUser: admin
+
+  backup:
+    enabled: true
+    image: perconalab/percona-server-mysql-operator:main-backup
+    imagePullPolicy: Always
+#    initImage: percona/percona-server-mysql-operator:0.7.0
+    storages:
+      s3-us-west:
+        type: s3
+        verifyTLS: true
+#        nodeSelector:
+#          storage: tape
+#          backupWorker: 'True'
+#        resources:
+#          requests:
+#            memory: 1G
+#            cpu: 600m
+#        affinity:
+#          nodeAffinity:
+#            requiredDuringSchedulingIgnoredDuringExecution:
+#              nodeSelectorTerms:
+#              - matchExpressions:
+#                - key: backupWorker
+#                  operator: In
+#                  values:
+#                  - 'True'
+#        tolerations:
+#          - key: "backupWorker"
+#            operator: "Equal"
+#            value: "True"
+#            effect: "NoSchedule"
+#        annotations:
+#          testName: scheduled-backup
+#        labels:
+#          backupWorker: 'True'
+#        schedulerName: 'default-scheduler'
+#        priorityClassName: 'high-priority'
+#        containerSecurityContext:
+#          privileged: true
+#        podSecurityContext:
+#          fsGroup: 1001
+#          supplementalGroups: [1001, 1002, 1003]
+        s3:
+          bucket: S3-BACKUP-BUCKET-NAME-HERE
+          credentialsSecret: cluster1-s3-credentials
+          region: us-west-2
+#          prefix: ""
+
+  toolkit:
+    image: perconalab/percona-server-mysql-operator:main-toolkit
+    imagePullPolicy: Always
+#    resources:
+#      requests:
+#        memory: 150M
+#        cpu: 100m
+#      limits:
+#        memory: 256M
+#        cpu: 400m
+
