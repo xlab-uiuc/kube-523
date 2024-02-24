@@ -1218,7 +1218,6 @@ metadata:
     controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: vitessclusters.planetscale.com
-  namespace: vitess-operator
 spec:
   group: planetscale.com
   names:
@@ -6111,7 +6110,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vitess-operator
-  namespace: vitess-operator
 spec:
   replicas: 1
   selector:
@@ -6151,7 +6149,25 @@ spec:
           name: vitess-operator
           resources:
             limits:
-              memory: 512Mi
+              memory: 128Mi
             requests:
               cpu: 100m
               memory: 128Mi
+      priorityClassName: vitess-operator-control-plane
+      serviceAccountName: vitess-operator
+---
+apiVersion: scheduling.k8s.io/v1
+description: The vitess-operator control plane.
+globalDefault: false
+kind: PriorityClass
+metadata:
+  name: vitess-operator-control-plane
+value: 5000
+---
+apiVersion: scheduling.k8s.io/v1
+description: Vitess components (vttablet, vtgate, vtctld, etcd)
+globalDefault: false
+kind: PriorityClass
+metadata:
+  name: vitess
+value: 1000
