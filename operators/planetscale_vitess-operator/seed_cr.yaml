@@ -12,11 +12,11 @@ spec:
     vtadmin: vitess/vtadmin:latest
     vtgate: vitess/lite:latest
     vttablet: vitess/lite:latest
-    vtbackup: vitess/lite:latest
+    # vtbackup: vitess/lite:latest
     vtorc: vitess/lite:latest
     mysqld:
       mysql80Compatible: mysql:8.0.30
-    mysqldExporter: prom/mysqld-exporter:v0.11.0
+    # mysqldExporter: prom/mysqld-exporter:v0.11.0
   cells:
   - name: zone1
     gateway:
@@ -88,17 +88,17 @@ spec:
                 db_charset: utf8mb4
               resources:
                 limits:
-                  memory: 256Mi
+                  memory: 100Mi
                 requests:
                   cpu: 100m
-                  memory: 256Mi
+                  memory: 100Mi
             mysqld:
               resources:
                 limits:
-                  memory: 1024Mi
+                  memory: 100Mi
                 requests:
                   cpu: 100m
-                  memory: 512Mi
+                  memory: 100Mi
             dataVolumeClaimTemplate:
               accessModes: ["ReadWriteOnce"]
               resources:
