@@ -81,17 +81,17 @@ spec:
           tabletPools:
           - cell: zone1
             type: replica
-            replicas: 1
-            # vttablet:
-            #   extraFlags:
-            #     disable_active_reparents: "true"
-            #     db_charset: utf8mb4
-            #   resources:
-            #     limits:
-            #       memory: 256Mi
-            #     requests:
-            #       cpu: 100m
-            #       memory: 256Mi
+            replicas: 3
+            vttablet:
+              extraFlags:
+                disable_active_reparents: "true"
+                db_charset: utf8mb4
+              resources:
+                limits:
+                  memory: 256Mi
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
             mysqld:
               resources:
                 limits:
