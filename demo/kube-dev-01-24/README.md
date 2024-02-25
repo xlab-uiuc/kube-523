@@ -14,9 +14,9 @@ We will first go through a tutorial to set up a Kubernetes cluster on a local ma
 Kind is a tool built by the Kubernetes community for local development and easy testing of Kubernetes.
 We will use it to create a local Kubernetes cluster to play with.
 
-**All problems in computer science can be solved by another level of indirection. — Butler Lampson**
+**"All problems in computer science can be solved by another level of indirection." — David J. Wheeler**
 
-What Kind does is to create Kubernetes “node” containers that behave like a machine in a cluster. Each node runs a Kubernetes daemon and joins together to form a Kubernetes cluster. 
+What Kind does is to create Kubernetes "node" containers that behave like a machine in a cluster. Each node runs a Kubernetes daemon and joins together to form a Kubernetes cluster. 
 
 - Install [Golang](https://go.dev/doc/install)
 - Install [Docker](https://docs.docker.com/engine/install/)
