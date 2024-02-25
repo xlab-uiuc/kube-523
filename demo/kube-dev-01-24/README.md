@@ -4,16 +4,8 @@
 
 After this tutorial, you will learn
 1. Basic concepts in Kubernetes.
-2. How to deploy an application(ZooKeeper) on Kubernetes using Pod and PVC
+2. How to deploy an application (ZooKeeper) on Kubernetes using Pod and PVC
 3. How to deploy a replicated application(ZooKeeper ensemble) on Kubernetes using StatefulSet.
-
-## **Recap - What is Kubernetes?**
-
-From the last lecture’s overview, we discussed VMs and containers. Containers ….
-
-We learned the high-level overview of the design of cluster managers, Borg, Omega, and Kubernetes which manage 100s or 1000s of containerized applications in a cluster.
-
-In this lecture, we will dive into Kubernetes and see it in action.
 
 ## **Setting up local Kubernetes cluster**
 
