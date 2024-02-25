@@ -1,4 +1,4 @@
-# Kubernetes Tutorial 01/24/2024
+# Kubernetes Tutorial
 
 ## Learning Outcome
 
