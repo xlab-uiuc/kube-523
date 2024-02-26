@@ -28,9 +28,9 @@ spec:
       resources:
         requests:
           cpu: 100m
-          memory: 64Mi
+          memory: 128Mi
         limits:
-          memory: 64Mi
+          memory: 128Mi
   vitessDashboard:
     cells:
     - zone1
@@ -39,10 +39,10 @@ spec:
     replicas: 1
     resources:
       limits:
-        memory: 64Mi
+        memory: 128Mi
       requests:
         cpu: 100m
-        memory: 64Mi
+        memory: 128Mi
   vtadmin:
     rbac:
       name: example-cluster-config
@@ -55,16 +55,16 @@ spec:
     readOnly: false
     apiResources:
       limits:
-        memory: 64Mi
+        memory: 128Mi
       requests:
         cpu: 100m
-        memory: 64Mi
+        memory: 128Mi
     webResources:
       limits:
-        memory: 64Mi
+        memory: 128Mi
       requests:
         cpu: 100m
-        memory: 64Mi
+        memory: 128Mi
 
   keyspaces:
   - name: commerce
@@ -87,17 +87,17 @@ spec:
                 db_charset: utf8mb4
               resources:
                 limits:
-                  memory: 64Mi
+                  memory: 128Mi
                 requests:
                   cpu: 100m
-                  memory: 64Mi
+                  memory: 128Mi
             mysqld:
               resources:
                 limits:
                   memory: 1024Mi
                 requests:
                   cpu: 100m
-                  memory: 64Mi
+                  memory: 128Mi
             dataVolumeClaimTemplate:
               accessModes: ["ReadWriteOnce"]
               resources:
