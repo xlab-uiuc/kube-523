@@ -3,7 +3,7 @@
         "steps": [
             {
                 "apply": {
-                    "file": "/users/syc113/kube-523/operators/planetscale_vitess-operator/namespaces.yaml"
+                    "file": "/users/syc113/acto/namespaces.yaml"
                 }
             },
             {
@@ -13,8 +13,8 @@
             },
             {
                 "apply": {
-                    "file": "/users/syc113/kube-523/operators/planetscale_vitess-operator/operator.yaml",
-		            "namespace": "vitess-operator",
+                    "file": "/users/syc113/acto/operator.yaml",
+                    "namespace": "vitess-operator",
                     "operator": true
                 }
             }
@@ -22,5 +22,7 @@
     },
 
     "crd_name": "vitessclusters.planetscale.com",
-    "seed_custom_resource": "/users/syc113/kube-523/operators/planetscale_vitess-operator/seed_cr.yaml"
+    "seed_custom_resource":"/users/syc113/acto/seed_cr.yaml",
+    "seed_custom_resource":"/users/syc113/acto/secret.yaml"
+
 }
