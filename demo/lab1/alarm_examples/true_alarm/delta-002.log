@@ -1,0 +1,102 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_removed": {
+            "root['spec']['additionalServiceConfig']['seedService']['additionalLabels']['ACTOKEY']": {
+                  "prev": "ACTOKEY",
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "additionalServiceConfig",
+                              "seedService",
+                              "additionalLabels",
+                              "ACTOKEY"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {
+            "values_changed": {
+                  "root['cluster1-seed-service']['metadata']['annotations']['cassandra.datastax.com/resource-hash']": {
+                        "prev": "2w8oZMRjOchCUBFmmFQdqzZA+EtwqcC76HPC6uTI84I=",
+                        "curr": "1uQq3KjBiQ6WSYWu9LR5c1HXTd2WMvTi7kggXePHlks=",
+                        "path": {
+                              "path": [
+                                    "cluster1-seed-service",
+                                    "metadata",
+                                    "annotations",
+                                    "cassandra.datastax.com/resource-hash"
+                              ]
+                        }
+                  }
+            }
+      },
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_removed": {
+                  "root['additionalServiceConfig']['seedService']['additionalLabels']['ACTOKEY']": {
+                        "prev": "ACTOKEY",
+                        "curr": "NotPresent",
+                        "path": {
+                              "path": [
+                                    "additionalServiceConfig",
+                                    "seedService",
+                                    "additionalLabels",
+                                    "ACTOKEY"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {
+            "values_changed": {
+                  "root['quietPeriod']": {
+                        "prev": "2024-02-26T19:37:20Z",
+                        "curr": "2024-02-26T19:38:22Z",
+                        "path": {
+                              "path": [
+                                    "quietPeriod"
+                              ]
+                        }
+                  },
+                  "root['superUserUpserted']": {
+                        "prev": "2024-02-26T19:37:15Z",
+                        "curr": "2024-02-26T19:38:17Z",
+                        "path": {
+                              "path": [
+                                    "superUserUpserted"
+                              ]
+                        }
+                  },
+                  "root['usersUpserted']": {
+                        "prev": "2024-02-26T19:37:15Z",
+                        "curr": "2024-02-26T19:38:17Z",
+                        "path": {
+                              "path": [
+                                    "usersUpserted"
+                              ]
+                        }
+                  }
+            }
+      }
+}
