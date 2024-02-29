@@ -355,7 +355,7 @@ This alarm is thus a false alarm. The operator’s behavior is correct. It did n
 ## Deliverables
 
 1. Please finish testing the operator using Acto
-2. There would be many alarms produced by Acto, and you are expected to inspect at least 100 alarms, and write a report for them.
+2. There would be many alarms produced by Acto, and you are expected to inspect at least 100 alarms, and write a report for them. You can use the report template here: https://github.com/xlab-uiuc/kube-523/blob/main/demo/lab1/alarm_report_template.md
     1. For each alarm, you need to determine if this is a True alarm or False alarm
     2. Please describe what is the CR change introduced by Acto in this alarm, and what is the operator’s behavior
     3. If it is a false alarm, please explain why do you think it is a false alarm. Is Acto’s correctness assumption broken?
