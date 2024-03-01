@@ -61,7 +61,7 @@ When Acto adds a `backup.volumeSnapshot` object to the cluster spec, nothing cha
 
 ### Categorization
 
-This is classified as a false alarm.
+These are classified as false alarms.
 
 ### Root Cause
 
