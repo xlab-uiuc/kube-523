@@ -1,0 +1,67 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_added": {
+            "root['spec']['authentication']['oidc'][clientIdSecretRef]": {
+                  "prev": "NotPresent",
+                  "curr": {},
+                  "path": {
+                        "path": [
+                              "spec",
+                              "authentication",
+                              "oidc",
+                              "clientIdSecretRef"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_added": {
+                  "root['authentication']['oidc'][clientIdSecretRef]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "authentication",
+                                    "oidc",
+                                    "clientIdSecretRef"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {
+            "type_changes": {
+                  "root[version]": {
+                        "prev": null,
+                        "curr": "1.8.1",
+                        "path": {
+                              "path": [
+                                    "version"
+                              ]
+                        }
+                  }
+            }
+      }
+}

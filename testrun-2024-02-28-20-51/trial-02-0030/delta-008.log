@@ -1,0 +1,485 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_added": {
+            "root['spec']['deploy'][restapi]": {
+                  "prev": "NotPresent",
+                  "curr": false,
+                  "path": {
+                        "path": [
+                              "spec",
+                              "deploy",
+                              "restapi"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {
+            "dictionary_item_added": {
+                  "root['test-cluster-certs'][data][MD5SUM]": {
+                        "prev": "NotPresent",
+                        "curr": "BFE67E406AF16139C255C0C8941C94C3",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "data",
+                                    "MD5SUM"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][data][tls.crt]": {
+                        "prev": "NotPresent",
+                        "curr": "-----BEGIN CERTIFICATE-----\nMIIFvjCCA6agAwIBAgIBATANBgkqhkiG9w0BAQsFADBEMRUwEwYDVQQKEwxzeXN0ZW06bm9kZXMxKzApBgNVBAMTInN5c3RlbTpub2RlOnRlc3QtY2x1c3Rlci5zdGFja2dyZXMwHhcNMjQwMjI5MDkxODIzWhcNMjYwMjI4MDkxODIyWjBEMRUwEwYDVQQKEwxzeXN0ZW06bm9kZXMxKzApBgNVBAMTInN5c3RlbTpub2RlOnRlc3QtY2x1c3Rlci5zdGFja2dyZXMwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCvgpa7z0aYgS1bcHxSxeW5xSUaCM+p6H4vBRM/enxpiggJ0zPMEPn7HAahPSutT7FneoN9gkXRLAUtJ7VN7aICGZDjRgVujR1KfIcHy+81ViWJ82Pp0YMpNerXDgvVyL/TAYFi+xdLlS6oOGX7NqAsadzMl/pL+MH/WZyVI7PLXll6N+Shw09InGR6N0HRXP0GLRggvJP915Unyu+IGcXKY8QlHQxkIfJbOyA9qA8TBKOf2ft2RxeRMcbzEjPij1mqn/SO5ZFOxWntMmkKo0p7ufqjlVl06bFDJRQHxbg3vMcdsMsXy4K3qMWn22PikueGAyos20Babu3S8TkLf0OEaqoH8En1fQmm6JsDnEjYovK+hgzReaQn50vKDxkGeyjB+tlp7NN5pB7z6d3HQXkWYlkZQ7+FyMVqpgWb3N4xbnx4fpu+f1dhfHXLd21TYEH2KGyQe5Hrj3uzP7kfhpzwC7JqWQiku+7YkQBqz6InW71KfXMkxgVN7eBQtbS+coe0q2U77LB+Jv668Pv/S6hNN5PQIEdmPp1BFSQ3OYjjXVi6qK0LIVy+MNESNyeZFxw8ruJodwQTcXAULlj7DmGz8aPDbvt64u5dcIpeg7MbTbwhVpSMEuIXjHuOwgr17SbfIBRi2jiWeo7eVGzMBqZzLRh9Yxvtf0YMTsm5JgQ13wIDAQABo4G6MIG3MA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjB1BgNVHREEbjBsggx0ZXN0LWNsdXN0ZXKCFnRlc3QtY2x1c3Rlci5zdGFja2dyZXOCGnRlc3QtY2x1c3Rlci5zdGFja2dyZXMuc3Zjgih0ZXN0LWNsdXN0ZXIuc3RhY2tncmVzLnN2Yy5jbHVzdGVyLmxvY2FsMA0GCSqGSIb3DQEBCwUAA4ICAQBfNNaBCIpAuqV+9sLuSdvHQBL30i2CLvz71xZKwEMriMati8SroDIhElU0rWWj0tZ21ATVZlBydlJ4zz8HN0OaeKkZ+uDdKGODm2mGK1wCyzMXzJlzw1tTxViJdWvY35tETR1g/QEiMhB1oFtLIhM9oXEXMegQJwPK0uE7lP7afI2pB12JXIhkAFWTb3syjV6tKWx/I6qLZ3+sRLrzWJaRYv5CmGpWREXxDwBEMil55zObbuOz1LvTyp0L0kUfUndTs5p5UTHUaouS7m5MeXuvFo2NwvlsuAuotcPJSp9NXItgXmIr17lhU3Rn6Krv7fD3L15D44sQYbwmtUuCQzYo89fKWTXSimqtERVUQJsNWyRs3Feks/ZSnbPytriyuVw3zS1x8W27AEH3evLcpWJiFkU7wqDgld57TzCDO5/HYjFDrVFRki6eNQdVyVTEykrDg2QfpPXSXCRVpBquyPDDtf4XyKJYXgpsFEIlXnLv8CxmUeCQrlilnubLwWh+T/yFzndPuKY4v7e1rINShcNhq6fdbn4O3c27zr5qt66platloSqgibmmemwYKswxtxB0OultSIFEuuuO8YiwAx2KhN0QUDulWz2BofqymCgogkYQDliH5wVYdmmz9t9XdfYyLoogvxzshzDSlHyjv2jWfPH/msQVzHFfJ9ga19gZfg==\n-----END CERTIFICATE-----\n",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "data",
+                                    "tls.crt"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][data][tls.key]": {
+                        "prev": "NotPresent",
+                        "curr": "-----BEGIN PRIVATE KEY-----\n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\n-----END PRIVATE KEY-----\n",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "data",
+                                    "tls.key"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][creation_timestamp]": {
+                        "prev": "NotPresent",
+                        "curr": "2024-02-29T09:18:23+00:00",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "creation_timestamp"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][labels][app]": {
+                        "prev": "NotPresent",
+                        "curr": "StackGresConfig",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "labels",
+                                    "app"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][labels][stackgres.io/config-name]": {
+                        "prev": "NotPresent",
+                        "curr": "test-cluster",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "labels",
+                                    "stackgres.io/config-name"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][api_version]": {
+                        "prev": "NotPresent",
+                        "curr": "v1",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "api_version"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_type]": {
+                        "prev": "NotPresent",
+                        "curr": "FieldsV1",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_type"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_v1][f:data][f:MD5SUM]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_v1",
+                                    "f:data",
+                                    "f:MD5SUM"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_v1][f:data][f:tls.crt]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_v1",
+                                    "f:data",
+                                    "f:tls.crt"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_v1][f:data][f:tls.key]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_v1",
+                                    "f:data",
+                                    "f:tls.key"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_v1][f:metadata][f:labels][f:app]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_v1",
+                                    "f:metadata",
+                                    "f:labels",
+                                    "f:app"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_v1][f:metadata][f:labels][f:stackgres.io/config-name]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_v1",
+                                    "f:metadata",
+                                    "f:labels",
+                                    "f:stackgres.io/config-name"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_v1][f:metadata][f:ownerReferences][k:{\"uid\":\"8cb95320-8d49-4458-aa60-e069ee5d77c5\"}]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_v1",
+                                    "f:metadata",
+                                    "f:ownerReferences",
+                                    "k:{\"uid\":\"8cb95320-8d49-4458-aa60-e069ee5d77c5\"}"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][fields_v1][f:type]": {
+                        "prev": "NotPresent",
+                        "curr": {},
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "fields_v1",
+                                    "f:type"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][manager]": {
+                        "prev": "NotPresent",
+                        "curr": "StackGres",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "manager"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][operation]": {
+                        "prev": "NotPresent",
+                        "curr": "Apply",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "operation"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][managed_fields][0][time]": {
+                        "prev": "NotPresent",
+                        "curr": "2024-02-29T09:18:23+00:00",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "managed_fields",
+                                    0,
+                                    "time"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][name]": {
+                        "prev": "NotPresent",
+                        "curr": "test-cluster-certs",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "name"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][namespace]": {
+                        "prev": "NotPresent",
+                        "curr": "stackgres",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "namespace"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][owner_references][0][api_version]": {
+                        "prev": "NotPresent",
+                        "curr": "stackgres.io/v1",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "owner_references",
+                                    0,
+                                    "api_version"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][owner_references][0][block_owner_deletion]": {
+                        "prev": "NotPresent",
+                        "curr": true,
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "owner_references",
+                                    0,
+                                    "block_owner_deletion"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][owner_references][0][controller]": {
+                        "prev": "NotPresent",
+                        "curr": true,
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "owner_references",
+                                    0,
+                                    "controller"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][owner_references][0][kind]": {
+                        "prev": "NotPresent",
+                        "curr": "SGConfig",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "owner_references",
+                                    0,
+                                    "kind"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][owner_references][0][name]": {
+                        "prev": "NotPresent",
+                        "curr": "test-cluster",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "owner_references",
+                                    0,
+                                    "name"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][owner_references][0][uid]": {
+                        "prev": "NotPresent",
+                        "curr": "8cb95320-8d49-4458-aa60-e069ee5d77c5",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "owner_references",
+                                    0,
+                                    "uid"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][resource_version]": {
+                        "prev": "NotPresent",
+                        "curr": "1908",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "resource_version"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][metadata][uid]": {
+                        "prev": "NotPresent",
+                        "curr": "f59d6f59-0c66-4320-b035-55f64a3a6935",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "metadata",
+                                    "uid"
+                              ]
+                        }
+                  },
+                  "root['test-cluster-certs'][type]": {
+                        "prev": "NotPresent",
+                        "curr": "kubernetes.io/tls",
+                        "path": {
+                              "path": [
+                                    "test-cluster-certs",
+                                    "type"
+                              ]
+                        }
+                  }
+            }
+      },
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_added": {
+                  "root['deploy'][operator]": {
+                        "prev": "NotPresent",
+                        "curr": true,
+                        "path": {
+                              "path": [
+                                    "deploy",
+                                    "operator"
+                              ]
+                        }
+                  },
+                  "root['deploy'][restapi]": {
+                        "prev": "NotPresent",
+                        "curr": false,
+                        "path": {
+                              "path": [
+                                    "deploy",
+                                    "restapi"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {
+            "dictionary_item_added": {
+                  "root['conditions'][0][lastTransitionTime]": {
+                        "prev": "NotPresent",
+                        "curr": "2024-02-29T09:18:23.417831Z",
+                        "path": {
+                              "path": [
+                                    "conditions",
+                                    0,
+                                    "lastTransitionTime"
+                              ]
+                        }
+                  },
+                  "root['conditions'][0][reason]": {
+                        "prev": "NotPresent",
+                        "curr": "FalseFailed",
+                        "path": {
+                              "path": [
+                                    "conditions",
+                                    0,
+                                    "reason"
+                              ]
+                        }
+                  },
+                  "root['conditions'][0][status]": {
+                        "prev": "NotPresent",
+                        "curr": "False",
+                        "path": {
+                              "path": [
+                                    "conditions",
+                                    0,
+                                    "status"
+                              ]
+                        }
+                  },
+                  "root['conditions'][0][type]": {
+                        "prev": "NotPresent",
+                        "curr": "Failed",
+                        "path": {
+                              "path": [
+                                    "conditions",
+                                    0,
+                                    "type"
+                              ]
+                        }
+                  }
+            }
+      }
+}

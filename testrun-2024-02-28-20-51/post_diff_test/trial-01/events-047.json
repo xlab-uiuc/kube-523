@@ -1,0 +1,1868 @@
+{
+    "api_version": "v1",
+    "items": [
+        {
+            "action": "Binding",
+            "api_version": null,
+            "count": null,
+            "event_time": "2024-02-29T18:48:07.426790+00:00",
+            "first_timestamp": null,
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": null,
+                "kind": "Pod",
+                "name": "stackgres-5dc45b496b-vmslm",
+                "namespace": "stackgres",
+                "resource_version": "909",
+                "uid": "fd19c869-a12f-49c8-a046-139cb9b3477e"
+            },
+            "kind": null,
+            "last_timestamp": null,
+            "message": "Successfully assigned stackgres/stackgres-5dc45b496b-vmslm to acto-0-cluster-1-worker3",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:07+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "events.k8s.io/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:action": {},
+                            "f:eventTime": {},
+                            "f:note": {},
+                            "f:reason": {},
+                            "f:regarding": {},
+                            "f:reportingController": {},
+                            "f:reportingInstance": {},
+                            "f:type": {}
+                        },
+                        "manager": "kube-scheduler",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:07+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b-vmslm.17b869e433a1def6",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "915",
+                "self_link": null,
+                "uid": "9cdb3758-11f2-4582-b070-2b586e9fe616"
+            },
+            "reason": "Scheduled",
+            "related": null,
+            "reporting_component": "default-scheduler",
+            "reporting_instance": "default-scheduler-acto-0-cluster-1-control-plane",
+            "series": null,
+            "source": {
+                "component": null,
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 2,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:08+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-5dc45b496b-vmslm",
+                "namespace": "stackgres",
+                "resource_version": "912",
+                "uid": "fd19c869-a12f-49c8-a046-139cb9b3477e"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:14+00:00",
+            "message": "Container image \"quay.io/stackgres/operator:1.8.1\" already present on machine",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:08+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:14+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b-vmslm.17b869e45edd0cff",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "944",
+                "self_link": null,
+                "uid": "ec1dff79-810e-417a-9205-0ea9c13f3acb"
+            },
+            "reason": "Pulled",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 2,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:08+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-5dc45b496b-vmslm",
+                "namespace": "stackgres",
+                "resource_version": "912",
+                "uid": "fd19c869-a12f-49c8-a046-139cb9b3477e"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:14+00:00",
+            "message": "Created container stackgres",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:08+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:14+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b-vmslm.17b869e46bf4eba7",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "946",
+                "self_link": null,
+                "uid": "aa2c8475-57fa-45da-a7b0-aa34d935bd14"
+            },
+            "reason": "Created",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 2,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:08+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-5dc45b496b-vmslm",
+                "namespace": "stackgres",
+                "resource_version": "912",
+                "uid": "fd19c869-a12f-49c8-a046-139cb9b3477e"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:15+00:00",
+            "message": "Started container stackgres",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:08+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:15+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b-vmslm.17b869e47899c4d2",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "947",
+                "self_link": null,
+                "uid": "660346cb-4785-4aba-8938-76a05243fc59"
+            },
+            "reason": "Started",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 13,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:09+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-5dc45b496b-vmslm",
+                "namespace": "stackgres",
+                "resource_version": "912",
+                "uid": "fd19c869-a12f-49c8-a046-139cb9b3477e"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:53+00:00",
+            "message": "Readiness probe failed: Get \"http://10.244.3.2:8080/q/health/ready\": dial tcp 10.244.3.2:8080: connect: connection refused",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:09+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:53+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b-vmslm.17b869e4a3e39b8d",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1142",
+                "self_link": null,
+                "uid": "a2f5f492-535c-495a-a986-3bfa00e60d9b"
+            },
+            "reason": "Unhealthy",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Warning"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:40+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-5dc45b496b-vmslm",
+                "namespace": "stackgres",
+                "resource_version": "912",
+                "uid": "fd19c869-a12f-49c8-a046-139cb9b3477e"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:40+00:00",
+            "message": "Stopping container stackgres",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:40+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b-vmslm.17b869ebe578b8a8",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1085",
+                "self_link": null,
+                "uid": "b6596f15-ea7b-435b-b883-4c2709cf2c04"
+            },
+            "reason": "Killing",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:07+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "ReplicaSet",
+                "name": "stackgres-5dc45b496b",
+                "namespace": "stackgres",
+                "resource_version": "905",
+                "uid": "8f04393a-f90d-4df2-8a1c-cf7b29f490df"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:07+00:00",
+            "message": "Created pod: stackgres-5dc45b496b-vmslm",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:07+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:07+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b.17b869e431e8966d",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "911",
+                "self_link": null,
+                "uid": "ae4c7d27-2125-4d25-9e6a-a61996636b50"
+            },
+            "reason": "SuccessfulCreate",
+            "related": null,
+            "reporting_component": "replicaset-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "replicaset-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:40+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "ReplicaSet",
+                "name": "stackgres-5dc45b496b",
+                "namespace": "stackgres",
+                "resource_version": "1078",
+                "uid": "8f04393a-f90d-4df2-8a1c-cf7b29f490df"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:40+00:00",
+            "message": "Deleted pod: stackgres-5dc45b496b-vmslm",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:40+00:00"
+                    }
+                ],
+                "name": "stackgres-5dc45b496b.17b869ebe57a81d8",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1082",
+                "self_link": null,
+                "uid": "9b542ed2-46ba-4ac3-91af-80b4ad81e47c"
+            },
+            "reason": "SuccessfulDelete",
+            "related": null,
+            "reporting_component": "replicaset-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "replicaset-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": "Binding",
+            "api_version": null,
+            "count": null,
+            "event_time": "2024-02-29T18:48:28.607453+00:00",
+            "first_timestamp": null,
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": null,
+                "kind": "Pod",
+                "name": "stackgres-74f48b87d8-zsd9v",
+                "namespace": "stackgres",
+                "resource_version": "1016",
+                "uid": "d8498b5e-250f-4dc1-b8f9-d4e50504d8b1"
+            },
+            "kind": null,
+            "last_timestamp": null,
+            "message": "Successfully assigned stackgres/stackgres-74f48b87d8-zsd9v to acto-0-cluster-1-worker3",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:28+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "events.k8s.io/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:action": {},
+                            "f:eventTime": {},
+                            "f:note": {},
+                            "f:reason": {},
+                            "f:regarding": {},
+                            "f:reportingController": {},
+                            "f:reportingInstance": {},
+                            "f:type": {}
+                        },
+                        "manager": "kube-scheduler",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:28+00:00"
+                    }
+                ],
+                "name": "stackgres-74f48b87d8-zsd9v.17b869e922192705",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1025",
+                "self_link": null,
+                "uid": "f44d182e-02e7-49fe-9278-5ddccbcb2cc2"
+            },
+            "reason": "Scheduled",
+            "related": null,
+            "reporting_component": "default-scheduler",
+            "reporting_instance": "default-scheduler-acto-0-cluster-1-control-plane",
+            "series": null,
+            "source": {
+                "component": null,
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:30+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-74f48b87d8-zsd9v",
+                "namespace": "stackgres",
+                "resource_version": "1020",
+                "uid": "d8498b5e-250f-4dc1-b8f9-d4e50504d8b1"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:30+00:00",
+            "message": "Container image \"quay.io/stackgres/operator:1.8.1\" already present on machine",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:30+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:30+00:00"
+                    }
+                ],
+                "name": "stackgres-74f48b87d8-zsd9v.17b869e9abab5159",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1035",
+                "self_link": null,
+                "uid": "1f14afaa-4686-4141-bfcc-faf3039c74ba"
+            },
+            "reason": "Pulled",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:32+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-74f48b87d8-zsd9v",
+                "namespace": "stackgres",
+                "resource_version": "1020",
+                "uid": "d8498b5e-250f-4dc1-b8f9-d4e50504d8b1"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:32+00:00",
+            "message": "Created container stackgres",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:32+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:32+00:00"
+                    }
+                ],
+                "name": "stackgres-74f48b87d8-zsd9v.17b869e9f8de9bae",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1041",
+                "self_link": null,
+                "uid": "deb77b75-018a-4987-9896-5cb28745368f"
+            },
+            "reason": "Created",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:32+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-74f48b87d8-zsd9v",
+                "namespace": "stackgres",
+                "resource_version": "1020",
+                "uid": "d8498b5e-250f-4dc1-b8f9-d4e50504d8b1"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:32+00:00",
+            "message": "Started container stackgres",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:32+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:32+00:00"
+                    }
+                ],
+                "name": "stackgres-74f48b87d8-zsd9v.17b869ea0cdad709",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1044",
+                "self_link": null,
+                "uid": "df673f52-183c-4550-92ac-65f7bdc84a8c"
+            },
+            "reason": "Started",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 4,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:33+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres}",
+                "kind": "Pod",
+                "name": "stackgres-74f48b87d8-zsd9v",
+                "namespace": "stackgres",
+                "resource_version": "1020",
+                "uid": "d8498b5e-250f-4dc1-b8f9-d4e50504d8b1"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:37+00:00",
+            "message": "Readiness probe failed: Get \"http://10.244.3.3:8080/q/health/ready\": dial tcp 10.244.3.3:8080: connect: connection refused",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:33+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:37+00:00"
+                    }
+                ],
+                "name": "stackgres-74f48b87d8-zsd9v.17b869ea3e163314",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1062",
+                "self_link": null,
+                "uid": "201f6499-e49d-4044-8d2a-98bf09a0e2c2"
+            },
+            "reason": "Unhealthy",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Warning"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:28+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "ReplicaSet",
+                "name": "stackgres-74f48b87d8",
+                "namespace": "stackgres",
+                "resource_version": "1005",
+                "uid": "4d491e40-fcac-40d1-90f6-183c8b24258f"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:28+00:00",
+            "message": "Created pod: stackgres-74f48b87d8-zsd9v",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:28+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:28+00:00"
+                    }
+                ],
+                "name": "stackgres-74f48b87d8.17b869e9177feaa1",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1019",
+                "self_link": null,
+                "uid": "67ded97b-2d12-4163-9bfe-2155d010226b"
+            },
+            "reason": "SuccessfulCreate",
+            "related": null,
+            "reporting_component": "replicaset-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "replicaset-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": "Binding",
+            "api_version": null,
+            "count": null,
+            "event_time": "2024-02-29T18:48:53.761825+00:00",
+            "first_timestamp": null,
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": null,
+                "kind": "Pod",
+                "name": "stackgres-restapi-846fbf98d9-bxph9",
+                "namespace": "stackgres",
+                "resource_version": "1131",
+                "uid": "02ea6941-3187-49da-8a27-847e8538fabc"
+            },
+            "kind": null,
+            "last_timestamp": null,
+            "message": "Successfully assigned stackgres/stackgres-restapi-846fbf98d9-bxph9 to acto-0-cluster-1-worker3",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:53+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "events.k8s.io/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:action": {},
+                            "f:eventTime": {},
+                            "f:note": {},
+                            "f:reason": {},
+                            "f:regarding": {},
+                            "f:reportingController": {},
+                            "f:reportingInstance": {},
+                            "f:type": {}
+                        },
+                        "manager": "kube-scheduler",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:53+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9-bxph9.17b869eefd6a548c",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1137",
+                "self_link": null,
+                "uid": "11888fda-22b5-426c-9f9b-db6248ae43e5"
+            },
+            "reason": "Scheduled",
+            "related": null,
+            "reporting_component": "default-scheduler",
+            "reporting_instance": "default-scheduler-acto-0-cluster-1-control-plane",
+            "series": null,
+            "source": {
+                "component": null,
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:55+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres-restapi}",
+                "kind": "Pod",
+                "name": "stackgres-restapi-846fbf98d9-bxph9",
+                "namespace": "stackgres",
+                "resource_version": "1134",
+                "uid": "02ea6941-3187-49da-8a27-847e8538fabc"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:55+00:00",
+            "message": "Container image \"quay.io/stackgres/restapi:1.8.1\" already present on machine",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:55+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:55+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9-bxph9.17b869ef61e452bf",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1148",
+                "self_link": null,
+                "uid": "0a1727c2-921c-4111-9af1-a880928a31be"
+            },
+            "reason": "Pulled",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:56+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres-restapi}",
+                "kind": "Pod",
+                "name": "stackgres-restapi-846fbf98d9-bxph9",
+                "namespace": "stackgres",
+                "resource_version": "1134",
+                "uid": "02ea6941-3187-49da-8a27-847e8538fabc"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:56+00:00",
+            "message": "Created container stackgres-restapi",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:56+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:56+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9-bxph9.17b869ef874d93a1",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1151",
+                "self_link": null,
+                "uid": "b96a314e-1436-4640-8a83-dd2ef588a557"
+            },
+            "reason": "Created",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:56+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres-restapi}",
+                "kind": "Pod",
+                "name": "stackgres-restapi-846fbf98d9-bxph9",
+                "namespace": "stackgres",
+                "resource_version": "1134",
+                "uid": "02ea6941-3187-49da-8a27-847e8538fabc"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:56+00:00",
+            "message": "Started container stackgres-restapi",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:56+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:56+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9-bxph9.17b869ef968d4845",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1152",
+                "self_link": null,
+                "uid": "7033f362-258e-4e0a-9952-ae39e79a5e95"
+            },
+            "reason": "Started",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:56+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres-adminui}",
+                "kind": "Pod",
+                "name": "stackgres-restapi-846fbf98d9-bxph9",
+                "namespace": "stackgres",
+                "resource_version": "1134",
+                "uid": "02ea6941-3187-49da-8a27-847e8538fabc"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:56+00:00",
+            "message": "Container image \"quay.io/stackgres/admin-ui:1.8.1\" already present on machine",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:56+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:56+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9-bxph9.17b869ef9698075e",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1153",
+                "self_link": null,
+                "uid": "e5073a0b-5a68-49df-af68-a15a7fcc41c9"
+            },
+            "reason": "Pulled",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:57+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres-adminui}",
+                "kind": "Pod",
+                "name": "stackgres-restapi-846fbf98d9-bxph9",
+                "namespace": "stackgres",
+                "resource_version": "1134",
+                "uid": "02ea6941-3187-49da-8a27-847e8538fabc"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:57+00:00",
+            "message": "Created container stackgres-adminui",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:57+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:57+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9-bxph9.17b869efc42958cc",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1156",
+                "self_link": null,
+                "uid": "645044b4-8138-4b22-b440-635276315a49"
+            },
+            "reason": "Created",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:57+00:00",
+            "involved_object": {
+                "api_version": "v1",
+                "field_path": "spec.containers{stackgres-adminui}",
+                "kind": "Pod",
+                "name": "stackgres-restapi-846fbf98d9-bxph9",
+                "namespace": "stackgres",
+                "resource_version": "1134",
+                "uid": "02ea6941-3187-49da-8a27-847e8538fabc"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:57+00:00",
+            "message": "Started container stackgres-adminui",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:57+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:reportingInstance": {},
+                            "f:source": {
+                                "f:component": {},
+                                "f:host": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kubelet",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:57+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9-bxph9.17b869efe2a86813",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1157",
+                "self_link": null,
+                "uid": "bf232dc2-beca-40b0-bbe3-dc1d532d6fe8"
+            },
+            "reason": "Started",
+            "related": null,
+            "reporting_component": "kubelet",
+            "reporting_instance": "acto-0-cluster-1-worker3",
+            "series": null,
+            "source": {
+                "component": "kubelet",
+                "host": "acto-0-cluster-1-worker3"
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:53+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "ReplicaSet",
+                "name": "stackgres-restapi-846fbf98d9",
+                "namespace": "stackgres",
+                "resource_version": "1127",
+                "uid": "838353de-da60-4d89-9718-3ba7babcb1f6"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:53+00:00",
+            "message": "Created pod: stackgres-restapi-846fbf98d9-bxph9",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:53+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:53+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi-846fbf98d9.17b869eef78e0115",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1133",
+                "self_link": null,
+                "uid": "542be664-3add-408d-a01d-9e1e20799cdb"
+            },
+            "reason": "SuccessfulCreate",
+            "related": null,
+            "reporting_component": "replicaset-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "replicaset-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:53+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "Deployment",
+                "name": "stackgres-restapi",
+                "namespace": "stackgres",
+                "resource_version": "1126",
+                "uid": "be989d01-a9df-4d54-963f-ae5438bdf679"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:53+00:00",
+            "message": "Scaled up replica set stackgres-restapi-846fbf98d9 to 1",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:53+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:53+00:00"
+                    }
+                ],
+                "name": "stackgres-restapi.17b869eedcc8dc23",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1129",
+                "self_link": null,
+                "uid": "f2ff84a0-753f-48fb-bd90-391cd2ca044a"
+            },
+            "reason": "ScalingReplicaSet",
+            "related": null,
+            "reporting_component": "deployment-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "deployment-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:07+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "Deployment",
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "resource_version": "902",
+                "uid": "5d3c3505-623a-45bb-b18a-0ae2f0d0d05f"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:07+00:00",
+            "message": "Scaled up replica set stackgres-5dc45b496b to 1",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:07+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:07+00:00"
+                    }
+                ],
+                "name": "stackgres.17b869e42e24b3de",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "908",
+                "self_link": null,
+                "uid": "3e3c0621-5a0e-413e-b10d-4d6e45c3aa2f"
+            },
+            "reason": "ScalingReplicaSet",
+            "related": null,
+            "reporting_component": "deployment-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "deployment-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:28+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "Deployment",
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "resource_version": "999",
+                "uid": "5d3c3505-623a-45bb-b18a-0ae2f0d0d05f"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:28+00:00",
+            "message": "Scaled up replica set stackgres-74f48b87d8 to 1",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:28+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:28+00:00"
+                    }
+                ],
+                "name": "stackgres.17b869e90d354562",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1015",
+                "self_link": null,
+                "uid": "4a4c5b3f-0544-44cd-aa05-6c4450bb6924"
+            },
+            "reason": "ScalingReplicaSet",
+            "related": null,
+            "reporting_component": "deployment-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "deployment-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:39+00:00",
+            "involved_object": {
+                "api_version": "apps/v1",
+                "field_path": null,
+                "kind": "Deployment",
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "resource_version": "1030",
+                "uid": "5d3c3505-623a-45bb-b18a-0ae2f0d0d05f"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:39+00:00",
+            "message": "Scaled down replica set stackgres-5dc45b496b to 0 from 1",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:39+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:reportingComponent": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:39+00:00"
+                    }
+                ],
+                "name": "stackgres.17b869ebc8682211",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1079",
+                "self_link": null,
+                "uid": "02e626d1-4ebc-48be-a444-22d8f5b475fd"
+            },
+            "reason": "ScalingReplicaSet",
+            "related": null,
+            "reporting_component": "deployment-controller",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "deployment-controller",
+                "host": null
+            },
+            "type": "Normal"
+        },
+        {
+            "action": null,
+            "api_version": null,
+            "count": 1,
+            "event_time": null,
+            "first_timestamp": "2024-02-29T18:48:53+00:00",
+            "involved_object": {
+                "api_version": "stackgres.io/v1",
+                "field_path": null,
+                "kind": "SGConfig",
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "resource_version": "1064",
+                "uid": "c1e0ced0-b900-4118-a197-80b1ef65fb0e"
+            },
+            "kind": null,
+            "last_timestamp": "2024-02-29T18:48:53+00:00",
+            "message": "Config stackgres.stackgres updated: +Service:stackgres-restapi, +ServiceAccount:stackgres-restapi, +ConfigMap:stackgres-restapi-grafana-integration, +ConfigMap:stackgres-restapi-nginx, +Secret:stackgres-restapi-admin and other 2 resources where created, 5 resources where patched",
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T18:48:53+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:count": {},
+                            "f:firstTimestamp": {},
+                            "f:involvedObject": {},
+                            "f:lastTimestamp": {},
+                            "f:message": {},
+                            "f:reason": {},
+                            "f:source": {
+                                "f:component": {}
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "fabric8-kubernetes-client",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T18:48:53+00:00"
+                    }
+                ],
+                "name": "stackgres.18df632b03991bfb4199f438e2b",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "1132",
+                "self_link": null,
+                "uid": "57cf3c34-f566-43bf-a8c3-784f4851d31f"
+            },
+            "reason": "ConfigUpdated",
+            "related": null,
+            "reporting_component": "",
+            "reporting_instance": "",
+            "series": null,
+            "source": {
+                "component": "stackgres",
+                "host": null
+            },
+            "type": "Normal"
+        }
+    ],
+    "kind": "EventList",
+    "metadata": {
+        "_continue": null,
+        "remaining_item_count": null,
+        "resource_version": "1234",
+        "self_link": null
+    }
+}

@@ -1,0 +1,103 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_removed": {
+            "root['spec']['jobs']['image']['name']": {
+                  "prev": "ACTOKEY",
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "jobs",
+                              "image",
+                              "name"
+                        ]
+                  }
+            },
+            "root['spec']['jobs']['image']['pullPolicy']": {
+                  "prev": "ACTOKEY",
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "jobs",
+                              "image",
+                              "pullPolicy"
+                        ]
+                  }
+            },
+            "root['spec']['jobs']['image']['tag']": {
+                  "prev": "ACTOKEY",
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "jobs",
+                              "image",
+                              "tag"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_removed": {
+                  "root['jobs']['image']['tag']": {
+                        "prev": "ACTOKEY",
+                        "curr": "NotPresent",
+                        "path": {
+                              "path": [
+                                    "jobs",
+                                    "image",
+                                    "tag"
+                              ]
+                        }
+                  }
+            },
+            "values_changed": {
+                  "root['jobs']['image']['name']": {
+                        "prev": "ACTOKEY",
+                        "curr": "stackgres/jobs",
+                        "path": {
+                              "path": [
+                                    "jobs",
+                                    "image",
+                                    "name"
+                              ]
+                        }
+                  },
+                  "root['jobs']['image']['pullPolicy']": {
+                        "prev": "ACTOKEY",
+                        "curr": "IfNotPresent",
+                        "path": {
+                              "path": [
+                                    "jobs",
+                                    "image",
+                                    "pullPolicy"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}

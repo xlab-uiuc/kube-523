@@ -1,0 +1,1922 @@
+{
+    "pod": {},
+    "deployment_pods": {
+        "stackgres": [
+            {
+                "api_version": null,
+                "kind": null,
+                "metadata": {
+                    "annotations": null,
+                    "creation_timestamp": "2024-02-29T10:06:31+00:00",
+                    "deletion_grace_period_seconds": null,
+                    "deletion_timestamp": null,
+                    "finalizers": null,
+                    "generate_name": "stackgres-74f48b87d8-",
+                    "generation": null,
+                    "labels": {
+                        "acto/tag": "operator-pod",
+                        "app": "stackgres",
+                        "group": "stackgres.io",
+                        "pod-template-hash": "74f48b87d8"
+                    },
+                    "managed_fields": [
+                        {
+                            "api_version": "v1",
+                            "fields_type": "FieldsV1",
+                            "fields_v1": {
+                                "f:metadata": {
+                                    "f:generateName": {},
+                                    "f:labels": {
+                                        ".": {},
+                                        "f:acto/tag": {},
+                                        "f:app": {},
+                                        "f:group": {},
+                                        "f:pod-template-hash": {}
+                                    },
+                                    "f:ownerReferences": {
+                                        ".": {},
+                                        "k:{\"uid\":\"0296a9d1-ce9e-4fd8-99e8-df7ee2c55a61\"}": {}
+                                    }
+                                },
+                                "f:spec": {
+                                    "f:containers": {
+                                        "k:{\"name\":\"stackgres\"}": {
+                                            ".": {},
+                                            "f:env": {
+                                                ".": {},
+                                                "k:{\"name\":\"DISABLE_RECONCILIATION\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"EXTENSIONS_REPOSITORY_URLS\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"INSTALL_CERTS\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"INSTALL_CRDS\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"INSTALL_WEBHOOKS\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"OPERATOR_IMAGE_VERSION\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"OPERATOR_IP\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:valueFrom": {
+                                                        ".": {},
+                                                        "f:fieldRef": {}
+                                                    }
+                                                },
+                                                "k:{\"name\":\"OPERATOR_NAME\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"OPERATOR_NAMESPACE\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:valueFrom": {
+                                                        ".": {},
+                                                        "f:fieldRef": {}
+                                                    }
+                                                },
+                                                "k:{\"name\":\"OPERATOR_POD_NAME\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:valueFrom": {
+                                                        ".": {},
+                                                        "f:fieldRef": {}
+                                                    }
+                                                },
+                                                "k:{\"name\":\"OPERATOR_SERVICE_ACCOUNT\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:valueFrom": {
+                                                        ".": {},
+                                                        "f:fieldRef": {}
+                                                    }
+                                                },
+                                                "k:{\"name\":\"PROMETHEUS_AUTOBIND\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"SG_CONTAINER_REGISTRY\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                },
+                                                "k:{\"name\":\"SG_IMAGE_PULL_POLICY\"}": {
+                                                    ".": {},
+                                                    "f:name": {},
+                                                    "f:value": {}
+                                                }
+                                            },
+                                            "f:image": {},
+                                            "f:imagePullPolicy": {},
+                                            "f:livenessProbe": {
+                                                ".": {},
+                                                "f:failureThreshold": {},
+                                                "f:httpGet": {
+                                                    ".": {},
+                                                    "f:path": {},
+                                                    "f:port": {},
+                                                    "f:scheme": {}
+                                                },
+                                                "f:initialDelaySeconds": {},
+                                                "f:periodSeconds": {},
+                                                "f:successThreshold": {},
+                                                "f:timeoutSeconds": {}
+                                            },
+                                            "f:name": {},
+                                            "f:ports": {
+                                                ".": {},
+                                                "k:{\"containerPort\":8080,\"protocol\":\"TCP\"}": {
+                                                    ".": {},
+                                                    "f:containerPort": {},
+                                                    "f:name": {},
+                                                    "f:protocol": {}
+                                                },
+                                                "k:{\"containerPort\":8443,\"protocol\":\"TCP\"}": {
+                                                    ".": {},
+                                                    "f:containerPort": {},
+                                                    "f:name": {},
+                                                    "f:protocol": {}
+                                                }
+                                            },
+                                            "f:readinessProbe": {
+                                                ".": {},
+                                                "f:failureThreshold": {},
+                                                "f:httpGet": {
+                                                    ".": {},
+                                                    "f:path": {},
+                                                    "f:port": {},
+                                                    "f:scheme": {}
+                                                },
+                                                "f:periodSeconds": {},
+                                                "f:successThreshold": {},
+                                                "f:timeoutSeconds": {}
+                                            },
+                                            "f:resources": {},
+                                            "f:terminationMessagePath": {},
+                                            "f:terminationMessagePolicy": {},
+                                            "f:volumeMounts": {
+                                                ".": {},
+                                                "k:{\"mountPath\":\"/etc/operator/certs\"}": {
+                                                    ".": {},
+                                                    "f:mountPath": {},
+                                                    "f:name": {},
+                                                    "f:readOnly": {}
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "f:dnsPolicy": {},
+                                    "f:enableServiceLinks": {},
+                                    "f:restartPolicy": {},
+                                    "f:schedulerName": {},
+                                    "f:securityContext": {
+                                        ".": {},
+                                        "f:fsGroup": {},
+                                        "f:runAsGroup": {},
+                                        "f:runAsNonRoot": {},
+                                        "f:runAsUser": {}
+                                    },
+                                    "f:serviceAccount": {},
+                                    "f:serviceAccountName": {},
+                                    "f:terminationGracePeriodSeconds": {},
+                                    "f:volumes": {
+                                        ".": {},
+                                        "k:{\"name\":\"operator-certs\"}": {
+                                            ".": {},
+                                            "f:name": {},
+                                            "f:secret": {
+                                                ".": {},
+                                                "f:defaultMode": {},
+                                                "f:optional": {},
+                                                "f:secretName": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "manager": "kube-controller-manager",
+                            "operation": "Update",
+                            "subresource": null,
+                            "time": "2024-02-29T10:06:29+00:00"
+                        },
+                        {
+                            "api_version": "v1",
+                            "fields_type": "FieldsV1",
+                            "fields_v1": {
+                                "f:status": {
+                                    "f:conditions": {
+                                        "k:{\"type\":\"ContainersReady\"}": {
+                                            ".": {},
+                                            "f:lastProbeTime": {},
+                                            "f:lastTransitionTime": {},
+                                            "f:status": {},
+                                            "f:type": {}
+                                        },
+                                        "k:{\"type\":\"Initialized\"}": {
+                                            ".": {},
+                                            "f:lastProbeTime": {},
+                                            "f:lastTransitionTime": {},
+                                            "f:status": {},
+                                            "f:type": {}
+                                        },
+                                        "k:{\"type\":\"Ready\"}": {
+                                            ".": {},
+                                            "f:lastProbeTime": {},
+                                            "f:lastTransitionTime": {},
+                                            "f:status": {},
+                                            "f:type": {}
+                                        }
+                                    },
+                                    "f:containerStatuses": {},
+                                    "f:hostIP": {},
+                                    "f:phase": {},
+                                    "f:podIP": {},
+                                    "f:podIPs": {
+                                        ".": {},
+                                        "k:{\"ip\":\"10.244.3.2\"}": {
+                                            ".": {},
+                                            "f:ip": {}
+                                        }
+                                    },
+                                    "f:startTime": {}
+                                }
+                            },
+                            "manager": "kubelet",
+                            "operation": "Update",
+                            "subresource": "status",
+                            "time": "2024-02-29T10:06:49+00:00"
+                        }
+                    ],
+                    "name": "stackgres-74f48b87d8-b7zqt",
+                    "namespace": "stackgres",
+                    "owner_references": [
+                        {
+                            "api_version": "apps/v1",
+                            "block_owner_deletion": true,
+                            "controller": true,
+                            "kind": "ReplicaSet",
+                            "name": "stackgres-74f48b87d8",
+                            "uid": "0296a9d1-ce9e-4fd8-99e8-df7ee2c55a61"
+                        }
+                    ],
+                    "resource_version": "984",
+                    "self_link": null,
+                    "uid": "9e475da0-8d84-468f-9810-71762660b061"
+                },
+                "spec": {
+                    "active_deadline_seconds": null,
+                    "affinity": null,
+                    "automount_service_account_token": null,
+                    "containers": [
+                        {
+                            "args": null,
+                            "command": null,
+                            "env": [
+                                {
+                                    "name": "OPERATOR_NAME",
+                                    "value": "stackgres",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "OPERATOR_NAMESPACE",
+                                    "value": null,
+                                    "value_from": {
+                                        "config_map_key_ref": null,
+                                        "field_ref": {
+                                            "api_version": "v1",
+                                            "field_path": "metadata.namespace"
+                                        },
+                                        "resource_field_ref": null,
+                                        "secret_key_ref": null
+                                    }
+                                },
+                                {
+                                    "name": "OPERATOR_IMAGE_VERSION",
+                                    "value": "1.8.1",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "DISABLE_RECONCILIATION",
+                                    "value": "false",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "INSTALL_CRDS",
+                                    "value": "true",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "INSTALL_WEBHOOKS",
+                                    "value": "true",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "INSTALL_CERTS",
+                                    "value": "true",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "PROMETHEUS_AUTOBIND",
+                                    "value": "true",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "OPERATOR_SERVICE_ACCOUNT",
+                                    "value": null,
+                                    "value_from": {
+                                        "config_map_key_ref": null,
+                                        "field_ref": {
+                                            "api_version": "v1",
+                                            "field_path": "spec.serviceAccountName"
+                                        },
+                                        "resource_field_ref": null,
+                                        "secret_key_ref": null
+                                    }
+                                },
+                                {
+                                    "name": "OPERATOR_POD_NAME",
+                                    "value": null,
+                                    "value_from": {
+                                        "config_map_key_ref": null,
+                                        "field_ref": {
+                                            "api_version": "v1",
+                                            "field_path": "metadata.name"
+                                        },
+                                        "resource_field_ref": null,
+                                        "secret_key_ref": null
+                                    }
+                                },
+                                {
+                                    "name": "OPERATOR_IP",
+                                    "value": null,
+                                    "value_from": {
+                                        "config_map_key_ref": null,
+                                        "field_ref": {
+                                            "api_version": "v1",
+                                            "field_path": "status.podIP"
+                                        },
+                                        "resource_field_ref": null,
+                                        "secret_key_ref": null
+                                    }
+                                },
+                                {
+                                    "name": "SG_CONTAINER_REGISTRY",
+                                    "value": "quay.io",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "SG_IMAGE_PULL_POLICY",
+                                    "value": "IfNotPresent",
+                                    "value_from": null
+                                },
+                                {
+                                    "name": "EXTENSIONS_REPOSITORY_URLS",
+                                    "value": "https://extensions.stackgres.io/postgres/repository",
+                                    "value_from": null
+                                }
+                            ],
+                            "env_from": null,
+                            "image": "quay.io/stackgres/operator:1.8.1",
+                            "image_pull_policy": "IfNotPresent",
+                            "lifecycle": null,
+                            "liveness_probe": {
+                                "_exec": null,
+                                "failure_threshold": 3,
+                                "grpc": null,
+                                "http_get": {
+                                    "host": null,
+                                    "http_headers": null,
+                                    "path": "/q/health/live",
+                                    "port": 8080,
+                                    "scheme": "HTTP"
+                                },
+                                "initial_delay_seconds": 10,
+                                "period_seconds": 60,
+                                "success_threshold": 1,
+                                "tcp_socket": null,
+                                "termination_grace_period_seconds": null,
+                                "timeout_seconds": 10
+                            },
+                            "name": "stackgres",
+                            "ports": [
+                                {
+                                    "container_port": 8080,
+                                    "host_ip": null,
+                                    "host_port": null,
+                                    "name": "http",
+                                    "protocol": "TCP"
+                                },
+                                {
+                                    "container_port": 8443,
+                                    "host_ip": null,
+                                    "host_port": null,
+                                    "name": "https",
+                                    "protocol": "TCP"
+                                }
+                            ],
+                            "readiness_probe": {
+                                "_exec": null,
+                                "failure_threshold": 3,
+                                "grpc": null,
+                                "http_get": {
+                                    "host": null,
+                                    "http_headers": null,
+                                    "path": "/q/health/ready",
+                                    "port": 8080,
+                                    "scheme": "HTTP"
+                                },
+                                "initial_delay_seconds": null,
+                                "period_seconds": 2,
+                                "success_threshold": 1,
+                                "tcp_socket": null,
+                                "termination_grace_period_seconds": null,
+                                "timeout_seconds": 1
+                            },
+                            "resources": {
+                                "claims": null,
+                                "limits": null,
+                                "requests": null
+                            },
+                            "security_context": null,
+                            "startup_probe": null,
+                            "stdin": null,
+                            "stdin_once": null,
+                            "termination_message_path": "/dev/termination-log",
+                            "termination_message_policy": "File",
+                            "tty": null,
+                            "volume_devices": null,
+                            "volume_mounts": [
+                                {
+                                    "mount_path": "/etc/operator/certs",
+                                    "mount_propagation": null,
+                                    "name": "operator-certs",
+                                    "read_only": true,
+                                    "sub_path": null,
+                                    "sub_path_expr": null
+                                },
+                                {
+                                    "mount_path": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                    "mount_propagation": null,
+                                    "name": "kube-api-access-d8jtg",
+                                    "read_only": true,
+                                    "sub_path": null,
+                                    "sub_path_expr": null
+                                }
+                            ],
+                            "working_dir": null
+                        }
+                    ],
+                    "dns_config": null,
+                    "dns_policy": "ClusterFirst",
+                    "enable_service_links": true,
+                    "ephemeral_containers": null,
+                    "host_aliases": null,
+                    "host_ipc": null,
+                    "host_network": null,
+                    "host_pid": null,
+                    "host_users": null,
+                    "hostname": null,
+                    "image_pull_secrets": null,
+                    "init_containers": null,
+                    "node_name": "acto-0-cluster-0-worker3",
+                    "node_selector": null,
+                    "os": null,
+                    "overhead": null,
+                    "preemption_policy": "PreemptLowerPriority",
+                    "priority": 0,
+                    "priority_class_name": null,
+                    "readiness_gates": null,
+                    "resource_claims": null,
+                    "restart_policy": "Always",
+                    "runtime_class_name": null,
+                    "scheduler_name": "default-scheduler",
+                    "scheduling_gates": null,
+                    "security_context": {
+                        "fs_group": 1000,
+                        "fs_group_change_policy": null,
+                        "run_as_group": 1000,
+                        "run_as_non_root": true,
+                        "run_as_user": 1000,
+                        "se_linux_options": null,
+                        "seccomp_profile": null,
+                        "supplemental_groups": null,
+                        "sysctls": null,
+                        "windows_options": null
+                    },
+                    "service_account": "stackgres",
+                    "service_account_name": "stackgres",
+                    "set_hostname_as_fqdn": null,
+                    "share_process_namespace": null,
+                    "subdomain": null,
+                    "termination_grace_period_seconds": 30,
+                    "tolerations": [
+                        {
+                            "effect": "NoExecute",
+                            "key": "node.kubernetes.io/not-ready",
+                            "operator": "Exists",
+                            "toleration_seconds": 300,
+                            "value": null
+                        },
+                        {
+                            "effect": "NoExecute",
+                            "key": "node.kubernetes.io/unreachable",
+                            "operator": "Exists",
+                            "toleration_seconds": 300,
+                            "value": null
+                        }
+                    ],
+                    "topology_spread_constraints": null,
+                    "volumes": [
+                        {
+                            "aws_elastic_block_store": null,
+                            "azure_disk": null,
+                            "azure_file": null,
+                            "cephfs": null,
+                            "cinder": null,
+                            "config_map": null,
+                            "csi": null,
+                            "downward_api": null,
+                            "empty_dir": null,
+                            "ephemeral": null,
+                            "fc": null,
+                            "flex_volume": null,
+                            "flocker": null,
+                            "gce_persistent_disk": null,
+                            "git_repo": null,
+                            "glusterfs": null,
+                            "host_path": null,
+                            "iscsi": null,
+                            "name": "operator-certs",
+                            "nfs": null,
+                            "persistent_volume_claim": null,
+                            "photon_persistent_disk": null,
+                            "portworx_volume": null,
+                            "projected": null,
+                            "quobyte": null,
+                            "rbd": null,
+                            "scale_io": null,
+                            "secret": {
+                                "default_mode": 420,
+                                "items": null,
+                                "optional": true,
+                                "secret_name": "stackgres-certs"
+                            },
+                            "storageos": null,
+                            "vsphere_volume": null
+                        },
+                        {
+                            "aws_elastic_block_store": null,
+                            "azure_disk": null,
+                            "azure_file": null,
+                            "cephfs": null,
+                            "cinder": null,
+                            "config_map": null,
+                            "csi": null,
+                            "downward_api": null,
+                            "empty_dir": null,
+                            "ephemeral": null,
+                            "fc": null,
+                            "flex_volume": null,
+                            "flocker": null,
+                            "gce_persistent_disk": null,
+                            "git_repo": null,
+                            "glusterfs": null,
+                            "host_path": null,
+                            "iscsi": null,
+                            "name": "kube-api-access-d8jtg",
+                            "nfs": null,
+                            "persistent_volume_claim": null,
+                            "photon_persistent_disk": null,
+                            "portworx_volume": null,
+                            "projected": {
+                                "default_mode": 420,
+                                "sources": [
+                                    {
+                                        "config_map": null,
+                                        "downward_api": null,
+                                        "secret": null,
+                                        "service_account_token": {
+                                            "audience": null,
+                                            "expiration_seconds": 3607,
+                                            "path": "token"
+                                        }
+                                    },
+                                    {
+                                        "config_map": {
+                                            "items": [
+                                                {
+                                                    "key": "ca.crt",
+                                                    "mode": null,
+                                                    "path": "ca.crt"
+                                                }
+                                            ],
+                                            "name": "kube-root-ca.crt",
+                                            "optional": null
+                                        },
+                                        "downward_api": null,
+                                        "secret": null,
+                                        "service_account_token": null
+                                    },
+                                    {
+                                        "config_map": null,
+                                        "downward_api": {
+                                            "items": [
+                                                {
+                                                    "field_ref": {
+                                                        "api_version": "v1",
+                                                        "field_path": "metadata.namespace"
+                                                    },
+                                                    "mode": null,
+                                                    "path": "namespace",
+                                                    "resource_field_ref": null
+                                                }
+                                            ]
+                                        },
+                                        "secret": null,
+                                        "service_account_token": null
+                                    }
+                                ]
+                            },
+                            "quobyte": null,
+                            "rbd": null,
+                            "scale_io": null,
+                            "secret": null,
+                            "storageos": null,
+                            "vsphere_volume": null
+                        }
+                    ]
+                },
+                "status": {
+                    "conditions": [
+                        {
+                            "last_probe_time": null,
+                            "last_transition_time": "2024-02-29T10:06:37+00:00",
+                            "message": null,
+                            "reason": null,
+                            "status": "True",
+                            "type": "Initialized"
+                        },
+                        {
+                            "last_probe_time": null,
+                            "last_transition_time": "2024-02-29T10:06:49+00:00",
+                            "message": null,
+                            "reason": null,
+                            "status": "True",
+                            "type": "Ready"
+                        },
+                        {
+                            "last_probe_time": null,
+                            "last_transition_time": "2024-02-29T10:06:49+00:00",
+                            "message": null,
+                            "reason": null,
+                            "status": "True",
+                            "type": "ContainersReady"
+                        },
+                        {
+                            "last_probe_time": null,
+                            "last_transition_time": "2024-02-29T10:06:32+00:00",
+                            "message": null,
+                            "reason": null,
+                            "status": "True",
+                            "type": "PodScheduled"
+                        }
+                    ],
+                    "container_statuses": [
+                        {
+                            "container_id": "containerd://a11cb72842b09ea959ae0c1ae4dac77fadb829bfb46beaac0b91657c665cae91",
+                            "image": "quay.io/stackgres/operator:1.8.1",
+                            "image_id": "docker.io/library/import-2024-02-29@sha256:a8638fda8ef663df44c1fcffe516f0c0878d682ad49df2e76edd79880f284edf",
+                            "last_state": {
+                                "running": null,
+                                "terminated": {
+                                    "container_id": "containerd://fa39913f7f55decb924ba835f370a00a3413d672f6a87ed0708a7c1d1e2fd1dc",
+                                    "exit_code": 1,
+                                    "finished_at": "2024-02-29T10:06:44+00:00",
+                                    "message": null,
+                                    "reason": "Error",
+                                    "signal": null,
+                                    "started_at": "2024-02-29T10:06:42+00:00"
+                                },
+                                "waiting": null
+                            },
+                            "name": "stackgres",
+                            "ready": true,
+                            "restart_count": 1,
+                            "started": true,
+                            "state": {
+                                "running": {
+                                    "started_at": "2024-02-29T10:06:48+00:00"
+                                },
+                                "terminated": null,
+                                "waiting": null
+                            }
+                        }
+                    ],
+                    "ephemeral_container_statuses": null,
+                    "host_ip": "172.18.0.12",
+                    "init_container_statuses": null,
+                    "message": null,
+                    "nominated_node_name": null,
+                    "phase": "Running",
+                    "pod_ip": "10.244.3.2",
+                    "pod_i_ps": [
+                        {
+                            "ip": "10.244.3.2"
+                        }
+                    ],
+                    "qos_class": "BestEffort",
+                    "reason": null,
+                    "start_time": "2024-02-29T10:06:37+00:00"
+                }
+            }
+        ]
+    },
+    "daemonset_pods": {},
+    "stateful_set": {},
+    "deployment": {
+        "stackgres": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "1"
+                },
+                "creation_timestamp": "2024-02-29T10:05:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": 2,
+                "labels": {
+                    "acto/tag": "operator-deployment",
+                    "app": "stackgres",
+                    "group": "stackgres.io",
+                    "version": "1.8.1"
+                },
+                "managed_fields": [
+                    {
+                        "api_version": "apps/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:labels": {
+                                    "f:app": {},
+                                    "f:group": {},
+                                    "f:version": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:replicas": {},
+                                "f:selector": {},
+                                "f:template": {
+                                    "f:metadata": {
+                                        "f:labels": {
+                                            "f:app": {},
+                                            "f:group": {}
+                                        }
+                                    },
+                                    "f:spec": {
+                                        "f:containers": {
+                                            "k:{\"name\":\"stackgres\"}": {
+                                                ".": {},
+                                                "f:env": {
+                                                    "k:{\"name\":\"DISABLE_RECONCILIATION\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"EXTENSIONS_REPOSITORY_URLS\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"INSTALL_CERTS\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"INSTALL_CRDS\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"INSTALL_WEBHOOKS\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"OPERATOR_IMAGE_VERSION\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"OPERATOR_IP\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:valueFrom": {
+                                                            "f:fieldRef": {}
+                                                        }
+                                                    },
+                                                    "k:{\"name\":\"OPERATOR_NAME\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"OPERATOR_NAMESPACE\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:valueFrom": {
+                                                            "f:fieldRef": {}
+                                                        }
+                                                    },
+                                                    "k:{\"name\":\"OPERATOR_POD_NAME\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:valueFrom": {
+                                                            "f:fieldRef": {}
+                                                        }
+                                                    },
+                                                    "k:{\"name\":\"OPERATOR_SERVICE_ACCOUNT\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:valueFrom": {
+                                                            "f:fieldRef": {}
+                                                        }
+                                                    },
+                                                    "k:{\"name\":\"PROMETHEUS_AUTOBIND\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"SG_CONTAINER_REGISTRY\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    },
+                                                    "k:{\"name\":\"SG_IMAGE_PULL_POLICY\"}": {
+                                                        ".": {},
+                                                        "f:name": {},
+                                                        "f:value": {}
+                                                    }
+                                                },
+                                                "f:image": {},
+                                                "f:imagePullPolicy": {},
+                                                "f:livenessProbe": {
+                                                    "f:httpGet": {
+                                                        "f:path": {},
+                                                        "f:port": {},
+                                                        "f:scheme": {}
+                                                    },
+                                                    "f:initialDelaySeconds": {},
+                                                    "f:periodSeconds": {},
+                                                    "f:timeoutSeconds": {}
+                                                },
+                                                "f:name": {},
+                                                "f:ports": {
+                                                    "k:{\"containerPort\":8080,\"protocol\":\"TCP\"}": {
+                                                        ".": {},
+                                                        "f:containerPort": {},
+                                                        "f:name": {},
+                                                        "f:protocol": {}
+                                                    },
+                                                    "k:{\"containerPort\":8443,\"protocol\":\"TCP\"}": {
+                                                        ".": {},
+                                                        "f:containerPort": {},
+                                                        "f:name": {},
+                                                        "f:protocol": {}
+                                                    }
+                                                },
+                                                "f:readinessProbe": {
+                                                    "f:httpGet": {
+                                                        "f:path": {},
+                                                        "f:port": {},
+                                                        "f:scheme": {}
+                                                    },
+                                                    "f:initialDelaySeconds": {},
+                                                    "f:periodSeconds": {},
+                                                    "f:timeoutSeconds": {}
+                                                },
+                                                "f:volumeMounts": {
+                                                    "k:{\"mountPath\":\"/etc/operator/certs\"}": {
+                                                        ".": {},
+                                                        "f:mountPath": {},
+                                                        "f:name": {},
+                                                        "f:readOnly": {}
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "f:securityContext": {
+                                            "f:fsGroup": {},
+                                            "f:runAsGroup": {},
+                                            "f:runAsNonRoot": {},
+                                            "f:runAsUser": {}
+                                        },
+                                        "f:serviceAccountName": {},
+                                        "f:volumes": {
+                                            "k:{\"name\":\"operator-certs\"}": {
+                                                ".": {},
+                                                "f:name": {},
+                                                "f:secret": {
+                                                    "f:optional": {},
+                                                    "f:secretName": {}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "manager": "kubectl",
+                        "operation": "Apply",
+                        "subresource": null,
+                        "time": "2024-02-29T10:05:40+00:00"
+                    },
+                    {
+                        "api_version": "apps/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:labels": {
+                                    "f:acto/tag": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:template": {
+                                    "f:metadata": {
+                                        "f:labels": {
+                                            "f:acto/tag": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "manager": "OpenAPI-Generator",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T10:06:17+00:00"
+                    },
+                    {
+                        "api_version": "apps/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:deployment.kubernetes.io/revision": {}
+                                }
+                            },
+                            "f:status": {
+                                "f:availableReplicas": {},
+                                "f:conditions": {
+                                    ".": {},
+                                    "k:{\"type\":\"Available\"}": {
+                                        ".": {},
+                                        "f:lastTransitionTime": {},
+                                        "f:lastUpdateTime": {},
+                                        "f:message": {},
+                                        "f:reason": {},
+                                        "f:status": {},
+                                        "f:type": {}
+                                    },
+                                    "k:{\"type\":\"Progressing\"}": {
+                                        ".": {},
+                                        "f:lastTransitionTime": {},
+                                        "f:lastUpdateTime": {},
+                                        "f:message": {},
+                                        "f:reason": {},
+                                        "f:status": {},
+                                        "f:type": {}
+                                    }
+                                },
+                                "f:observedGeneration": {},
+                                "f:readyReplicas": {},
+                                "f:replicas": {},
+                                "f:updatedReplicas": {}
+                            }
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": "status",
+                        "time": "2024-02-29T10:06:50+00:00"
+                    }
+                ],
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "988",
+                "self_link": null,
+                "uid": "e05f1481-ef0d-43f8-ba61-996bb464955d"
+            },
+            "spec": {
+                "min_ready_seconds": null,
+                "paused": null,
+                "progress_deadline_seconds": 600,
+                "replicas": 1,
+                "revision_history_limit": 10,
+                "selector": {
+                    "match_expressions": null,
+                    "match_labels": {
+                        "app": "stackgres",
+                        "group": "stackgres.io"
+                    }
+                },
+                "strategy": {
+                    "rolling_update": {
+                        "max_surge": "25%",
+                        "max_unavailable": "25%"
+                    },
+                    "type": "RollingUpdate"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": null,
+                        "creation_timestamp": null,
+                        "deletion_grace_period_seconds": null,
+                        "deletion_timestamp": null,
+                        "finalizers": null,
+                        "generate_name": null,
+                        "generation": null,
+                        "labels": {
+                            "acto/tag": "operator-pod",
+                            "app": "stackgres",
+                            "group": "stackgres.io"
+                        },
+                        "managed_fields": null,
+                        "name": null,
+                        "namespace": null,
+                        "owner_references": null,
+                        "resource_version": null,
+                        "self_link": null,
+                        "uid": null
+                    },
+                    "spec": {
+                        "active_deadline_seconds": null,
+                        "affinity": null,
+                        "automount_service_account_token": null,
+                        "containers": [
+                            {
+                                "args": null,
+                                "command": null,
+                                "env": [
+                                    {
+                                        "name": "OPERATOR_NAME",
+                                        "value": "stackgres",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "OPERATOR_NAMESPACE",
+                                        "value": null,
+                                        "value_from": {
+                                            "config_map_key_ref": null,
+                                            "field_ref": {
+                                                "api_version": "v1",
+                                                "field_path": "metadata.namespace"
+                                            },
+                                            "resource_field_ref": null,
+                                            "secret_key_ref": null
+                                        }
+                                    },
+                                    {
+                                        "name": "OPERATOR_IMAGE_VERSION",
+                                        "value": "1.8.1",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "DISABLE_RECONCILIATION",
+                                        "value": "false",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "INSTALL_CRDS",
+                                        "value": "true",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "INSTALL_WEBHOOKS",
+                                        "value": "true",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "INSTALL_CERTS",
+                                        "value": "true",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "PROMETHEUS_AUTOBIND",
+                                        "value": "true",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "OPERATOR_SERVICE_ACCOUNT",
+                                        "value": null,
+                                        "value_from": {
+                                            "config_map_key_ref": null,
+                                            "field_ref": {
+                                                "api_version": "v1",
+                                                "field_path": "spec.serviceAccountName"
+                                            },
+                                            "resource_field_ref": null,
+                                            "secret_key_ref": null
+                                        }
+                                    },
+                                    {
+                                        "name": "OPERATOR_POD_NAME",
+                                        "value": null,
+                                        "value_from": {
+                                            "config_map_key_ref": null,
+                                            "field_ref": {
+                                                "api_version": "v1",
+                                                "field_path": "metadata.name"
+                                            },
+                                            "resource_field_ref": null,
+                                            "secret_key_ref": null
+                                        }
+                                    },
+                                    {
+                                        "name": "OPERATOR_IP",
+                                        "value": null,
+                                        "value_from": {
+                                            "config_map_key_ref": null,
+                                            "field_ref": {
+                                                "api_version": "v1",
+                                                "field_path": "status.podIP"
+                                            },
+                                            "resource_field_ref": null,
+                                            "secret_key_ref": null
+                                        }
+                                    },
+                                    {
+                                        "name": "SG_CONTAINER_REGISTRY",
+                                        "value": "quay.io",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "SG_IMAGE_PULL_POLICY",
+                                        "value": "IfNotPresent",
+                                        "value_from": null
+                                    },
+                                    {
+                                        "name": "EXTENSIONS_REPOSITORY_URLS",
+                                        "value": "https://extensions.stackgres.io/postgres/repository",
+                                        "value_from": null
+                                    }
+                                ],
+                                "env_from": null,
+                                "image": "quay.io/stackgres/operator:1.8.1",
+                                "image_pull_policy": "IfNotPresent",
+                                "lifecycle": null,
+                                "liveness_probe": {
+                                    "_exec": null,
+                                    "failure_threshold": 3,
+                                    "grpc": null,
+                                    "http_get": {
+                                        "host": null,
+                                        "http_headers": null,
+                                        "path": "/q/health/live",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initial_delay_seconds": 10,
+                                    "period_seconds": 60,
+                                    "success_threshold": 1,
+                                    "tcp_socket": null,
+                                    "termination_grace_period_seconds": null,
+                                    "timeout_seconds": 10
+                                },
+                                "name": "stackgres",
+                                "ports": [
+                                    {
+                                        "container_port": 8080,
+                                        "host_ip": null,
+                                        "host_port": null,
+                                        "name": "http",
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "container_port": 8443,
+                                        "host_ip": null,
+                                        "host_port": null,
+                                        "name": "https",
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readiness_probe": {
+                                    "_exec": null,
+                                    "failure_threshold": 3,
+                                    "grpc": null,
+                                    "http_get": {
+                                        "host": null,
+                                        "http_headers": null,
+                                        "path": "/q/health/ready",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initial_delay_seconds": null,
+                                    "period_seconds": 2,
+                                    "success_threshold": 1,
+                                    "tcp_socket": null,
+                                    "termination_grace_period_seconds": null,
+                                    "timeout_seconds": 1
+                                },
+                                "resources": {
+                                    "claims": null,
+                                    "limits": null,
+                                    "requests": null
+                                },
+                                "security_context": null,
+                                "startup_probe": null,
+                                "stdin": null,
+                                "stdin_once": null,
+                                "termination_message_path": "/dev/termination-log",
+                                "termination_message_policy": "File",
+                                "tty": null,
+                                "volume_devices": null,
+                                "volume_mounts": [
+                                    {
+                                        "mount_path": "/etc/operator/certs",
+                                        "mount_propagation": null,
+                                        "name": "operator-certs",
+                                        "read_only": true,
+                                        "sub_path": null,
+                                        "sub_path_expr": null
+                                    }
+                                ],
+                                "working_dir": null
+                            }
+                        ],
+                        "dns_config": null,
+                        "dns_policy": "ClusterFirst",
+                        "enable_service_links": null,
+                        "ephemeral_containers": null,
+                        "host_aliases": null,
+                        "host_ipc": null,
+                        "host_network": null,
+                        "host_pid": null,
+                        "host_users": null,
+                        "hostname": null,
+                        "image_pull_secrets": null,
+                        "init_containers": null,
+                        "node_name": null,
+                        "node_selector": null,
+                        "os": null,
+                        "overhead": null,
+                        "preemption_policy": null,
+                        "priority": null,
+                        "priority_class_name": null,
+                        "readiness_gates": null,
+                        "resource_claims": null,
+                        "restart_policy": "Always",
+                        "runtime_class_name": null,
+                        "scheduler_name": "default-scheduler",
+                        "scheduling_gates": null,
+                        "security_context": {
+                            "fs_group": 1000,
+                            "fs_group_change_policy": null,
+                            "run_as_group": 1000,
+                            "run_as_non_root": true,
+                            "run_as_user": 1000,
+                            "se_linux_options": null,
+                            "seccomp_profile": null,
+                            "supplemental_groups": null,
+                            "sysctls": null,
+                            "windows_options": null
+                        },
+                        "service_account": "stackgres",
+                        "service_account_name": "stackgres",
+                        "set_hostname_as_fqdn": null,
+                        "share_process_namespace": null,
+                        "subdomain": null,
+                        "termination_grace_period_seconds": 30,
+                        "tolerations": null,
+                        "topology_spread_constraints": null,
+                        "volumes": [
+                            {
+                                "aws_elastic_block_store": null,
+                                "azure_disk": null,
+                                "azure_file": null,
+                                "cephfs": null,
+                                "cinder": null,
+                                "config_map": null,
+                                "csi": null,
+                                "downward_api": null,
+                                "empty_dir": null,
+                                "ephemeral": null,
+                                "fc": null,
+                                "flex_volume": null,
+                                "flocker": null,
+                                "gce_persistent_disk": null,
+                                "git_repo": null,
+                                "glusterfs": null,
+                                "host_path": null,
+                                "iscsi": null,
+                                "name": "operator-certs",
+                                "nfs": null,
+                                "persistent_volume_claim": null,
+                                "photon_persistent_disk": null,
+                                "portworx_volume": null,
+                                "projected": null,
+                                "quobyte": null,
+                                "rbd": null,
+                                "scale_io": null,
+                                "secret": {
+                                    "default_mode": 420,
+                                    "items": null,
+                                    "optional": true,
+                                    "secret_name": "stackgres-certs"
+                                },
+                                "storageos": null,
+                                "vsphere_volume": null
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "available_replicas": 1,
+                "collision_count": null,
+                "conditions": [
+                    {
+                        "last_transition_time": "2024-02-29T10:06:50+00:00",
+                        "last_update_time": "2024-02-29T10:06:50+00:00",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "last_transition_time": "2024-02-29T10:06:29+00:00",
+                        "last_update_time": "2024-02-29T10:06:50+00:00",
+                        "message": "ReplicaSet \"stackgres-74f48b87d8\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "observed_generation": 2,
+                "ready_replicas": 1,
+                "replicas": 1,
+                "unavailable_replicas": null,
+                "updated_replicas": 1
+            }
+        }
+    },
+    "daemon_set": {},
+    "config_map": {
+        "kube-root-ca.crt": {
+            "api_version": null,
+            "binary_data": null,
+            "data": {
+                "ca.crt": "-----BEGIN CERTIFICATE-----\nMIIDBTCCAe2gAwIBAgIITH5gBPcWrZIwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE\nAxMKa3ViZXJuZXRlczAeFw0yNDAyMjkwOTU1MzhaFw0zNDAyMjYxMDAwMzhaMBUx\nEzARBgNVBAMTCmt1YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK\nAoIBAQCzGMk9O1mb7lViDVysndzZ/Jt8p7gnmKwbMTTP5D2iasIX0edn61UpW3Sw\ndBF22LLgZM3ZOMzDkhRT5C9kO/022xUbvQY/oTVTMU6zPJrpjMVOSiXq5G8LluQ0\nqMXTPo9VkJpRiZx9gpW83qYDHCaPSZ1H19lJCiw5V32vh80A3CZIGGQy43eu+FvO\nbxCgwYHHJ1qVGEBEBDGOXkscrLDH1mXsuzHJhd2QGXxT1U9dsnFZ0dpXQi0PI6yK\n/ofmuCOri7UuXsBs61oom0XFHhmGKCUGx6g8GPdRKt+XnhHh2GK3yGtwa6251BdB\nXlMK9LRS3TUiTcD9pJHYPs1Fs6JfAgMBAAGjWTBXMA4GA1UdDwEB/wQEAwICpDAP\nBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSPAHvPdRttEnLF+FumSf4zJJIkGDAV\nBgNVHREEDjAMggprdWJlcm5ldGVzMA0GCSqGSIb3DQEBCwUAA4IBAQBlZZRj0pHX\niKlZGiakGKq5RGP1r6BMrVR58itA1pkMg31zUQlUjHFPQvRfHCog/pn4PUET3Ljy\nt/DS5hJWP5Jf5F5Yy0ByhmDfByO7Or1nDWRRtj8PeWycXOIeaWo+EAwUrNR0HBIg\nH/oNAAuKgZHUvzXQ+ir+Ezx7v6BNY6NT9MGgxqZaZ+u5oG+TFosmMgcywSCd434G\najadwM4SvCT1mE9PcxUNKtYJhX97B19ZlUElh9DwMCvpLNMq19Xh3ysDeUYJ+4Xw\nGfn5HfjrqWG2VOM+kQhg6NLgWov2ldhAZFow035C9eCW/YagzJ+fSEPVY1imwrWv\nAU0Yky/ReDNa\n-----END CERTIFICATE-----\n"
+            },
+            "immutable": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/description": "Contains a CA bundle that can be used to verify the kube-apiserver when using internal endpoints such as the internal service IP or kubernetes.default.svc. No other usage is guaranteed across distributions of Kubernetes clusters."
+                },
+                "creation_timestamp": "2024-02-29T10:06:28+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:data": {
+                                ".": {},
+                                "f:ca.crt": {}
+                            },
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:kubernetes.io/description": {}
+                                }
+                            }
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T10:06:28+00:00"
+                    }
+                ],
+                "name": "kube-root-ca.crt",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "920",
+                "self_link": null,
+                "uid": "20687dc0-bb1a-4617-b109-584f1d36a8ad"
+            }
+        }
+    },
+    "service": {
+        "stackgres": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T10:05:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:spec": {
+                                "f:ports": {
+                                    "k:{\"port\":443,\"protocol\":\"TCP\"}": {
+                                        ".": {},
+                                        "f:name": {},
+                                        "f:port": {},
+                                        "f:protocol": {},
+                                        "f:targetPort": {}
+                                    }
+                                },
+                                "f:selector": {},
+                                "f:type": {}
+                            }
+                        },
+                        "manager": "kubectl",
+                        "operation": "Apply",
+                        "subresource": null,
+                        "time": "2024-02-29T10:05:40+00:00"
+                    }
+                ],
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "849",
+                "self_link": null,
+                "uid": "9d2bb6c5-f855-4610-8e14-8b55fa6df3c5"
+            },
+            "spec": {
+                "allocate_load_balancer_node_ports": null,
+                "cluster_ip": "10.96.166.184",
+                "cluster_i_ps": [
+                    "10.96.166.184"
+                ],
+                "external_i_ps": null,
+                "external_name": null,
+                "external_traffic_policy": null,
+                "health_check_node_port": null,
+                "internal_traffic_policy": "Cluster",
+                "ip_families": [
+                    "IPv4"
+                ],
+                "ip_family_policy": "SingleStack",
+                "load_balancer_class": null,
+                "load_balancer_ip": null,
+                "load_balancer_source_ranges": null,
+                "ports": [
+                    {
+                        "app_protocol": null,
+                        "name": "https",
+                        "node_port": null,
+                        "port": 443,
+                        "protocol": "TCP",
+                        "target_port": "https"
+                    }
+                ],
+                "publish_not_ready_addresses": null,
+                "selector": {
+                    "app": "stackgres"
+                },
+                "session_affinity": "None",
+                "session_affinity_config": null,
+                "type": "ClusterIP"
+            },
+            "status": {
+                "conditions": null,
+                "load_balancer": {
+                    "ingress": null
+                }
+            }
+        }
+    },
+    "pvc": {},
+    "cronjob": {},
+    "ingress": {},
+    "network_policy": {},
+    "pod_disruption_budget": {},
+    "secret": {
+        "stackgres-certs": {
+            "api_version": null,
+            "data": {
+                "MD5SUM": "966A9BCD511AA46552B133FA02E8E6B8",
+                "tls.crt": "-----BEGIN CERTIFICATE-----\nMIIFrDCCA5SgAwIBAgIBATANBgkqhkiG9w0BAQsFADBBMRUwEwYDVQQKEwxzeXN0ZW06bm9kZXMxKDAmBgNVBAMTH3N5c3RlbTpub2RlOnN0YWNrZ3Jlcy5zdGFja2dyZXMwHhcNMjQwMjI5MTAwNjQ0WhcNMjYwMjI4MTAwNjQzWjBBMRUwEwYDVQQKEwxzeXN0ZW06bm9kZXMxKDAmBgNVBAMTH3N5c3RlbTpub2RlOnN0YWNrZ3Jlcy5zdGFja2dyZXMwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDCYHeZ7QyfT/+WK0WdUN1ZYftxLgyIZjg1Bb09YiTGrf7teRLIm+jWUeT5/VjsM1mYBJ+o8SrmtmUFmRYes6B9wbeWO3bwYwmeb92kya3SjZmzUr5x4Ny2c7g/r1yR/RpgMgMBkOKSNHqgVUBrTlyhl93L6yjyujMdNsiTBZ/DZWsKDR0tawQuWhaWHBB60DLAn+T8E6eIn1SN+kwsInJZXkXzVCYJuqnJchbNsU9LsAmGq4NbjONlhCMR1suSJ7n5wQ3jmsv+Tg1jL8cobIAgq2QvZWjfoGk56jkZ95vMHTWkIB1LBeF20nlTBKvmisqowK6LHIPpq8OvGpvcKcT73OHzBdma30g2zqgDSMFwdvvvHXkOXxSKRQisueQfTADKoh+pYoW1AJHCadpbo+UZqmOTAiF9E199ob+N/0zxfBTEYCpmTWedofrL8TlR0fbuG+odfPVGm4/sU+FNastsC07hT/h/ILj3NSqD75oD28dwTat5Y5PP9ziQRfVJycBE4ShYrVuyVxwukxbY7Lcvc+yE8BBWoxzwi1KHXcljaLqX4h7m1+mUEC6htkBIoYTE/hrLXGw8XpIS7DHpyiGNOwIifib8zj/kOowxnnch3dbs/GMwWsi0L9B8eVKJ46qwspfDLpQyq1T7zbpCP5EpYpMzDUrCBGWFMdGmJr5GQQIDAQABo4GuMIGrMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBpBgNVHREEYjBggglzdGFja2dyZXOCE3N0YWNrZ3Jlcy5zdGFja2dyZXOCF3N0YWNrZ3Jlcy5zdGFja2dyZXMuc3ZjgiVzdGFja2dyZXMuc3RhY2tncmVzLnN2Yy5jbHVzdGVyLmxvY2FsMA0GCSqGSIb3DQEBCwUAA4ICAQCS3/+zFlbaqlbKKbCywFGEaiNpzATT+GLruq1ZAlFqBTrj3UB3ojSAGsM5HPWE5F7wuZARNcqeXI2vyFlQDxC3LHIrC9zIkQ7Cu5wogtTpRsa5RdjiSUnmhm453x0/SxYAV5tZKs/3RvAfl2MUIbZ6vTpbNXJP/KFcMmnlNGrIVI9+mOya4ZXqdIC5oLlj55oov6i7tGI0ERpC57JE64cNEp+7HbnxEdzfaMhtLKtgdBbaKih1mnY+oLkEPKFr3oxsxjmf9RkT4tyV3q4qt2ybI9Itt8sdyR9CHZo5L6+gpLOzS40UyhKaM/OoUwzRT0rG6hmZu+9V7oaMcpNbjyylRubFGBHUQHmi6fNzVMSTuN+GehZyNaLvllmNd9fCu4yyqorqwmeZfsRx0fcsZeG2ou/KhW9NGQXgEaW/J7q7r6oFloNonHBEOnXsSSIwUHqNQ7P97V07zJI0ClPJIS3mwXXkqC9vuC9ag46X2PAE07LKjaQ6CXvyrPyFbD42E8GGfguoZHr+Y8LkZ+15b5uS/HHaeCNY9+5P7S7How+HNFqB8zMMb1RyQF07IHhWGZ45HhMebuR96M1qVim1AN6t8badAgDC6mRlzfCgp4YPsDCGAkvnIdJs33N9AXLJrCgHkjszvtR7AEYNM5LkXJIa87uhNBo2/fSO7V07fZgTjA==\n-----END CERTIFICATE-----\n",
+                "tls.key": "-----BEGIN PRIVATE KEY-----\nMIIJQQIBADANBgkqhkiG9w0BAQEFAASCCSswggknAgEAAoICAQDCYHeZ7QyfT/+WK0WdUN1ZYftxLgyIZjg1Bb09YiTGrf7teRLIm+jWUeT5/VjsM1mYBJ+o8SrmtmUFmRYes6B9wbeWO3bwYwmeb92kya3SjZmzUr5x4Ny2c7g/r1yR/RpgMgMBkOKSNHqgVUBrTlyhl93L6yjyujMdNsiTBZ/DZWsKDR0tawQuWhaWHBB60DLAn+T8E6eIn1SN+kwsInJZXkXzVCYJuqnJchbNsU9LsAmGq4NbjONlhCMR1suSJ7n5wQ3jmsv+Tg1jL8cobIAgq2QvZWjfoGk56jkZ95vMHTWkIB1LBeF20nlTBKvmisqowK6LHIPpq8OvGpvcKcT73OHzBdma30g2zqgDSMFwdvvvHXkOXxSKRQisueQfTADKoh+pYoW1AJHCadpbo+UZqmOTAiF9E199ob+N/0zxfBTEYCpmTWedofrL8TlR0fbuG+odfPVGm4/sU+FNastsC07hT/h/ILj3NSqD75oD28dwTat5Y5PP9ziQRfVJycBE4ShYrVuyVxwukxbY7Lcvc+yE8BBWoxzwi1KHXcljaLqX4h7m1+mUEC6htkBIoYTE/hrLXGw8XpIS7DHpyiGNOwIifib8zj/kOowxnnch3dbs/GMwWsi0L9B8eVKJ46qwspfDLpQyq1T7zbpCP5EpYpMzDUrCBGWFMdGmJr5GQQIDAQABAoICACA2FUvcVS2nd67+j8RArNXNn3oDjA8khWcAAvrDo12LYwYefMbi02SE4MGuwsgtwEipZ337LUVbb4VMd7ZxxQRiEFbkltLCTstDNYND6rrMPW7SpP3BKkJQDfX7zQbiXzcWwpnFVU6uRK4CQrElpMMgpCBRYZFL2wGZ3QZENdQPH/xj7PRkWiaGRlzs3KxFiUuTk8JUTXyeDsiSdIIR2UpHDaeDx+Pv24gnEHFY00+zJfj7vkJzKBHgImGn60dWrwKdA/y2X9zOOXi457Oiu17umCUklIsOjbGLx5euiVJ7erKuobwXhuQGgBWKXiRP1sK9X49tE80q6jw/2BlVkK9zzg++1sP/oEeQ9OpEvtEjEvjWGfpLEH/PJSPbSN7jcS8H2Ub3fwKQkgLqaxoHypzbZ5lPbpJIVZ5mDoSjZ3isr/MZvBRXWKEu5Qd8K2saWU83AwT8M3hLhvzlTXeVH/XRhjrWco1mtEDk28T3gfxKrxLJKq1s7xj+C+fxrAizEsO1LmpnS9N3D61evn0DBGbVutx5jnQc5tf3oqwY3AMZIgBcvjXO3lHhqTrdtlXd3apXFIP8tpo6WgVd1GQZh8s6jUZ9UnN1jdlE0hCb1Q/FcyplnFPQBSfuO6PDGaeFZq7SD3f8ZClGR2yeG423rKU2OCNAtM2BjCBpo8Vgt7cZAoIBAQDFOjU2pYujymhC3LIqj0NG213N5QNklmUx3NFjx3k4gALB7R/i0MFlPCzGNjjOXS20wz7RuvLVd5qykKLGx4+JxOb9Dxi0k8E1gwlAYDwxqYWGRg3lWmG2ghPjkUMZyV0cSKNAnOC8axoow5TQcr3nbJgK9ejvEBFdfhV5hCJQR82i92MsdrUiTB7v3jMMcxU2qjRauBbMT/3BC8eN2fYbXwNhVLUgb9q9iChO//p4jGgPo4YAk7gXLR3GVLshTZR0RiGEGk3xQGc6Sy+t+tnIU54h/4rVjap7baPpKm5I1BZLxdX87Fjzh5iklsjAqHqubzdOYIuBZc4Jlhjc77N9AoIBAQD8TM0A8HW2dU4BFlQPhUf60T1DrdIrd7+DU5MydFTLMf4+N64ZZQTG3o9M04o1y1JFmBvsO+3eoak3CBp+3jjqk9m3p2lInSmMsnHq91gUhkYOZ5yIo1s/g/P8tWy514xV1L7E0689UB/A6/oEXYc1anMt/ZjbFg443/h7GMN1GU/qNtyYVMJ98MGwHknvRXwkHYC3+SI8iXE3nDbxUmrJ01YFSM7kAtidW6g60131yJcWus1Znbr6XjwLDpQOCRKXRdOKQymNuyV8ul4wg40N76WgKXY0NCr9jQcNdCuz9fvLQ4p0oY2MLaIDhqUJ/CS98CloYcx6Z2V2mqO6klEVAoIBAAmXSg0tQbwmVKmjt9pP+zKP6mDf2SlkEum41knm4mM3/mpV0K4j/rOgmIDPFDYc2+Mld4GVeMeeuFwkonXOMJG/jIgT2ty1LrkedS23QFYd60tbTsOvgH7ylmsDnmK7oxaEBcRXnKos/ymqUStN2SRO6Jnn2Xr+qgmE3yB4p36F718UbrMz1p0jXIHHqW3ajtaIsmETALDQ1wMzQnIIfmpYVX6/MsuwBNAgte0Zj6GbGlhgWFzg0hv2arNBXZRCBI0e9/RHnzCzNBHmpBvuzfZq8o6usZ6u8/Jqo4TsNk6+WZM3vK8/AxhcqLSgTITp7IVdDTB3i3EwdTOMJAticLUCggEAQeRc9g3W8FwajzYhphwM/HiBI5fV9/xCTC4bl2XCb38TA3TPR1qWsMmXa10kD4CWcA6V3FCagzZ9Vx4KrW+kNb9/cPOMD6bcHx7Lma4XluSqj0CIJTdksWXo5usLBk5BHHl/iTAv6Ddw05XNqi4zDcRLaIt+zFkqRbhY0O1avs5pjKXfXvlkAjhKnZCLhq4DCfuajnHGe0D6DKgDwWrg8Oz83kxxnCMSJ6a0fQiO1Y4Zx5np36nOF21dCRY5nKDJ9jAKW2XHCHkEBVs3FjyFLkqUWwv5DxFA2Q9n9B+O+mUX6bIuCt/Wc/HHClyz5bOwdNqwNc609JLkcOFaOXPVMQKCAQApcca/gsIX2JLPjjO6PcxuK9FRz7vwKTxLCZe+P7tcvz/aCdqZ50FixJxsN00skq0e0oYdXjU6a2eRXGGz0fp8k8v1QX02G0mbfKBHX7PRYcklOdKaugimyPsRXOYFwaSfeadFmz4awu4JQnBnArPlHjea2fWApV9CwTwvBuI9MY3Qpqbx1+fC22j0ynYG8GSBNe7BXsS81HSaG0Uwm2ailtxChaGXaixFF7CVcRRh3vVu7oAn/4ZWZCFvXh0tM45Pjli+VhLMlfGYUor4mBzkqONBQ9ED/mEtdeA+idlMsoktiFW2T69ukCKptk8LYMznViBTe2Ay064vi8wXo6Re\n-----END PRIVATE KEY-----\n"
+            },
+            "immutable": null,
+            "kind": null,
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T10:06:44+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": {
+                    "app": "StackGresConfig",
+                    "stackgres.io/config-name": "stackgres"
+                },
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:data": {
+                                ".": {},
+                                "f:MD5SUM": {},
+                                "f:tls.crt": {},
+                                "f:tls.key": {}
+                            },
+                            "f:metadata": {
+                                "f:labels": {
+                                    ".": {},
+                                    "f:app": {},
+                                    "f:stackgres.io/config-name": {}
+                                }
+                            },
+                            "f:type": {}
+                        },
+                        "manager": "fabric8-kubernetes-client",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T10:06:44+00:00"
+                    }
+                ],
+                "name": "stackgres-certs",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "968",
+                "self_link": null,
+                "uid": "9676d31f-42a1-4205-b818-3668342aaf7a"
+            },
+            "string_data": null,
+            "type": "kubernetes.io/tls"
+        }
+    },
+    "endpoints": {
+        "stackgres": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "endpoints.kubernetes.io/last-change-trigger-time": "2024-02-29T10:06:49Z"
+                },
+                "creation_timestamp": "2024-02-29T10:06:29+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    ".": {},
+                                    "f:endpoints.kubernetes.io/last-change-trigger-time": {}
+                                }
+                            },
+                            "f:subsets": {}
+                        },
+                        "manager": "kube-controller-manager",
+                        "operation": "Update",
+                        "subresource": null,
+                        "time": "2024-02-29T10:06:49+00:00"
+                    }
+                ],
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "986",
+                "self_link": null,
+                "uid": "9558d8d8-1619-43c7-8d08-ff635c47e684"
+            },
+            "subsets": [
+                {
+                    "addresses": [
+                        {
+                            "hostname": null,
+                            "ip": "10.244.3.2",
+                            "node_name": "acto-0-cluster-0-worker3",
+                            "target_ref": {
+                                "api_version": null,
+                                "field_path": null,
+                                "kind": "Pod",
+                                "name": "stackgres-74f48b87d8-b7zqt",
+                                "namespace": "stackgres",
+                                "resource_version": null,
+                                "uid": "9e475da0-8d84-468f-9810-71762660b061"
+                            }
+                        }
+                    ],
+                    "not_ready_addresses": null,
+                    "ports": [
+                        {
+                            "app_protocol": null,
+                            "name": "https",
+                            "port": 8443,
+                            "protocol": "TCP"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "service_account": {
+        "default": {
+            "api_version": null,
+            "automount_service_account_token": null,
+            "image_pull_secrets": null,
+            "kind": null,
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T10:06:29+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": null,
+                "name": "default",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "921",
+                "self_link": null,
+                "uid": "24ef2609-c864-4927-96ed-43734e69bcd5"
+            },
+            "secrets": null
+        },
+        "stackgres": {
+            "api_version": null,
+            "automount_service_account_token": null,
+            "image_pull_secrets": null,
+            "kind": null,
+            "metadata": {
+                "annotations": null,
+                "creation_timestamp": "2024-02-29T10:05:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": null,
+                "name": "stackgres",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "839",
+                "self_link": null,
+                "uid": "3923d19c-36c8-42ae-91ea-a76edc16064d"
+            },
+            "secrets": null
+        },
+        "stackgres-init": {
+            "api_version": null,
+            "automount_service_account_token": null,
+            "image_pull_secrets": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "helm.sh/hook": "pre-install,pre-upgrade",
+                    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded",
+                    "helm.sh/hook-weight": "-100"
+                },
+                "creation_timestamp": "2024-02-29T10:05:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    "f:helm.sh/hook": {},
+                                    "f:helm.sh/hook-delete-policy": {},
+                                    "f:helm.sh/hook-weight": {}
+                                }
+                            }
+                        },
+                        "manager": "kubectl",
+                        "operation": "Apply",
+                        "subresource": null,
+                        "time": "2024-02-29T10:05:40+00:00"
+                    }
+                ],
+                "name": "stackgres-init",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "854",
+                "self_link": null,
+                "uid": "1d7d34e1-9384-42ca-82d5-2101f08a4f24"
+            },
+            "secrets": null
+        }
+    },
+    "job": {},
+    "role": {
+        "stackgres-init": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "helm.sh/hook": "pre-install,pre-upgrade",
+                    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded",
+                    "helm.sh/hook-weight": "-100"
+                },
+                "creation_timestamp": "2024-02-29T10:05:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "rbac.authorization.k8s.io/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    "f:helm.sh/hook": {},
+                                    "f:helm.sh/hook-delete-policy": {},
+                                    "f:helm.sh/hook-weight": {}
+                                }
+                            },
+                            "f:rules": {}
+                        },
+                        "manager": "kubectl",
+                        "operation": "Apply",
+                        "subresource": null,
+                        "time": "2024-02-29T10:05:40+00:00"
+                    }
+                ],
+                "name": "stackgres-init",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "857",
+                "self_link": null,
+                "uid": "9dfa6d5b-a483-4f63-9e8a-d0cad05296f6"
+            },
+            "rules": [
+                {
+                    "api_groups": [
+                        "stackgres.io"
+                    ],
+                    "non_resource_ur_ls": null,
+                    "resource_names": null,
+                    "resources": [
+                        "sgconfigs"
+                    ],
+                    "verbs": [
+                        "create"
+                    ]
+                },
+                {
+                    "api_groups": [
+                        "stackgres.io"
+                    ],
+                    "non_resource_ur_ls": null,
+                    "resource_names": [
+                        "stackgres"
+                    ],
+                    "resources": [
+                        "sgconfigs"
+                    ],
+                    "verbs": [
+                        "get",
+                        "update",
+                        "patch"
+                    ]
+                }
+            ]
+        }
+    },
+    "role_binding": {
+        "stackgres-init": {
+            "api_version": null,
+            "kind": null,
+            "metadata": {
+                "annotations": {
+                    "helm.sh/hook": "pre-install,pre-upgrade",
+                    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded",
+                    "helm.sh/hook-weight": "-100"
+                },
+                "creation_timestamp": "2024-02-29T10:05:40+00:00",
+                "deletion_grace_period_seconds": null,
+                "deletion_timestamp": null,
+                "finalizers": null,
+                "generate_name": null,
+                "generation": null,
+                "labels": null,
+                "managed_fields": [
+                    {
+                        "api_version": "rbac.authorization.k8s.io/v1",
+                        "fields_type": "FieldsV1",
+                        "fields_v1": {
+                            "f:metadata": {
+                                "f:annotations": {
+                                    "f:helm.sh/hook": {},
+                                    "f:helm.sh/hook-delete-policy": {},
+                                    "f:helm.sh/hook-weight": {}
+                                }
+                            },
+                            "f:roleRef": {},
+                            "f:subjects": {}
+                        },
+                        "manager": "kubectl",
+                        "operation": "Apply",
+                        "subresource": null,
+                        "time": "2024-02-29T10:05:40+00:00"
+                    }
+                ],
+                "name": "stackgres-init",
+                "namespace": "stackgres",
+                "owner_references": null,
+                "resource_version": "858",
+                "self_link": null,
+                "uid": "f14d87c2-e55e-4a2c-b658-665594631d40"
+            },
+            "role_ref": {
+                "api_group": "rbac.authorization.k8s.io",
+                "kind": "Role",
+                "name": "stackgres-init"
+            },
+            "subjects": [
+                {
+                    "api_group": null,
+                    "kind": "ServiceAccount",
+                    "name": "stackgres-init",
+                    "namespace": "stackgres"
+                }
+            ]
+        }
+    },
+    "custom_resource_spec": {
+        "authentication": {
+            "createAdminSecret": true,
+            "type": "jwt",
+            "user": "admin"
+        },
+        "containerRegistry": "quay.io",
+        "extensions": {
+            "repositoryUrls": [
+                "https://extensions.stackgres.io/postgres/repository"
+            ]
+        },
+        "grafana": {
+            "autoEmbed": false,
+            "datasourceName": "Prometheus",
+            "password": "prom-operator",
+            "schema": "http",
+            "user": "admin"
+        },
+        "imagePullPolicy": "IfNotPresent",
+        "prometheus": {
+            "allowAutobind": true
+        }
+    },
+    "custom_resource_status": null
+}

@@ -1,0 +1,402 @@
+   _____ _             _     _____               
+  / ____| |           | |   / ____|              
+ | (___ | |_ __ _  ___| | _| |  __ _ __ ___  ___ 
+  \___ \| __/ _` |/ __| |/ / | |_ | '__/ _ \/ __|
+  ____) | || (_| | (__|   <| |__| | | |  __/\__ \
+ |_____/ \__\__,_|\___|_|\_\\_____|_|  \___||___/
+                                  by OnGres, Inc.
+
+                         Powered by Quarkus 3.6.3
+2024-02-29 21:39:11,707 INFO  [io.st.op.va.BackupValidationResource] (main) Backup validation resource started
+2024-02-29 21:39:11,708 INFO  [io.st.op.va.ShardedClusterValidationResource] (main) Sharded Cluster validation resource started
+2024-02-29 21:39:11,715 INFO  [io.st.op.mu.BackupMutationResource] (main) Backup mutation resource started
+2024-02-29 21:39:11,715 INFO  [io.st.op.conciliation] (SGDbOps-ReconciliationLoop) SGDbOps reconciliation loop started
+2024-02-29 21:39:11,715 INFO  [io.st.op.mu.ObjectStorageMutationResource] (main) Object Storage mutation resource started
+2024-02-29 21:39:11,715 INFO  [io.st.op.va.ClusterValidationResource] (main) Cluster validation resource started
+2024-02-29 21:39:11,715 INFO  [io.st.op.co.SgShardedClusterConversionResource] (main) SgShardedCluster configuration conversion resource started
+2024-02-29 21:39:11,715 INFO  [io.st.op.va.DistributedLogsValidationResource] (main) SgProfile validation resource started
+2024-02-29 21:39:11,715 INFO  [io.st.op.va.ScriptValidationResource] (main) Script validation resource started
+2024-02-29 21:39:11,715 INFO  [io.st.op.co.SgDbOpsConversionResource] (main) SGDbOps configuration conversion resource started
+2024-02-29 21:39:11,716 INFO  [io.st.op.mu.PgConfigMutationResource] (main) Postgres configuration mutation resource started
+2024-02-29 21:39:11,716 INFO  [io.st.op.conciliation] (SGScript-ReconciliationLoop) SGScript reconciliation loop started
+2024-02-29 21:39:11,716 INFO  [io.st.op.mu.ShardedDbOpsMutationResource] (main) Sharded DbOps mutation resource started
+2024-02-29 21:39:11,716 INFO  [io.st.op.mu.ClusterMutationResource] (main) Cluster configuration mutator resource started
+2024-02-29 21:39:11,716 INFO  [io.st.op.mu.SgProfileMutationResource] (main) SgProfile configuration mutation resource started
+2024-02-29 21:39:11,716 INFO  [io.st.op.conciliation] (SGCluster-ReconciliationLoop) SGCluster reconciliation loop started
+2024-02-29 21:39:11,716 INFO  [io.st.op.mu.ScriptMutationResource] (main) Script mutation resource started
+2024-02-29 21:39:11,717 INFO  [io.st.op.va.ShardedDbOpsValidationResource] (main) SGShardedDbOps validation resource started
+2024-02-29 21:39:11,717 INFO  [io.st.op.conciliation] (SGBackup-ReconciliationLoop) SGBackup reconciliation loop started
+2024-02-29 21:39:11,717 INFO  [io.st.op.mu.ShardedBackupMutationResource] (main) Sharded Backup mutation resource started
+2024-02-29 21:39:11,717 INFO  [io.st.op.va.DbOpsValidationResource] (main) DbOps validation resource started
+2024-02-29 21:39:11,717 INFO  [io.st.op.co.SgPoolingConfigConversionResource] (main) SGPoolingConfig configuration conversion resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.va.PostgresConfigValidationResource] (main) Postgres configuration validation resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.co.SgDistributedLogsConversionResource] (main) SGDistributedLogs configuration conversion resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.conciliation] (SGShardedCluster-ReconciliationLoop) SGShardedCluster reconciliation loop started
+2024-02-29 21:39:11,718 INFO  [io.st.op.co.SgBackupConversionResource] (main) SGBackup configuration conversion resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.va.ConfigValidationResource] (main) Config validation resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.co.SgInstanceProfileConversionResource] (main) SGInstanceProfile configuration conversion resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.mu.DbOpsMutationResource] (main) DbOps mutation resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.co.SgConfigConversionResource] (main) SgConfig configuration conversion resource started
+2024-02-29 21:39:11,718 INFO  [io.st.op.mu.ShardedClusterMutationResource] (main) ShardedCluster mutation resource started
+2024-02-29 21:39:12,584 WARN  [io.fa.ku.cl.ds.in.VersionUsageUtils] (main) The client is using resource type 'sgobjectstorages' with unstable version 'v1beta1'
+2024-02-29 21:39:12,869 WARN  [io.fa.ku.cl.ds.in.VersionUsageUtils] (main) The client is using resource type 'sgshardedclusters' with unstable version 'v1alpha1'
+2024-02-29 21:39:13,059 INFO  [io.st.op.ap.CertificateInstaller] (main) Installing Certificate
+2024-02-29 21:39:13,182 INFO  [io.st.op.ap.CertificateInstaller] (main) Certificate already installed
+2024-02-29 21:39:13,182 INFO  [io.st.op.ap.CertificateInstaller] (main) Waiting for certificate
+2024-02-29 21:39:13,234 INFO  [io.st.op.ap.CertificateInstaller] (main) Certificate available
+2024-02-29 21:39:13,235 INFO  [io.st.op.ap.StackGresOperatorApp] (OperatorStartup) The operator is starting...
+2024-02-29 21:39:13,235 INFO  [io.st.op.va.SgProfileValidationResource] (main) SgProfile validation resource started
+2024-02-29 21:39:13,236 INFO  [io.st.op.mu.SgPgBouncerMutationResource] (main) PgBouncer configuration mutation resource started
+2024-02-29 21:39:13,236 INFO  [io.st.op.mu.ConfigMutationResource] (main) Config mutation resource started
+2024-02-29 21:39:13,236 INFO  [io.st.op.conciliation] (SGShardedBackup-ReconciliationLoop) SGShardedBackup reconciliation loop started
+2024-02-29 21:39:13,236 INFO  [io.st.op.va.ShardedBackupValidationResource] (main) SGShardedBackup validation resource started
+2024-02-29 21:39:13,236 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) SGConfig reconciliation loop started
+2024-02-29 21:39:13,237 INFO  [io.st.op.co.SgObjectStorageConversionResource] (main) SgObjectStorage configuration conversion resource started
+2024-02-29 21:39:13,237 INFO  [io.st.op.conciliation] (SGShardedDbOps-ReconciliationLoop) SGShardedDbOps reconciliation loop started
+2024-02-29 21:39:13,237 INFO  [io.st.op.va.ObjectStorageValidationResource] (main) Object storage validation resource started
+2024-02-29 21:39:13,237 INFO  [io.st.op.co.SgClusterConversionResource] (main) SgCluster configuration conversion resource started
+2024-02-29 21:39:13,237 INFO  [io.st.op.conciliation] (SGDistributedLogs-ReconciliationLoop) SGDistributedLogs reconciliation loop started
+2024-02-29 21:39:13,238 INFO  [io.st.op.co.SgPostgresConfigConversionResource] (main) SGPostgresConfig configuration conversion resource started
+2024-02-29 21:39:13,238 INFO  [io.st.op.mu.DistributedLogsMutationResource] (main) Distributed logs mutation resource started
+2024-02-29 21:39:13,238 INFO  [io.st.op.va.PgBouncerValidationResource] (main) Pgbouncer validation resource started
+2024-02-29 21:39:13,239 INFO  [io.st.op.ap.DefaultOperatorBootstrap] (OperatorStartup) Kubernetes version: v1.28.0
+2024-02-29 21:39:13,239 INFO  [io.st.op.ap.DefaultOperatorBootstrap] (OperatorStartup) URL of this Kubernetes cluster: https://10.96.0.1:443/
+2024-02-29 21:39:13,239 INFO  [io.st.op.app] (OperatorStartup) Starting Operator Lock Reconciliation
+2024-02-29 21:39:13,287 WARN  [io.st.op.app] (OperatorLockHolder) Waiting for the lock on SGConfig to be released
+2024-02-29 21:39:13,489 INFO  [io.quarkus] (main) stackgres-operator 1.8.1 native (powered by Quarkus 3.6.3) started in 1.809s. Listening on: http://0.0.0.0:8080 and https://0.0.0.0:8443
+2024-02-29 21:39:13,489 INFO  [io.quarkus] (main) Profile prod activated. 
+2024-02-29 21:39:13,489 INFO  [io.quarkus] (main) Installed features: [cdi, hibernate-validator, kubernetes-client, rest-client, resteasy, resteasy-jackson, smallrye-context-propagation, smallrye-health, vertx]
+2024-02-29 21:39:18,381 INFO  [io.st.op.app] (OperatorLockHolder) Lock on SGConfig was set. I am the leader!
+2024-02-29 21:39:18,445 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRDs
+2024-02-29 21:39:18,656 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgconfigs.stackgres.io
+2024-02-29 21:39:18,740 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgclusters.stackgres.io
+2024-02-29 21:39:19,173 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sginstanceprofiles.stackgres.io
+2024-02-29 21:39:19,210 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgpgconfigs.stackgres.io
+2024-02-29 21:39:19,232 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgpoolconfigs.stackgres.io
+2024-02-29 21:39:19,256 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgbackups.stackgres.io
+2024-02-29 21:39:19,307 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgdistributedlogs.stackgres.io
+2024-02-29 21:39:19,421 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgdbops.stackgres.io
+2024-02-29 21:39:19,533 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgobjectstorages.stackgres.io
+2024-02-29 21:39:19,569 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgscripts.stackgres.io
+2024-02-29 21:39:19,635 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgshardedclusters.stackgres.io
+2024-02-29 21:39:20,689 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgshardedbackups.stackgres.io
+2024-02-29 21:39:20,716 INFO  [io.st.op.ap.CrdInstaller] (OperatorStartup) Installing CRD sgshardeddbops.stackgres.io
+2024-02-29 21:39:21,577 INFO  [io.st.op.ap.CrdWebhookInstaller] (OperatorStartup) Installing Conversion Webhooks
+2024-02-29 21:39:23,645 INFO  [io.st.op.ap.CrdWebhookInstaller] (OperatorStartup) Installing Mutating Webhooks
+2024-02-29 21:39:23,740 INFO  [io.st.op.ap.CrdWebhookInstaller] (OperatorStartup) Installing Validating Webhooks
+2024-02-29 21:39:23,777 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Updating existing custom resources
+2024-02-29 21:39:23,944 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGConfig
+2024-02-29 21:39:24,018 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGConfig. Patched
+2024-02-29 21:39:24,018 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGCluster
+2024-02-29 21:39:24,020 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGCluster. Patched
+2024-02-29 21:39:24,020 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGInstanceProfile
+2024-02-29 21:39:24,022 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGInstanceProfile. Patched
+2024-02-29 21:39:24,022 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGPostgresConfig
+2024-02-29 21:39:24,024 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGPostgresConfig. Patched
+2024-02-29 21:39:24,024 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGPoolingConfig
+2024-02-29 21:39:24,026 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGPoolingConfig. Patched
+2024-02-29 21:39:24,026 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGBackup
+2024-02-29 21:39:24,028 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGBackup. Patched
+2024-02-29 21:39:24,028 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGDistributedLogs
+2024-02-29 21:39:24,030 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGDistributedLogs. Patched
+2024-02-29 21:39:24,030 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGDbOps
+2024-02-29 21:39:24,032 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGDbOps. Patched
+2024-02-29 21:39:24,032 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGObjectStorage
+2024-02-29 21:39:24,034 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGObjectStorage. Patched
+2024-02-29 21:39:24,034 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGScript
+2024-02-29 21:39:24,036 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGScript. Patched
+2024-02-29 21:39:24,036 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGShardedCluster
+2024-02-29 21:39:24,038 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGShardedCluster. Patched
+2024-02-29 21:39:24,038 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGShardedBackup
+2024-02-29 21:39:24,040 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGShardedBackup. Patched
+2024-02-29 21:39:24,040 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Patching existing custom resources to apply defaults for CRD SGShardedDbOps
+2024-02-29 21:39:24,042 INFO  [io.st.op.ap.CrUpdater] (OperatorStartup) Existing custom resources for CRD SGShardedDbOps. Patched
+2024-02-29 21:39:31,023 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) SGConfig stackgres.stackgres it's not up to date. Reconciling
+2024-02-29 21:39:31,023 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Creating Secret stackgres.stackgres-restapi-admin
+2024-02-29 21:39:31,704 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Creating Secret stackgres.stackgres-web-certs
+2024-02-29 21:39:36,607 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Creating ConfigMap stackgres.stackgres-restapi-grafana-integration
+2024-02-29 21:39:37,325 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Creating ConfigMap stackgres.stackgres-restapi-nginx
+2024-02-29 21:39:38,436 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Creating ServiceAccount stackgres.stackgres-restapi
+2024-02-29 21:39:38,699 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Creating Service stackgres.stackgres-restapi
+2024-02-29 21:39:41,752 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Creating Deployment stackgres.stackgres-restapi
+2024-02-29 21:39:42,066 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:39:42,072 INFO  [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Patching Secret stackgres.stackgres-certs
+2024-02-29 21:39:43,869 ERROR [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Reconciliation of SGConfig stackgres.test-cluster failed: java.lang.IllegalArgumentException: Name must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character. But was ACTOKEY
+	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:143)
+	at io.stackgres.operatorframework.resource.ResourceUtil.resourceName(ResourceUtil.java:80)
+	at io.stackgres.operatorframework.resource.ResourceUtil.resourceName(ResourceUtil.java:88)
+	at io.stackgres.operator.conciliation.factory.config.webconsole.WebConsoleDeployment.name(WebConsoleDeployment.java:77)
+	at io.stackgres.operator.conciliation.config.ConfigRequiredResourcesGenerator.getRequiredResources(ConfigRequiredResourcesGenerator.java:83)
+	at io.stackgres.operator.conciliation.config.ConfigRequiredResourcesGenerator.getRequiredResources(ConfigRequiredResourcesGenerator.java:36)
+	at io.stackgres.operator.conciliation.config.ConfigRequiredResourcesGenerator_ClientProxy.getRequiredResources(Unknown Source)
+	at io.stackgres.operator.conciliation.AbstractConciliator.evalReconciliationState(AbstractConciliator.java:61)
+	at io.stackgres.operator.conciliation.config.ConfigConciliator_ClientProxy.evalReconciliationState(Unknown Source)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.reconciliationCycle(AbstractReconciliator.java:212)
+	at io.stackgres.operator.conciliation.config.ConfigReconciliator.reconciliationCycle(ConfigReconciliator.java:101)
+	at io.stackgres.operator.conciliation.config.ConfigReconciliator.reconciliationCycle(ConfigReconciliator.java:46)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.lambda$reconciliationsCycle$5(AbstractReconciliator.java:161)
+	at java.base@21.0.2/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.2/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base@21.0.2/java.util.AbstractList$RandomAccessSpliterator.forEachRemaining(AbstractList.java:722)
+	at java.base@21.0.2/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.2/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.2/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.2/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.2/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.2/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.reconciliationsCycle(AbstractReconciliator.java:161)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.reconciliationLoop(AbstractReconciliator.java:145)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:39:47,162 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:39:52,170 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:39:57,180 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:02,193 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:07,208 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:12,318 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:18,190 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:25,576 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:26,153 ERROR [io.st.op.conciliation] (SGConfig-ReconciliationLoop) Reconciliation of SGConfig stackgres.test-cluster failed: java.lang.IllegalArgumentException: Name must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character. But was ACTOKEY
+	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:143)
+	at io.stackgres.operatorframework.resource.ResourceUtil.resourceName(ResourceUtil.java:80)
+	at io.stackgres.operatorframework.resource.ResourceUtil.resourceName(ResourceUtil.java:88)
+	at io.stackgres.operator.conciliation.factory.config.webconsole.WebConsoleDeployment.name(WebConsoleDeployment.java:77)
+	at io.stackgres.operator.conciliation.config.ConfigRequiredResourcesGenerator.getRequiredResources(ConfigRequiredResourcesGenerator.java:83)
+	at io.stackgres.operator.conciliation.config.ConfigRequiredResourcesGenerator.getRequiredResources(ConfigRequiredResourcesGenerator.java:36)
+	at io.stackgres.operator.conciliation.config.ConfigRequiredResourcesGenerator_ClientProxy.getRequiredResources(Unknown Source)
+	at io.stackgres.operator.conciliation.AbstractConciliator.evalReconciliationState(AbstractConciliator.java:61)
+	at io.stackgres.operator.conciliation.config.ConfigConciliator_ClientProxy.evalReconciliationState(Unknown Source)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.reconciliationCycle(AbstractReconciliator.java:212)
+	at io.stackgres.operator.conciliation.config.ConfigReconciliator.reconciliationCycle(ConfigReconciliator.java:101)
+	at io.stackgres.operator.conciliation.config.ConfigReconciliator.reconciliationCycle(ConfigReconciliator.java:46)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.lambda$reconciliationsCycle$5(AbstractReconciliator.java:161)
+	at java.base@21.0.2/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.2/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base@21.0.2/java.util.AbstractList$RandomAccessSpliterator.forEachRemaining(AbstractList.java:722)
+	at java.base@21.0.2/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.2/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.2/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.2/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.2/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.2/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.reconciliationsCycle(AbstractReconciliator.java:161)
+	at io.stackgres.operator.conciliation.AbstractReconciliator.reconciliationLoop(AbstractReconciliator.java:145)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:31,355 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:36,427 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:43,405 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:48,417 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:40:53,583 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:41:01,944 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:41:07,019 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:41:12,236 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+
+2024-02-29 21:41:18,863 ERROR [io.st.op.app] (OperatorLockHolder) Reconciliation of operator lock failed: java.lang.IllegalArgumentException: More than one SGConfig found. Please remove extra SGConfig for the operator to function properly
+	at io.stackgres.operator.app.DefaultOperatorLockHolder.tryHoldLock(DefaultOperatorLockHolder.java:106)
+	at java.base@21.0.2/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base@21.0.2/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base@21.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base@21.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base@21.0.2/java.lang.Thread.runWith(Thread.java:1596)
+	at java.base@21.0.2/java.lang.Thread.run(Thread.java:1583)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:833)
+	at org.graalvm.nativeimage.builder/com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:211)
+

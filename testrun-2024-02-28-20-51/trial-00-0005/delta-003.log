@@ -1,0 +1,77 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_added": {
+            "root['spec']['operator'][image][tag]": {
+                  "prev": "NotPresent",
+                  "curr": "ACTOKEY",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "operator",
+                              "image",
+                              "tag"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_added": {
+                  "root['operator'][image][name]": {
+                        "prev": "NotPresent",
+                        "curr": "stackgres/operator",
+                        "path": {
+                              "path": [
+                                    "operator",
+                                    "image",
+                                    "name"
+                              ]
+                        }
+                  },
+                  "root['operator'][image][pullPolicy]": {
+                        "prev": "NotPresent",
+                        "curr": "IfNotPresent",
+                        "path": {
+                              "path": [
+                                    "operator",
+                                    "image",
+                                    "pullPolicy"
+                              ]
+                        }
+                  },
+                  "root['operator'][image][tag]": {
+                        "prev": "NotPresent",
+                        "curr": "ACTOKEY",
+                        "path": {
+                              "path": [
+                                    "operator",
+                                    "image",
+                                    "tag"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}

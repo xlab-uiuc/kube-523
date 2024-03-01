@@ -1,0 +1,32 @@
+apiVersion: stackgres.io/v1
+kind: SGConfig
+metadata:
+  name: test-cluster
+spec:
+  authentication:
+    type: jwt
+    user: admin
+  cert:
+    createForWebApi: true
+  containerRegistry: quay.io
+  extensions:
+    repositoryUrls:
+    - https://extensions.stackgres.io/postgres/repository
+  grafana:
+    autoEmbed: false
+    datasourceName: Prometheus
+    password: prom-operator
+    schema: http
+    user: admin
+  imagePullPolicy: IfNotPresent
+  jobs:
+    nodeSelector: {}
+  prometheus:
+    allowAutobind: true
+status:
+  conditions:
+  - lastTransitionTime: null
+    message: ACTOKEY
+    reason: ACTOKEY
+    status: ACTOKEY
+    type: ACTOKEY

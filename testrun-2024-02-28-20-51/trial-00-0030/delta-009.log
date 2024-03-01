@@ -1,0 +1,53 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_added": {
+            "root['spec']['authentication']['createAdminSecret']": {
+                  "prev": "NotPresent",
+                  "curr": false,
+                  "path": {
+                        "path": [
+                              "spec",
+                              "authentication",
+                              "createAdminSecret"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "values_changed": {
+                  "root['authentication']['createAdminSecret']": {
+                        "prev": true,
+                        "curr": false,
+                        "path": {
+                              "path": [
+                                    "authentication",
+                                    "createAdminSecret"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}

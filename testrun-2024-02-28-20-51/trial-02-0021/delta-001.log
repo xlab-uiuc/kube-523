@@ -1,0 +1,65 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_added": {
+            "root['spec']['adminui'][service]": {
+                  "prev": "NotPresent",
+                  "curr": {},
+                  "path": {
+                        "path": [
+                              "spec",
+                              "adminui",
+                              "service"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_added": {
+                  "root['adminui'][service][exposeHTTP]": {
+                        "prev": "NotPresent",
+                        "curr": false,
+                        "path": {
+                              "path": [
+                                    "adminui",
+                                    "service",
+                                    "exposeHTTP"
+                              ]
+                        }
+                  },
+                  "root['adminui'][service][type]": {
+                        "prev": "NotPresent",
+                        "curr": "ClusterIP",
+                        "path": {
+                              "path": [
+                                    "adminui",
+                                    "service",
+                                    "type"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}

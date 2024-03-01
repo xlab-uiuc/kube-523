@@ -1,0 +1,955 @@
+{
+    "normal_testcases": {
+        "[]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"apiVersion\"]": [
+            "k8s-change_api_version"
+        ],
+        "[\"kind\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"metadata\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"adminui\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"adminui\", \"image\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"adminui\", \"image\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"adminui\", \"image\", \"pullPolicy\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"adminui\", \"image\", \"tag\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"adminui\", \"resources\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"adminui\", \"service\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"adminui\", \"service\", \"exposeHTTP\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"adminui\", \"service\", \"loadBalancerIP\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"adminui\", \"service\", \"loadBalancerSourceRanges\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"adminui\", \"service\", \"loadBalancerSourceRanges\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"adminui\", \"service\", \"nodePort\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"adminui\", \"service\", \"nodePortHTTP\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"adminui\", \"service\", \"type\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"authentication\", \"createAdminSecret\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"authServerUrl\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"clientId\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"clientIdSecretRef\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"clientIdSecretRef\", \"key\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"clientIdSecretRef\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"credentialsSecret\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"credentialsSecretSecretRef\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"credentialsSecretSecretRef\", \"key\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"credentialsSecretSecretRef\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"authentication\", \"oidc\", \"tlsVerification\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"password\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"secretRef\"]": [],
+        "[\"spec\", \"authentication\", \"secretRef\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"authentication\", \"type\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"authentication\", \"user\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"cert\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"cert\", \"autoapprove\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"cert\", \"certDuration\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"cert\", \"certManager\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"cert\", \"certManager\", \"autoConfigure\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"cert\", \"certManager\", \"duration\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"cert\", \"certManager\", \"encoding\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"cert\", \"certManager\", \"renewBefore\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"cert\", \"certManager\", \"size\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"cert\", \"createForOperator\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"cert\", \"createForWebApi\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"cert\", \"regenerateCert\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"cert\", \"regenerateWebCert\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"cert\", \"regenerateWebRsa\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"cert\", \"secretName\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"cert\", \"webCertDuration\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"cert\", \"webRsaDuration\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"cert\", \"webSecretName\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"containerRegistry\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"deploy\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"deploy\", \"operator\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"deploy\", \"restapi\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"allowPullExtensionsFromImageRepository\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\", \"disableArbitraryUser\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\", \"enableJvmDebug\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\", \"enableJvmDebugSuspend\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\", \"externalOperatorIp\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"developer\", \"externalOperatorPort\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"developer\", \"externalRestApiIp\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"developer\", \"externalRestApiPort\"]": [
+            "integer-deletion",
+            "integer-change"
+        ],
+        "[\"spec\", \"developer\", \"logLevel\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"adminui\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"adminui\", \"volumeMounts\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"adminui\", \"volumeMounts\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"adminui\", \"volumes\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"adminui\", \"volumes\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"clusterController\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"clusterController\", \"volumeMounts\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"clusterController\", \"volumeMounts\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"clusterController\", \"volumes\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"clusterController\", \"volumes\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"distributedlogsController\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"distributedlogsController\", \"volumeMounts\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"distributedlogsController\", \"volumeMounts\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"distributedlogsController\", \"volumes\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"distributedlogsController\", \"volumes\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"jobs\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"jobs\", \"volumeMounts\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"jobs\", \"volumeMounts\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"jobs\", \"volumes\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"jobs\", \"volumes\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"operator\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"operator\", \"volumeMounts\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"operator\", \"volumeMounts\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"operator\", \"volumes\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"operator\", \"volumes\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"restapi\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"restapi\", \"volumeMounts\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"restapi\", \"volumeMounts\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"restapi\", \"volumes\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"developer\", \"patches\", \"restapi\", \"volumes\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"developer\", \"showDebug\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\", \"showStackTraces\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\", \"useJvmImages\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"developer\", \"version\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"extensions\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"extensions\", \"cache\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"extensions\", \"cache\", \"enabled\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"extensions\", \"cache\", \"hostPath\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"extensions\", \"cache\", \"persistentVolume\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"extensions\", \"cache\", \"persistentVolume\", \"size\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"extensions\", \"cache\", \"persistentVolume\", \"storageClass\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"extensions\", \"cache\", \"preloadedExtensions\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"extensions\", \"cache\", \"preloadedExtensions\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"extensions\", \"repositoryUrls\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"extensions\", \"repositoryUrls\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"grafana\", \"autoEmbed\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"grafana\", \"dashboardConfigMap\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"dashboardId\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"datasourceName\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"password\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"schema\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"secretName\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"secretNamespace\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"secretPasswordKey\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"secretUserKey\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"token\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"url\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"user\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"grafana\", \"webHost\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"imagePullPolicy\"]": [
+            "k8s-change_image_pull_policy",
+            "k8s-invalid_image_pull_policy"
+        ],
+        "[\"spec\", \"jobs\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"affinity\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"image\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"image\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"jobs\", \"image\", \"pullPolicy\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"jobs\", \"image\", \"tag\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"jobs\", \"nodeSelector\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"resources\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"serviceAccount\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"serviceAccount\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"jobs\", \"serviceAccount\", \"repoCredentials\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"jobs\", \"serviceAccount\", \"repoCredentials\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"jobs\", \"tolerations\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"jobs\", \"tolerations\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"affinity\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"image\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"image\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"operator\", \"image\", \"pullPolicy\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"operator\", \"image\", \"tag\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"operator\", \"nodeSelector\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"resources\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"service\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"service\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"serviceAccount\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"serviceAccount\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"operator\", \"serviceAccount\", \"repoCredentials\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"operator\", \"serviceAccount\", \"repoCredentials\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"operator\", \"tolerations\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"operator\", \"tolerations\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"prometheus\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"prometheus\", \"allowAutobind\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"rbac\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"rbac\", \"create\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"restapi\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"affinity\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"image\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"image\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"restapi\", \"image\", \"pullPolicy\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"restapi\", \"image\", \"tag\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"restapi\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"restapi\", \"nodeSelector\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"resources\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"service\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"service\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"serviceAccount\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"serviceAccount\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"restapi\", \"serviceAccount\", \"repoCredentials\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"restapi\", \"serviceAccount\", \"repoCredentials\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"restapi\", \"tolerations\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"restapi\", \"tolerations\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"serviceAccount\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"serviceAccount\", \"annotations\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"serviceAccount\", \"create\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"spec\", \"serviceAccount\", \"repoCredentials\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"spec\", \"serviceAccount\", \"repoCredentials\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"spec\", \"shardingSphere\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"spec\", \"shardingSphere\", \"serviceAccount\"]": [],
+        "[\"spec\", \"shardingSphere\", \"serviceAccount\", \"name\"]": [
+            "invalid-name"
+        ],
+        "[\"spec\", \"shardingSphere\", \"serviceAccount\", \"namespace\"]": [],
+        "[\"status\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"status\", \"conditions\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"status\", \"conditions\", 0]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"status\", \"conditions\", 0, \"lastTransitionTime\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"conditions\", 0, \"message\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"conditions\", 0, \"reason\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"conditions\", 0, \"status\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"conditions\", 0, \"type\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"grafana\"]": [
+            "object-deletion",
+            "object-empty"
+        ],
+        "[\"status\", \"grafana\", \"configHash\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"grafana\", \"token\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"grafana\", \"urls\"]": [
+            "array-deletion",
+            "array-push",
+            "array-pop",
+            "array-empty"
+        ],
+        "[\"status\", \"grafana\", \"urls\", 0]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ],
+        "[\"status\", \"removeOldOperatorBundleResources\"]": [
+            "boolean-deletion",
+            "boolean-toggle-off",
+            "boolean-toggle-on"
+        ],
+        "[\"status\", \"version\"]": [
+            "string-deletion",
+            "string-change",
+            "string-empty"
+        ]
+    }
+}

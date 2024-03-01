@@ -1,0 +1,53 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_added": {
+            "root['spec']['developer']['enableJvmDebug']": {
+                  "prev": "NotPresent",
+                  "curr": true,
+                  "path": {
+                        "path": [
+                              "spec",
+                              "developer",
+                              "enableJvmDebug"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "values_changed": {
+                  "root['developer']['enableJvmDebug']": {
+                        "prev": false,
+                        "curr": true,
+                        "path": {
+                              "path": [
+                                    "developer",
+                                    "enableJvmDebug"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}

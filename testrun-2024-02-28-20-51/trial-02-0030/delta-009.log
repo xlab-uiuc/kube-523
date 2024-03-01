@@ -1,0 +1,64 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_removed": {
+            "root['spec']['deploy']['operator']": {
+                  "prev": null,
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "deploy",
+                              "operator"
+                        ]
+                  }
+            },
+            "root['spec']['deploy']['restapi']": {
+                  "prev": false,
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "deploy",
+                              "restapi"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "values_changed": {
+                  "root['deploy']['restapi']": {
+                        "prev": false,
+                        "curr": true,
+                        "path": {
+                              "path": [
+                                    "deploy",
+                                    "restapi"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}

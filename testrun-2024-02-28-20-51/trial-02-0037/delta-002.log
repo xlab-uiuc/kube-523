@@ -1,0 +1,92 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_removed": {
+            "root['spec']['operator']['image']['name']": {
+                  "prev": "ACTOKEY",
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "operator",
+                              "image",
+                              "name"
+                        ]
+                  }
+            },
+            "root['spec']['operator']['image']['pullPolicy']": {
+                  "prev": null,
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "operator",
+                              "image",
+                              "pullPolicy"
+                        ]
+                  }
+            },
+            "root['spec']['operator']['image']['tag']": {
+                  "prev": "ACTOKEY",
+                  "curr": "NotPresent",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "operator",
+                              "image",
+                              "tag"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {},
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_removed": {
+                  "root['operator']['image']['tag']": {
+                        "prev": "ACTOKEY",
+                        "curr": "NotPresent",
+                        "path": {
+                              "path": [
+                                    "operator",
+                                    "image",
+                                    "tag"
+                              ]
+                        }
+                  }
+            },
+            "values_changed": {
+                  "root['operator']['image']['name']": {
+                        "prev": "ACTOKEY",
+                        "curr": "stackgres/operator",
+                        "path": {
+                              "path": [
+                                    "operator",
+                                    "image",
+                                    "name"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}
