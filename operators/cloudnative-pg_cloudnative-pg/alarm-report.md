@@ -6,9 +6,9 @@ CNPG commit hash: `2b1b0e9563aeb40dbbd1f2d6f276a6671a0a1832`
 
 ### Test Case Info
 
-Trial number: **trial-00-0002/0003**
+Trial number: **trial-00-0002/0003** and **trial-05-0032/0002**
 
-CNPG uses `serviceAccountTemplate` as the template to create a service account from. When the service account is created with a custom label in `metadata.labels` and the label is later removed from `serviceAccountTemplate.metadata.labels`, CNPG does not correctly remove the label from the service account.
+CNPG uses `serviceAccountTemplate` as the template to create a service account from. When the service account is created with a custom label in `metadata.labels` (or annotations in `metadata.annotations`) and the label (or annotation) is later removed from `serviceAccountTemplate.metadata`, CNPG does not correctly remove the label (or annotation) from the service account.
 
 ### Categorization
 
@@ -16,7 +16,7 @@ This is classified as a bug in CNPG.
 
 ### Root Cause
 
-In `controllers/cluster_create.go`, the function `createOrPatchServiceAccount()` uses the function `MergeMetadata()` (line 488) to update the existing service account. `MergeMetadata()` essentially *merges* `serviceAccountTemplate.metadata.labels` into `metadata.labels` of the actual service account. Thus, existing values will never be deleted because the merge operation only handles updates and insertions.
+In `controllers/cluster_create.go`, the function `createOrPatchServiceAccount()` uses the function `MergeMetadata()` (line 488) to update the existing service account. `MergeMetadata()` essentially *merges* `serviceAccountTemplate.metadata.labels` into `metadata.labels` of the actual service account (same for annotations). Thus, existing values will never be deleted because the merge operation only handles updates and insertions.
 
 
 ## Alarm 2
@@ -71,9 +71,9 @@ According to CNPG documentation, `backup.volumeSnapshot` configures the executio
 
 ### Test Case Info
 
-Trial number: **trial-02-0001/0002** and **trial-02-0012/0003**
+Trial number: **trial-02-0001/0002**, **trial-02-0012/0003**, **trial-07-0005/0004**, **trial-07-0006/0001** and **trial-07-0007/0001**
 
-When Acto creates an object in `externalClusters` in the cluster spec (**trial-02-0001/0002**) or modifies it (**trial-02-0012/0003**), nothing changes.
+When Acto creates an object in `externalClusters` in the cluster spec or modifies it, nothing changes.
 
 ### Categorization
 
@@ -83,4 +83,4 @@ These are classified as false alarms.
 
 According to CNPG documentation, items in `externalClusters` are the "connection parameters to an external cluster which is used in the other sections of the configuration". Here, there is no other section referring to this newly specified external cluster, so nothing is expected to happen.
 
-In **trial-02-0012/0003**, the step to create an item in `externalClusters` did not raise an alarm. Rather, an alarm was raised when this item was later modified. This is because the creation step happened to set the `s3Credentials` field and CNPG created a corresponding resource. However, the later modification step did not introduce any immediately visible changes to the cluster.
+Note: In **trial-02-0012/0003**, the step to create an item in `externalClusters` did not raise an alarm. Rather, an alarm was raised when this item was later modified. This is because the creation step happened to set the `s3Credentials` field and CNPG created a corresponding resource. However, the later modification step did not introduce any immediately visible changes to the cluster.
