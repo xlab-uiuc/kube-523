@@ -55,7 +55,7 @@ The specified scheduler does not exist, so CNPG is unable to schedule the pods. 
 
 ### Test Case Info
 
-Trial number: **trial-02-0000/0005**
+Trial number: **trial-02-0000/0005** and **trial-07-0023/0001**
 
 When Acto adds a `backup.volumeSnapshot` object to the cluster spec, nothing changes.
 
