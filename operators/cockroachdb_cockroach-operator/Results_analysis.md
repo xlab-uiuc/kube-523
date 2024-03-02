@@ -24,6 +24,7 @@ These changes let to the pods to crash.
 
 **What happened in the state transition?**  
 The alteration in integer values for these ports led to configurations that were either invalid or caused resource conflicts. This, in turn, prevented the server from initiating correctly, affecting its ability to handle gRPC, HTTP, and SQL communications effectively.
+Pods crashed as they did not have permission to connect to these ports and the Service failed to init leading to the crash.
 
 **Why Acto’s oracles raised an alarm?**  
 The oracles identified the changes as significant threats to the node's functionality. Given that these ports are foundational for the operation of the system, any misconfiguration could result in severe operational failures, justifying the alarms.
