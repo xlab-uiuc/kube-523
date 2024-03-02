@@ -6,7 +6,7 @@ netId: renzhou2
 
 **name**: trial-00-0001/0001
 
-**type**: Bug
+**type**: bug
 
 ### What happened
 Acto tried to add `ACTOKEY` into path `spec.http.service.metadata.annotations`, however the system state did not add this value.
