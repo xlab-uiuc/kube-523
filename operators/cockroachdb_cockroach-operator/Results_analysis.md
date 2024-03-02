@@ -4,7 +4,7 @@ about: An analysis report for the alarms produced by Acto due to integer changes
 
 ---
 
-## TestCases (3/27)
+## 1)TestCases (3/27)
 
 | Test Case Identifier                           | Affected Field | Test Case Description |
 |------------------------------------------------|----------------|-----------------------|
@@ -68,11 +68,47 @@ The implementation of these changes would enhance the build function with a robu
 
 ---
 
-## TestCases (6/27)
+## 2)TestCases (6/27)
 
-| Test Case Identifier                           | Affected Field | Test Case Description |
-|------------------------------------------------|----------------|-----------------------|
-| `testrun-2024-02-21-22-04/trial-01-0001/0001`  | `grpcPort`     | Integer change        |
-| `testrun-2024-02-21-22-04/trial-06-0006/0001`  | `httpPort`     | Integer change        |
-| `testrun-2024-02-21-22-04/trial-11-0001/0001`  | `sqlPort`      | Integer change        |
+| Test Case Identifier                           | Affected Field | Misclassification      |
+|------------------------------------------------|----------------|------------------------|
+| `testrun-2024-02-21-22-04/trial-01-0000/0009`  | `grpcPort`     | Integer deletion       |
+| `testrun-2024-02-21-22-04/trial-06-0005/0001`  | `httpPort`     | Integer deletion       |
+| `testrun-2024-02-21-22-04/trial-11-0000/0009`  | `sqlPort`      | Integer deletion       |
+
+## What happened
+
+**Why did Acto raise these alarms?**  
+Acto raised alarms for three test cases, each classified as an integer deletion for essential port configurations (`grpcPort`, `httpPort`, and `sqlPort`). However, upon inspection, it was determined that these alarms were misclassified. The actual mutation in these cases involved adding port values rather than deleting them. Despite the misclassification, the alarms were justified based on the reasons outlined in previous test cases involving integer changes.
+
+**Misclassification Issue:**  
+The test cases were incorrectly classified as integer deletions in the mutated YAML files, whereas the changes were similar to the previously discussed integer changes, indicating an addition of port values.
+
+**Justification for Raising the Alarm:**  
+Although misclassified, the rationale for raising the alarm remains valid as per the analysis provided in the earlier cases. The changes to port configurations, even if added and not deleted, could lead to system crashes due to improper validation and sanitization of port values.
+
+## Root Cause
+
+**Misclassification Analysis:**  
+The primary issue here is not with the operator's behavior but with the classification mechanism used by Acto. The system erroneously identified changes in port configurations as deletions.
+
+**Impact of Misclassification:**  
+This misclassification could potentially lead to confusion in troubleshooting and addressing the root cause of the alarms. However, the underlying issue remains the same: the failure to validate and sanitize input values for the `grpcPort`, `httpPort`, and `sqlPort` configurations correctly.
+
+## Expected behavior?
+
+**Alarm Classification Correction:**  
+Although the alarms were triggered for a valid reason, it is crucial to correct the classification mechanism within Acto to accurately reflect the nature of the mutations. This ensures clarity in understanding the alarms and aids in the precise diagnosis of issues.
+
+**Reaffirmation of the Fix in Operator Code:**  
+As previously recommended, the operator code must be updated to incorporate a validation step prior to applying changes to the `grpcPort`, `httpPort`, and `sqlPort` configurations. This includes checks for:
+
+- **Port Availability:** Ensuring new port values do not conflict with allocated resources or system ports.
+- **Port Validity:** Verifying the port values are within acceptable ranges and not used by other services.
+- **Error Handling:** Applying a default port value or retaining the previous configuration if validation fails, accompanied by clear, actionable error messages.
+
+**Conclusion:**  
+This report reaffirms the necessity for the recommended fixes in the operator code to address the root cause of the alarms. Simultaneously, it highlights the need for Acto to improve its classification mechanism to prevent future instances of misclassification, thereby enhancing the system's stability and reliability.
+
+---
 
