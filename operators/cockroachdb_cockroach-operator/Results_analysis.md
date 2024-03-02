@@ -1,6 +1,6 @@
 ---
-name: Combined Alarm Inspection Report - Integer Change on Ports
-about: An analysis report for the alarms produced by Acto due to integer changes on ports `grpcPort`, `httpPort`, and `sqlPort`.
+name: Combined Alarm Inspection Report
+about: An analysis report for the alarms produced by Acto due to integer changes on ports `grpcPort`, `httpPort`, and `sqlPort`. and False Alarms
 
 ---
 
@@ -112,3 +112,45 @@ This report reaffirms the necessity for the recommended fixes in the operator co
 
 ---
 
+## 3)TestCases (12/27)
+
+| Test Case Identifier                          | Description                                   |
+|-----------------------------------------------|-----------------------------------------------|
+| `testrun-2024-02-21-22-04/trial-04-0000/0000` | No mutation, false alarm                      |
+| `testrun-2024-02-21-22-04/trial-06-0000/0000` | No mutation, false alarm                      |
+| `testrun-2024-02-21-22-04/trial-07-0004/0000` | No mutation, false alarm                      |
+| `testrun-2024-02-21-22-04/trial-07-0006/0000` | No mutation, false alarm                      |
+| `testrun-2024-02-21-22-04/trial-09-0003/0000` | No mutation, false alarm                      |
+| `testrun-2024-02-21-22-04/trial-10-0000/0000` | No mutation, false alarm                      |
+
+## What happened
+
+**Why were these alarms wrongly classified?**  
+Acto flagged these test cases as alarms without any actual configuration changes being applied. The mutations expected or indicated did not occur, and when the YAML files generated during these test cases were deployed in a sandboxed environment, they performed correctly, demonstrating that the system's deployment capabilities were intact.
+
+**Observations from Acto's Reports:**  
+Acto attributed the alarms to operational issues, as evidenced by the restart counts of the `cockroach-operator-manager` pods. However, these restarts could be attributed to factors unrelated to the current test cases, such as residuals from previous tests, configuration issues, or improper termination handling of previous test cases.
+
+## Analysis
+
+**Operational Issue Indication:**  
+The restart counts suggest intermittent operational issues within Acto or the deployment system itself rather than problems with the test cases or the YAML configurations. This misclassification of alarms points to the necessity for a more refined diagnostic approach within Acto to differentiate between actual configuration issues and operational anomalies.
+
+**Potential Causes for Misclassification:**  
+- Residual effects from previous test runs that weren't adequately cleared or reset.
+- Configuration issues within the Acto environment that led to false positives.
+- Inadequate termination handling for test cases, causing overlapping or residual impacts on subsequent tests.
+
+## Expected behavior?
+
+**Improvements in Acto's Diagnostic Mechanism:**  
+To prevent such misclassifications, Acto needs to enhance its diagnostic and monitoring mechanisms. This includes:
+
+- **Clearing Residual States:** Ensuring that the environment is returned to a clean state after each test run to prevent carry-over effects.
+- **Refined Monitoring:** Implementing more granular monitoring to accurately identify the root cause of restarts and differentiate between operational issues and actual configuration problems.
+- **Enhanced Termination Handling:** Developing robust termination processes for test cases to ensure all components are correctly shutdown and reset before the next test begins.
+
+**Conclusion:**  
+While the alarms were triggered due to perceived operational issues, the analysis indicates that these were false alarms resulting from misclassifications by Acto. Corrective measures focusing on improving Acto's diagnostic capabilities and operational handling are recommended to mitigate such occurrences in the future, ensuring that alarms accurately reflect the state of the system and its configurations.
+
+---
