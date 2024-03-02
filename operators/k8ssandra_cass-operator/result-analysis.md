@@ -22,9 +22,14 @@ Acto instructs the cluster to revert to the previous state
 
 #### Root Cause
 cass-operator is not healthy and restarts.
+```
+E0223 21:06:49.056700       1 reflector.go:138] pkg/mod/k8s.io/client-go@v0.22.2/tools/cache/reflector.go:167: Failed to watch *v1.Service: failed to list *v1.Service: services is forbidden: User "system:serviceaccount:cass-operator:cass-operator-controller-manager" cannot list resource "services" in API group "" at the cluster scope: RBAC: clusterrole.rbac.authorization.k8s.io "cass-operator-manager-crrole" not found
+```
 
 #### Expected behavior?
-It is a false alarm and should be solved by extending the coverage of the learn phase.
+True Alarm
+
+Need to check as the ACTO pass through the learn stage, and doesn't produce error readings during the run.
 
 ## 2
 trial-01-0032/0001
@@ -38,11 +43,21 @@ trial-01-0032/0001
 message='Found no matching fields for input' input_diff=Diff(prev='NotPresent', curr='ACTOKEY', path=["spec", "additionalServiceConfig", "allpodsService", "additionalLabels", "ACTOKEY"]) system_state_diff=None
 ```
 #### What happened
+
+```
+E0223 21:06:49.056700       1 reflector.go:138] pkg/mod/k8s.io/client-go@v0.22.2/tools/cache/reflector.go:167: Failed to watch *v1.Service: failed to list *v1.Service: services is forbidden: User "system:serviceaccount:cass-operator:cass-operator-controller-manager" cannot list resource "services" in API group "" at the cluster scope: RBAC: clusterrole.rbac.authorization.k8s.io "cass-operator-manager-crrole" not found
+```
+
 #### Root Cause
+
+The Cass operator's CRrole is not found during the enumeration
+
 #### Expected behavior?
+It is not an expected behavior...
+
 
 ## 3
-trial-01-0033/0001
+trial-01-0033/0001 - WIP
 
 #### oracle:
 
@@ -58,7 +73,7 @@ message='Found no matching fields for input' input_diff=Diff(prev='NotPresent', 
 #### Expected behavior?
 
 ## 4
-trial-01-0035/0001
+trial-01-0035/0001 - WIP
 
 #### oracle:
 
@@ -74,7 +89,7 @@ message='Found no matching fields for input' input_diff=Diff(prev='NotPresent', 
 #### Expected behavior?
 
 ## 5
-trial-02-0031/0001
+trial-02-0031/0001 - WIP
 
 #### oracle:
 ```
@@ -89,7 +104,7 @@ message='Found no matching fields for input' input_diff=Diff(prev='NotPresent', 
 #### Expected behavior?
 
 ## 6
-trial-02-0039/0001
+trial-02-0039/0001 - WIP
 
 #### oracle:
 ```
