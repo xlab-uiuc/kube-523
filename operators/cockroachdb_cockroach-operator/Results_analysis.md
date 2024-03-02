@@ -34,6 +34,8 @@ The oracles identified the changes as significant threats to the node's function
 **Why did the operator behave in this way?**  
 The root cause of the issue is the operator's failure to validate and sanitize the input values for the `grpcPort`, `httpPort`, and `sqlPort` configurations. When changes were applied to these fields, the operator did not verify the new port values' availability or appropriateness, leading to problematic configurations being set.
 
+Pods crashed as they did not have permission to connect to these ports and the Service failed to init leading to the crash. Failure to check for the port correctness on the oparator's side lead to this issue, as they are expected to reject incorrect ports.
+
 **Exact block in the operator source code:**  
 The issue originates from the `cockroach-operator/pkg/resource/discovery_service.go` file, within the build function responsible for configuring service specifications:
 ```go
