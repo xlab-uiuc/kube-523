@@ -279,7 +279,9 @@ def detemine_result(raw_result, json_str: str):
 
         print(path)
         print('------------------------')
-        return Result("TODO")
+        return Result("Maybe False Alarm", '''
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.''')
 
 
 def main():

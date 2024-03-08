@@ -1169,7 +1169,56 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 27. testrun-2024-02-23-16-45/trial-03-0000/0001
+## 27. testrun-2024-02-23-16-45/trial-02-0014/0007
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"streams\", 0, \"filter\"]",
+        "testcase": "object-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-02-0014",
+        "generation": 7
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "ACTOKEY",
+                "curr": "NotPresent",
+                "path": {
+                    "path": [
+                        "spec",
+                        "streams",
+                        0,
+                        "filter",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 28. testrun-2024-02-23-16-45/trial-03-0000/0001
 ```json
 {
     "testcase": {
@@ -1215,7 +1264,101 @@ This is a True alarm. The `status` field contains status of the PostgreSQL clust
 but it is not present in the new config file, which is unexpected.
 
 
-## 28. testrun-2024-02-23-16-45/trial-03-0007/0001
+## 29. testrun-2024-02-23-16-45/trial-03-0003/0004
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"databases\", \"ACTOKEY\"]",
+        "testcase": "string-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-03-0003",
+        "generation": 4
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "NotPresent",
+                "curr": "ACTOKEY",
+                "path": {
+                    "path": [
+                        "spec",
+                        "databases",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 30. testrun-2024-02-23-16-45/trial-03-0004/0001
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"databases\", \"ACTOKEY\"]",
+        "testcase": "string-change"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-03-0004",
+        "generation": 1
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "NotPresent",
+                "curr": "ACTOKEY",
+                "path": {
+                    "path": [
+                        "spec",
+                        "databases",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 31. testrun-2024-02-23-16-45/trial-03-0007/0001
 ```json
 {
     "testcase": {
@@ -1255,7 +1398,107 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 29. testrun-2024-02-23-16-45/trial-03-0011/0001
+## 32. testrun-2024-02-23-16-45/trial-03-0008/0004
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"streams\", 0, \"tables\", \"ACTOKEY\", \"payloadColumn\"]",
+        "testcase": "string-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-03-0008",
+        "generation": 4
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "ACTOKEY",
+                "curr": "",
+                "path": {
+                    "path": [
+                        "spec",
+                        "streams",
+                        0,
+                        "tables",
+                        "ACTOKEY",
+                        "payloadColumn"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 33. testrun-2024-02-23-16-45/trial-03-0009/0003
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"streams\", 0, \"tables\", \"ACTOKEY\", \"payloadColumn\"]",
+        "testcase": "string-empty"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-03-0009",
+        "generation": 3
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "ACTOKEY",
+                "curr": "",
+                "path": {
+                    "path": [
+                        "spec",
+                        "streams",
+                        0,
+                        "tables",
+                        "ACTOKEY",
+                        "payloadColumn"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 34. testrun-2024-02-23-16-45/trial-03-0011/0001
 ```json
 {
     "testcase": {
@@ -1295,7 +1538,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 30. testrun-2024-02-23-16-45/trial-03-0012/0007
+## 35. testrun-2024-02-23-16-45/trial-03-0012/0007
 ```json
 {
     "testcase": {
@@ -1335,7 +1578,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 31. testrun-2024-02-23-16-45/trial-03-0013/0002
+## 36. testrun-2024-02-23-16-45/trial-03-0013/0002
 ```json
 {
     "testcase": {
@@ -1375,7 +1618,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 32. testrun-2024-02-23-16-45/trial-03-0014/0001
+## 37. testrun-2024-02-23-16-45/trial-03-0014/0001
 ```json
 {
     "testcase": {
@@ -1415,7 +1658,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 33. testrun-2024-02-23-16-45/trial-03-0016/0008
+## 38. testrun-2024-02-23-16-45/trial-03-0016/0008
 ```json
 {
     "testcase": {
@@ -1466,7 +1709,7 @@ change from `True` to `False` will not cause any change in the system if the
 non-default field is not set.
 
 
-## 34. testrun-2024-02-23-16-45/trial-03-0017/0002
+## 39. testrun-2024-02-23-16-45/trial-03-0017/0002
 ```json
 {
     "testcase": {
@@ -1517,7 +1760,7 @@ change from `True` to `False` will not cause any change in the system if the
 non-default field is not set.
 
 
-## 35. testrun-2024-02-23-16-45/trial-04-0000/0003
+## 40. testrun-2024-02-23-16-45/trial-04-0000/0003
 ```json
 {
     "testcase": {
@@ -1557,7 +1800,56 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 36. testrun-2024-02-23-16-45/trial-04-0002/0002
+## 41. testrun-2024-02-23-16-45/trial-04-0001/0003
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"preparedDatabases\", \"ACTOKEY\"]",
+        "testcase": "object-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-04-0001",
+        "generation": 3
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "NotPresent",
+                "curr": "ACTOKEY",
+                "path": {
+                    "path": [
+                        "spec",
+                        "preparedDatabases",
+                        "ACTOKEY",
+                        "extensions",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 42. testrun-2024-02-23-16-45/trial-04-0002/0002
 ```json
 {
     "testcase": {
@@ -1602,7 +1894,7 @@ From the document:
 Thus, the `secretName` should be set correctly corresponding to the secret in the cluster, which can not be a random string.
 
 
-## 37. testrun-2024-02-23-16-45/trial-04-0003/0001
+## 43. testrun-2024-02-23-16-45/trial-04-0003/0001
 ```json
 {
     "testcase": {
@@ -1647,7 +1939,7 @@ From the document:
 Thus, the `secretName` should be set correctly corresponding to the secret in the cluster, which can not be a random string.
 
 
-## 38. testrun-2024-02-23-16-45/trial-04-0004/0001
+## 44. testrun-2024-02-23-16-45/trial-04-0004/0001
 ```json
 {
     "testcase": {
@@ -1692,7 +1984,7 @@ From the document:
 Thus, the `secretName` should be set correctly corresponding to the secret in the cluster, which can not be a random string.
 
 
-## 39. testrun-2024-02-23-16-45/trial-04-0008/0001
+## 45. testrun-2024-02-23-16-45/trial-04-0008/0001
 ```json
 {
     "testcase": {
@@ -1732,7 +2024,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 40. testrun-2024-02-23-16-45/trial-04-0009/0002
+## 46. testrun-2024-02-23-16-45/trial-04-0009/0002
 ```json
 {
     "testcase": {
@@ -1772,7 +2064,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 41. testrun-2024-02-23-16-45/trial-04-0010/0001
+## 47. testrun-2024-02-23-16-45/trial-04-0010/0001
 ```json
 {
     "testcase": {
@@ -1812,7 +2104,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 42. testrun-2024-02-23-16-45/trial-04-0011/0005
+## 48. testrun-2024-02-23-16-45/trial-04-0011/0005
 ```json
 {
     "testcase": {
@@ -1858,7 +2150,7 @@ This is a True alarm. The `status` field contains status of the PostgreSQL clust
 but it is not present in the new config file, which is unexpected.
 
 
-## 43. testrun-2024-02-23-16-45/trial-04-0012/0002
+## 49. testrun-2024-02-23-16-45/trial-04-0012/0002
 ```json
 {
     "testcase": {
@@ -1898,7 +2190,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 44. testrun-2024-02-23-16-45/trial-04-0013/0001
+## 50. testrun-2024-02-23-16-45/trial-04-0013/0001
 ```json
 {
     "testcase": {
@@ -1938,7 +2230,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 45. testrun-2024-02-23-16-45/trial-04-0016/0001
+## 51. testrun-2024-02-23-16-45/trial-04-0016/0001
 ```json
 {
     "testcase": {
@@ -1978,7 +2270,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 46. testrun-2024-02-23-16-45/trial-04-0017/0002
+## 52. testrun-2024-02-23-16-45/trial-04-0017/0002
 ```json
 {
     "testcase": {
@@ -2018,7 +2310,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 47. testrun-2024-02-23-16-45/trial-04-0018/0001
+## 53. testrun-2024-02-23-16-45/trial-04-0018/0001
 ```json
 {
     "testcase": {
@@ -2058,7 +2350,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 48. testrun-2024-02-23-16-45/trial-05-0000/0007
+## 54. testrun-2024-02-23-16-45/trial-05-0000/0007
 ```json
 {
     "testcase": {
@@ -2098,7 +2390,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 49. testrun-2024-02-23-16-45/trial-05-0001/0001
+## 55. testrun-2024-02-23-16-45/trial-05-0001/0001
 ```json
 {
     "testcase": {
@@ -2138,7 +2430,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 50. testrun-2024-02-23-16-45/trial-05-0002/0001
+## 56. testrun-2024-02-23-16-45/trial-05-0002/0001
 ```json
 {
     "testcase": {
@@ -2178,7 +2470,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 51. testrun-2024-02-23-16-45/trial-05-0003/0001
+## 57. testrun-2024-02-23-16-45/trial-05-0003/0001
 ```json
 {
     "testcase": {
@@ -2217,7 +2509,7 @@ This is a misoperation. From the corresponding event.json, here is the log:
 This log indicates that the image name is invaild. The repository name must be lowercase.
 
 
-## 52. testrun-2024-02-23-16-45/trial-05-0004/0001
+## 58. testrun-2024-02-23-16-45/trial-05-0004/0001
 ```json
 {
     "testcase": {
@@ -2256,7 +2548,7 @@ This is a misoperation. From the corresponding event.json, here is the log:
 This log indicates that the image name is invaild. The repository name must be lowercase.
 
 
-## 53. testrun-2024-02-23-16-45/trial-05-0008/0001
+## 59. testrun-2024-02-23-16-45/trial-05-0008/0001
 ```json
 {
     "testcase": {
@@ -2296,7 +2588,154 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 54. testrun-2024-02-23-16-45/trial-05-0013/0001
+## 60. testrun-2024-02-23-16-45/trial-05-0009/0002
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"streams\"]",
+        "testcase": "array-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-05-0009",
+        "generation": 2
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "ACTOKEY",
+                "curr": "NotPresent",
+                "path": {
+                    "path": [
+                        "spec",
+                        "streams",
+                        0,
+                        "filter",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 61. testrun-2024-02-23-16-45/trial-05-0010/0003
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"streams\"]",
+        "testcase": "array-pop"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-05-0010",
+        "generation": 3
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "ACTOKEY",
+                "curr": "NotPresent",
+                "path": {
+                    "path": [
+                        "spec",
+                        "streams",
+                        0,
+                        "filter",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 62. testrun-2024-02-23-16-45/trial-05-0011/0005
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"preparedDatabases\", \"ACTOKEY\", \"extensions\"]",
+        "testcase": "object-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-05-0011",
+        "generation": 5
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "NotPresent",
+                "curr": "ACTOKEY",
+                "path": {
+                    "path": [
+                        "spec",
+                        "preparedDatabases",
+                        "ACTOKEY",
+                        "extensions",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 63. testrun-2024-02-23-16-45/trial-05-0013/0001
 ```json
 {
     "testcase": {
@@ -2336,7 +2775,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 55. testrun-2024-02-23-16-45/trial-05-0014/0001
+## 64. testrun-2024-02-23-16-45/trial-05-0014/0001
 ```json
 {
     "testcase": {
@@ -2376,7 +2815,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 56. testrun-2024-02-23-16-45/trial-05-0015/0001
+## 65. testrun-2024-02-23-16-45/trial-05-0015/0001
 ```json
 {
     "testcase": {
@@ -2416,7 +2855,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 57. testrun-2024-02-23-16-45/trial-05-0017/0002
+## 66. testrun-2024-02-23-16-45/trial-05-0017/0002
 ```json
 {
     "testcase": {
@@ -2471,7 +2910,7 @@ ultimately determine if this is a true alarm, we may need to rerun the test and
 debug the changes.
 
 
-## 58. testrun-2024-02-23-16-45/trial-06-0002/0005
+## 67. testrun-2024-02-23-16-45/trial-06-0002/0005
 ```json
 {
     "testcase": {
@@ -2511,7 +2950,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 59. testrun-2024-02-23-16-45/trial-06-0003/0003
+## 68. testrun-2024-02-23-16-45/trial-06-0003/0003
 ```json
 {
     "testcase": {
@@ -2551,7 +2990,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 60. testrun-2024-02-23-16-45/trial-06-0004/0007
+## 69. testrun-2024-02-23-16-45/trial-06-0004/0007
 ```json
 {
     "testcase": {
@@ -2628,7 +3067,56 @@ So that, `maps.Copy` will not delete the `ACTOKEY` from the `ANNOTATION` field.
 It's a true alarm.
 
 
-## 61. testrun-2024-02-23-16-45/trial-06-0007/0003
+## 70. testrun-2024-02-23-16-45/trial-06-0006/0007
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"connectionPooler\", \"resources\", \"requests\", \"cpu\"]",
+        "testcase": "string-change"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-06-0006",
+        "generation": 7
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "78978m",
+                "curr": "92208.90",
+                "path": {
+                    "path": [
+                        "spec",
+                        "connectionPooler",
+                        "resources",
+                        "requests",
+                        "cpu"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 71. testrun-2024-02-23-16-45/trial-06-0007/0003
 ```json
 {
     "testcase": {
@@ -2668,7 +3156,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 62. testrun-2024-02-23-16-45/trial-06-0008/0004
+## 72. testrun-2024-02-23-16-45/trial-06-0008/0004
 ```json
 {
     "testcase": {
@@ -2708,7 +3196,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 63. testrun-2024-02-23-16-45/trial-06-0010/0007
+## 73. testrun-2024-02-23-16-45/trial-06-0010/0007
 ```json
 {
     "testcase": {
@@ -2748,7 +3236,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 64. testrun-2024-02-23-16-45/trial-07-0005/0002
+## 74. testrun-2024-02-23-16-45/trial-07-0005/0002
 ```json
 {
     "testcase": {
@@ -2788,7 +3276,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 65. testrun-2024-02-23-16-45/trial-07-0007/0005
+## 75. testrun-2024-02-23-16-45/trial-07-0007/0005
 ```json
 {
     "testcase": {
@@ -2865,7 +3353,7 @@ So that, `maps.Copy` will not delete the `ACTOKEY` from the `ANNOTATION` field.
 It's a true alarm.
 
 
-## 66. testrun-2024-02-23-16-45/trial-07-0009/0004
+## 76. testrun-2024-02-23-16-45/trial-07-0009/0004
 ```json
 {
     "testcase": {
@@ -2905,7 +3393,153 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 67. testrun-2024-02-23-16-45/trial-08-0007/0006
+## 77. testrun-2024-02-23-16-45/trial-07-0010/0003
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"postgresql\", \"parameters\"]",
+        "testcase": "object-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-07-0010",
+        "generation": 3
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "ACTOKEY",
+                "curr": "NotPresent",
+                "path": {
+                    "path": [
+                        "spec",
+                        "postgresql",
+                        "parameters",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 78. testrun-2024-02-23-16-45/trial-08-0003/0005
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"connectionPooler\", \"resources\", \"requests\", \"memory\"]",
+        "testcase": "string-change"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-08-0003",
+        "generation": 5
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "8640e0Ti",
+                "curr": "439101.85183Ei",
+                "path": {
+                    "path": [
+                        "spec",
+                        "connectionPooler",
+                        "resources",
+                        "requests",
+                        "memory"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 79. testrun-2024-02-23-16-45/trial-08-0005/0009
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"connectionPooler\", \"resources\", \"limits\", \"cpu\"]",
+        "testcase": "string-change"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-08-0005",
+        "generation": 9
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "1675.5",
+                "curr": "6763373",
+                "path": {
+                    "path": [
+                        "spec",
+                        "connectionPooler",
+                        "resources",
+                        "limits",
+                        "cpu"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 80. testrun-2024-02-23-16-45/trial-08-0007/0006
 ```json
 {
     "testcase": {
@@ -2945,7 +3579,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 68. testrun-2024-02-23-16-45/trial-08-0008/0001
+## 81. testrun-2024-02-23-16-45/trial-08-0008/0001
 ```json
 {
     "testcase": {
@@ -2985,7 +3619,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 69. testrun-2024-02-23-16-45/trial-09-0000/0004
+## 82. testrun-2024-02-23-16-45/trial-09-0000/0004
 ```json
 {
     "testcase": {
@@ -3034,7 +3668,7 @@ change from `True` to `False` will not cause any change in the system if the
 non-default field is not set.
 
 
-## 70. testrun-2024-02-23-16-45/trial-09-0001/0002
+## 83. testrun-2024-02-23-16-45/trial-09-0001/0002
 ```json
 {
     "testcase": {
@@ -3083,7 +3717,56 @@ change from `True` to `False` will not cause any change in the system if the
 non-default field is not set.
 
 
-## 71. testrun-2024-02-23-16-45/trial-09-0004/0008
+## 84. testrun-2024-02-23-16-45/trial-09-0002/0002
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"patroni\", \"slots\"]",
+        "testcase": "object-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-09-0002",
+        "generation": 2
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "NotPresent",
+                "curr": "ACTOKEY",
+                "path": {
+                    "path": [
+                        "spec",
+                        "patroni",
+                        "slots",
+                        "ACTOKEY",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 85. testrun-2024-02-23-16-45/trial-09-0004/0008
 ```json
 {
     "testcase": {
@@ -3123,7 +3806,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 72. testrun-2024-02-23-16-45/trial-09-0005/0001
+## 86. testrun-2024-02-23-16-45/trial-09-0005/0001
 ```json
 {
     "testcase": {
@@ -3163,7 +3846,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 73. testrun-2024-02-23-16-45/trial-09-0007/0002
+## 87. testrun-2024-02-23-16-45/trial-09-0007/0002
 ```json
 {
     "testcase": {
@@ -3203,7 +3886,7 @@ This log indicates that the pod creation failed because of the mismatch of the c
 And it can be avoided by setting the constraints correctly.
 
 
-## 74. testrun-2024-02-23-16-45/trial-09-0008/0001
+## 88. testrun-2024-02-23-16-45/trial-09-0008/0001
 ```json
 {
     "testcase": {
@@ -3248,7 +3931,7 @@ From the document:
 Thus, the `secretName` should be set correctly corresponding to the secret in the cluster, which can not be a random string.
 
 
-## 75. testrun-2024-02-23-16-45/trial-09-0009/0001
+## 89. testrun-2024-02-23-16-45/trial-09-0009/0001
 ```json
 {
     "testcase": {
@@ -3293,7 +3976,7 @@ From the document:
 Thus, the `secretName` should be set correctly corresponding to the secret in the cluster, which can not be a random string.
 
 
-## 76. testrun-2024-02-23-16-45/trial-09-0010/0001
+## 90. testrun-2024-02-23-16-45/trial-09-0010/0001
 ```json
 {
     "testcase": {
@@ -3338,7 +4021,7 @@ From the document:
 Thus, the `secretName` should be set correctly corresponding to the secret in the cluster, which can not be a random string.
 
 
-## 77. testrun-2024-02-23-16-45/trial-09-0011/0002
+## 91. testrun-2024-02-23-16-45/trial-09-0011/0002
 ```json
 {
     "testcase": {
@@ -3377,7 +4060,7 @@ This is a misoperation. From the corresponding event.json, here is the log:
 This log indicates that the user group is specified without the user details. It can be avoided by setting the user details correctly.
 
 
-## 78. testrun-2024-02-23-16-45/trial-09-0012/0001
+## 92. testrun-2024-02-23-16-45/trial-09-0012/0001
 ```json
 {
     "testcase": {
@@ -3416,7 +4099,7 @@ This is a misoperation. From the corresponding event.json, here is the log:
 This log indicates that the user group is specified without the user details. It can be avoided by setting the user details correctly.
 
 
-## 79. testrun-2024-02-23-16-45/trial-09-0014/0002
+## 93. testrun-2024-02-23-16-45/trial-09-0014/0002
 ```json
 {
     "testcase": {
@@ -3457,7 +4140,7 @@ This is a misoperation. From the corresponding event.json, here is the log:
 This log indicates that the container is restarting failed. It might be able to avoid by trying again.
 
 
-## 80. testrun-2024-02-23-16-45/trial-09-0015/0001
+## 94. testrun-2024-02-23-16-45/trial-09-0015/0001
 ```json
 {
     "testcase": {
@@ -3498,7 +4181,105 @@ This is a misoperation. From the corresponding event.json, here is the log:
 This log indicates that the container is restarting failed. It might be able to avoid by trying again.
 
 
-## 81. testrun-2024-02-23-16-45/trial-09-0018/0002
+## 95. testrun-2024-02-23-16-45/trial-09-0016/0001
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"preparedDatabases\", \"ACTOKEY\", \"extensions\", \"ACTOKEY\"]",
+        "testcase": "string-deletion"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-09-0016",
+        "generation": 1
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "NotPresent",
+                "curr": "ACTOKEY",
+                "path": {
+                    "path": [
+                        "spec",
+                        "preparedDatabases",
+                        "ACTOKEY",
+                        "extensions",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 96. testrun-2024-02-23-16-45/trial-09-0017/0001
+```json
+{
+    "testcase": {
+        "field": "[\"spec\", \"preparedDatabases\", \"ACTOKEY\", \"extensions\", \"ACTOKEY\"]",
+        "testcase": "string-change"
+    },
+    "step_id": {
+        "trial": "testrun-2024-02-23-16-45/trial-09-0017",
+        "generation": 1
+    },
+    "oracle_result": {
+        "crash": null,
+        "health": null,
+        "operator_log": null,
+        "consistency": {
+            "message": "Found no matching fields for input",
+            "input_diff": {
+                "prev": "NotPresent",
+                "curr": "ACTOKEY",
+                "path": {
+                    "path": [
+                        "spec",
+                        "preparedDatabases",
+                        "ACTOKEY",
+                        "extensions",
+                        "ACTOKEY"
+                    ]
+                }
+            },
+            "system_state_diff": null
+        },
+        "differential": null,
+        "custom": null
+    },
+    "cli_status": "Pass",
+    "is_revert": false
+}
+```
+
+### Type
+Maybe False Alarm
+
+### Explain
+
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.
+
+
+## 97. testrun-2024-02-23-16-45/trial-09-0018/0002
 ```json
 {
     "testcase": {
@@ -3538,7 +4319,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 82. testrun-2024-02-23-16-45/trial-09-0019/0001
+## 98. testrun-2024-02-23-16-45/trial-09-0019/0001
 ```json
 {
     "testcase": {
@@ -3578,7 +4359,7 @@ This log indicates that the secret is not founded. This is because a mis-config 
 When setting this field, the corresponding secret should also be set correctly.
 
 
-## 83. testrun-2024-02-23-16-45/trial-09-0020/0001
+## 99. testrun-2024-02-23-16-45/trial-09-0020/0001
 ```json
 {
     "testcase": {
