@@ -201,5 +201,73 @@ To prevent such issues, the operator code must be enhanced to include validation
 **Implementation Suggestion:**
 An additional step could be introduced in the dbArgs() function to iterate through AdditionalArgs and check each against a predefined list of acceptable arguments. This step would not only safeguard the startup process from invalid inputs but also enhance the robustness of the deployment strategy, ensuring stability and reliability of the system.
 
+---
 
+## TestCases (17/33)
+
+| Test Case Identifier                          | Affected Field           | Test Case Description |
+|-----------------------------------------------|--------------------------|-----------------------|
+| `testrun-2024-02-21-22-04/trial-07-0007/0008` | `nodeSelector.ACTOKEY`   | String deletion       |
+| `testrun-2024-02-21-22-04/trial-07-0008/0001` | `nodeSelector.ACTOKEY`   | String change         |
+
+## What happened
+
+**Configuration Change:**  
+Both test cases involved modifications to the `nodeSelector` field, specifically adding `"ACTOKEY: ACTOKEY"` to the pod specifications. This addition was intended to control pod scheduling on nodes labeled with `ACTOKEY=ACTOKEY`.
+
+**Encountered Error:**  
+Following the modification, the pods failed to be scheduled, as indicated by the warning from the default scheduler, stating that none of the nodes matched the pod's node affinity/selector criteria. This resulted in all pods remaining unscheduled due to the absence of an appropriate node:
+Warning FailedScheduling 20s default-scheduler 0/4 nodes are available: 1 node(s) didn't match Pod's node affinity/selector. preemption: 0/4 nodes are available: 1 Preemption is not helpful for scheduling, 3 No preemption victims found for incoming pod.
+
+## Root Cause
+**Lack of Verification for Node Selector Tags and Labels:**  
+The core issue lies in the operator's failure to validate the node selector tags and labels before applying them to the pod specifications. Additionally, once the pods were configured, there was no mechanism in place to verify the effectiveness of the node selectors or to handle the situation where no nodes match the specified criteria.
+
+**Source Code Analysis:**  
+The relevant code segment is located in `cockroach-operator/pkg/resource/statefulset.go:236`, within the `makePodTemplate()` function, which applies the `nodeSelector` to the pod specification without any prior validation:
+
+```go
+if b.Spec().NodeSelector != nil && len(b.Spec().NodeSelector) > 0 {
+	pod.Spec.NodeSelector = b.Spec().NodeSelector
+}
+```
+**Consequences:**
+Consequences of Pod Scheduling Failures due to `nodeSelector` Misconfigurations
+1. **Service Availability:** Pods remain unscheduled; critical services do not start, directly affecting availability and potentially causing downtime.
+
+2. **Resource Utilization:** Resources allocated for unscheduled pods remain unused, leading to inefficient cluster resource utilization.
+
+3. **System Reliability:** Reliability risks increase with potential cascading failures across dependent services.
+
+4. **Operational Overheads:** Manual troubleshooting and resolution of scheduling issues increase operational burdens.
+
+5. **Data or State Loss:** For stateful applications, scheduling failures could lead to data inconsistency or loss.
+
+6. **Scalability Concerns:** Inability to effectively schedule pods hinders application scalability and performance.
+
+7. **User Experience:** Degrades end-user experience, potentially leading to customer dissatisfaction and business loss.
+
+
+## Expected behavior?
+
+1. **Pre-Deployment Validation:**
+- **Objective:** Ensure nodes are available that match `nodeSelector` criteria before deployment.
+- **Method:** Query the cluster to verify specified labels exist on at least one node.
+
+2. **Post-Deployment Verification:**
+- **Objective:** Confirm pods have been successfully scheduled post-deployment.
+- **Method:** If scheduling fails due to node selector issues, trigger an alert or corrective actions.
+
+3. **Fallback Strategy:**
+- **Objective:** Address scenarios where no nodes match `nodeSelector` criteria.
+- **Method:** Consider removing/adjusting the node selector, using a default node, or manual intervention.
+
+4. **Operator Enhancements:**
+- **Objective:** Ensure node selectors are both valid and applicable.
+- **Method:** Update operator logic to check for node label existence and `nodeSelector` compatibility.
+
+**Implementation Suggestion:**
+Integrating pre-deployment validation and post-deployment verification into the operator's workflow is essential for mitigating pod scheduling failures related to `nodeSelector` configurations. Proactive handling of node selector issues by the operator will bolster pod deployment reliability and adherence to scheduling criteria.
+
+---
 
