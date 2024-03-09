@@ -1,0 +1,19 @@
+{
+  "deploy": {
+    "steps": [
+      {
+        "apply": {
+          "file": "/home/srikarv2/CS523/kube-523/operators/ot-container-kit_redis-operator/lab1/manifest.yaml",
+          "operator": true
+        }
+      },
+      {
+        "apply": {
+          "file": "https://raw.githubusercontent.com/OT-CONTAINER-KIT/redis-operator/master/config/crd/bases/redis.redis.opstreelabs.in_redisclusters.yaml"
+        }
+      }
+    ]
+  },
+  "crd_name": "redisclusters.redis.redis.opstreelabs.in",
+  "seed_custom_resource": "/home/srikarv2/CS523/kube-523/operators/ot-container-kit_redis-operator/lab1/cluster.yaml"
+}
