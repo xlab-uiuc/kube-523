@@ -6,11 +6,11 @@ about: An analysis report for the alarms produced by Acto due to integer changes
 
 ## 1)TestCases (3/33)
 
-| Test Case Identifier                           | Affected Field | Test Case Description |
-|------------------------------------------------|----------------|-----------------------|
-| `testrun-2024-02-21-22-04/trial-01-0001/0001`  | `grpcPort`     | Integer change        |
-| `testrun-2024-02-21-22-04/trial-06-0006/0001`  | `httpPort`     | Integer change        |
-| `testrun-2024-02-21-22-04/trial-11-0001/0001`  | `sqlPort`      | Integer change        |
+| Test Case Identifier                           | Affected Field | Test Case Description | ALARM |
+|------------------------------------------------|----------------|-----------------------|-------|
+| `testrun-2024-02-21-22-04/trial-01-0001/0001`  | `grpcPort`     | Integer change        | TRUE  |
+| `testrun-2024-02-21-22-04/trial-06-0006/0001`  | `httpPort`     | Integer change        | TRUE  |
+| `testrun-2024-02-21-22-04/trial-11-0001/0001`  | `sqlPort`      | Integer change        | TRUE  |
 
 
 ## What happened
@@ -70,11 +70,11 @@ The implementation of these changes would enhance the build function with a robu
 
 ## 2)TestCases (6/33)
 
-| Test Case Identifier                           | Affected Field | Misclassification      |
-|------------------------------------------------|----------------|------------------------|
-| `testrun-2024-02-21-22-04/trial-01-0000/0009`  | `grpcPort`     | Integer deletion       |
-| `testrun-2024-02-21-22-04/trial-06-0005/0001`  | `httpPort`     | Integer deletion       |
-| `testrun-2024-02-21-22-04/trial-11-0000/0009`  | `sqlPort`      | Integer deletion       |
+| Test Case Identifier                           | Affected Field | Misclassification      | ALARM |
+|------------------------------------------------|----------------|------------------------|-------|
+| `testrun-2024-02-21-22-04/trial-01-0000/0009`  | `grpcPort`     | Integer deletion       | TRUE  |
+| `testrun-2024-02-21-22-04/trial-06-0005/0001`  | `httpPort`     | Integer deletion       | TRUE  |
+| `testrun-2024-02-21-22-04/trial-11-0000/0009`  | `sqlPort`      | Integer deletion       | TRUE  |
 
 ## What happened
 
@@ -114,14 +114,14 @@ This report reaffirms the necessity for the recommended fixes in the operator co
 
 ## 3)TestCases (12/33)
 
-| Test Case Identifier                          | Description                                   |
-|-----------------------------------------------|-----------------------------------------------|
-| `testrun-2024-02-21-22-04/trial-04-0000/0000` | No mutation, false alarm                      |
-| `testrun-2024-02-21-22-04/trial-06-0000/0000` | No mutation, false alarm                      |
-| `testrun-2024-02-21-22-04/trial-07-0004/0000` | No mutation, false alarm                      |
-| `testrun-2024-02-21-22-04/trial-07-0006/0000` | No mutation, false alarm                      |
-| `testrun-2024-02-21-22-04/trial-09-0003/0000` | No mutation, false alarm                      |
-| `testrun-2024-02-21-22-04/trial-10-0000/0000` | No mutation, false alarm                      |
+| Test Case Identifier                          | Description   | ALARM |
+|-----------------------------------------------|---------------|-------|
+| `testrun-2024-02-21-22-04/trial-04-0000/0000` | No mutation   | FALSE |
+| `testrun-2024-02-21-22-04/trial-06-0000/0000` | No mutation   | FALSE |
+| `testrun-2024-02-21-22-04/trial-07-0004/0000` | No mutation   | FALSE |
+| `testrun-2024-02-21-22-04/trial-07-0006/0000` | No mutation   | FALSE |
+| `testrun-2024-02-21-22-04/trial-09-0003/0000` | No mutation   | FALSE |
+| `testrun-2024-02-21-22-04/trial-10-0000/0000` | No mutation   | FALSE |
 
 ## What happened
 
@@ -158,11 +158,11 @@ While the alarms were triggered due to perceived operational issues, the analysi
 
 ## TestCases (15/33)
 
-| Test Case Identifier                          | Affected Field      | Test Case Description |
-|-----------------------------------------------|---------------------|-----------------------|
-| `testrun-2024-02-21-22-04/trial-07-0001/0001` | `additionalArgs`    | Array deletion        |
-| `testrun-2024-02-21-22-04/trial-07-0002/0002` | `additionalArgs`    | Array push            |
-| `testrun-2024-02-21-22-04/trial-07-0003/0001` | `additionalArgs`    | Array pop             |
+| Test Case Identifier                          | Affected Field      | Test Case Description | ALARM |
+|-----------------------------------------------|---------------------|-----------------------|-------|
+| `testrun-2024-02-21-22-04/trial-07-0001/0001` | `additionalArgs`    | Array deletion        | TRUE  |
+| `testrun-2024-02-21-22-04/trial-07-0002/0002` | `additionalArgs`    | Array push            | TRUE  |
+| `testrun-2024-02-21-22-04/trial-07-0003/0001` | `additionalArgs`    | Array pop             | TRUE  |
 
 ## What happened
 
@@ -205,10 +205,10 @@ An additional step could be introduced in the dbArgs() function to iterate throu
 
 ## TestCases (17/33)
 
-| Test Case Identifier                          | Affected Field           | Test Case Description |
-|-----------------------------------------------|--------------------------|-----------------------|
-| `testrun-2024-02-21-22-04/trial-07-0007/0008` | `nodeSelector.ACTOKEY`   | String deletion       |
-| `testrun-2024-02-21-22-04/trial-07-0008/0001` | `nodeSelector.ACTOKEY`   | String change         |
+| Test Case Identifier                          | Affected Field           | Test Case Description | ALARM |
+|-----------------------------------------------|--------------------------|-----------------------|-------|
+| `testrun-2024-02-21-22-04/trial-07-0007/0008` | `nodeSelector.ACTOKEY`   | String deletion       | TRUE  |
+| `testrun-2024-02-21-22-04/trial-07-0008/0001` | `nodeSelector.ACTOKEY`   | String change         | TRUE  |
 
 ## What happened
 
@@ -271,3 +271,45 @@ Integrating pre-deployment validation and post-deployment verification into the 
 
 ---
 
+## TestCases (18/33)
+
+| Test Case Identifier                          | Affected Field           | Test Case Description | ALARM |
+|-----------------------------------------------|--------------------------|-----------------------|-------|
+| `testrun-2024-02-21-22-04/trial-07-0009/0001` | `nodeSelector.ACTOKEY`   | String-empty          | FALSE |
+
+## What happened
+
+**Why did Acto raise these alarms?**  
+Acto issued an alarm for a test case involving an empty string assignment to `nodeSelector.ACTOKEY`. This was identified as a false alarm since the operator is designed to ignore `nodeSelector` configurations that are empty or nil, as indicated by the source code.
+
+**Configuration Tested:**  
+```yaml
+nodeSelector:
+  ACTOKEY: ''
+```
+**Observed Behavior:**
+Despite the alarm, the test case should not lead to operational issues based on the code logic, which is intended to exclude empty or nil nodeSelector configurations from affecting pod scheduling.
+
+## Root Cause
+**Source Code Analysis:**
+The logic in cockroach-operator/pkg/resource/statefulset.go:235 within the makePodTemplate() function confirms that the operator is supposed to ignore empty nodeSelector configurations:
+```
+if b.Spec().NodeSelector != nil && len(b.Spec().NodeSelector) > 0 {
+    pod.Spec.NodeSelector = b.Spec().NodeSelector
+}
+```
+
+**Reason for False Alarm:**
+The alarm was triggered due to a misinterpretation of the operator's behavior, which, as per design, disregards empty nodeSelector configurations and does not impact pod deployment.
+
+## Expected behavior?
+The system should not raise an alarm for configurations that are intentionally designed to be ignored by the operator. This scenario underscores the need for:
+
+**Improvement in Alarm Logic:**
+Refine Acto's alarm mechanisms to better differentiate between actual configuration errors and situations where the configuration is designed to be ignored, reducing false positives.
+
+**Clarification in Documentation:**
+Ensure that the operator's behavior regarding empty or nil configurations is clearly documented, helping to prevent confusion about the expected outcomes of such configurations.
+
+**Enhancement of Validation Logic:**
+Although not applicable in this specific case, generally, enhancing the operator's validation logic to provide immediate feedback on unsupported configurations can help preempt potential issues.
