@@ -4,7 +4,7 @@ about: An analysis report for the alarms produced by Acto due to integer changes
 
 ---
 
-## 1)TestCases (3/27)
+## 1)TestCases (3/33)
 
 | Test Case Identifier                           | Affected Field | Test Case Description |
 |------------------------------------------------|----------------|-----------------------|
@@ -68,7 +68,7 @@ The implementation of these changes would enhance the build function with a robu
 
 ---
 
-## 2)TestCases (6/27)
+## 2)TestCases (6/33)
 
 | Test Case Identifier                           | Affected Field | Misclassification      |
 |------------------------------------------------|----------------|------------------------|
@@ -112,7 +112,7 @@ This report reaffirms the necessity for the recommended fixes in the operator co
 
 ---
 
-## 3)TestCases (12/27)
+## 3)TestCases (12/33)
 
 | Test Case Identifier                          | Description                                   |
 |-----------------------------------------------|-----------------------------------------------|
@@ -154,3 +154,52 @@ To prevent such misclassifications, Acto needs to enhance its diagnostic and mon
 While the alarms were triggered due to perceived operational issues, the analysis indicates that these were false alarms resulting from misclassifications by Acto. Corrective measures focusing on improving Acto's diagnostic capabilities and operational handling are recommended to mitigate such occurrences in the future, ensuring that alarms accurately reflect the state of the system and its configurations.
 
 ---
+
+
+## TestCases (15/33)
+
+| Test Case Identifier                          | Affected Field      | Test Case Description |
+|-----------------------------------------------|---------------------|-----------------------|
+| `testrun-2024-02-21-22-04/trial-07-0001/0001` | `additionalArgs`    | Array deletion        |
+| `testrun-2024-02-21-22-04/trial-07-0002/0002` | `additionalArgs`    | Array push            |
+| `testrun-2024-02-21-22-04/trial-07-0003/0001` | `additionalArgs`    | Array pop             |
+
+## What happened
+
+**Why did Acto raise these alarms?**  
+Acto raised alarms for modifications to the `additionalArgs` field within the pod specifications, which were directly passed to the CockroachDB startup script without verification of their correctness. The addition of `ACTOKEY` as an `additionalArg` resulted in the node's crash, as demonstrated by the error message indicating that `ACTOKEY` is an unknown command for `cockroach start`.
+
+**Error Encountered:**  
+The error logs revealed a failure in the node startup due to the unrecognized argument `ACTOKEY`, highlighting an issue in the handling of `additionalArgs`:
+ERROR: unknown command "ACTOKEY" for "cockroach start"
+Failed running "start"
+
+## Root Cause
+
+**Analysis:**  
+The root cause of the crash lies in the `cockroach-operator/pkg/resource/statefulset.go:389` file under the `dbArgs()` function, where `additionalArgs` from the pod specifications are appended directly to the database startup arguments without any form of validation or sanitization:
+
+```go
+aa = append(aa, b.Spec().AdditionalArgs...)
+```
+This code block allows for any specified additionalArgs to be included in the command line for the CockroachDB startup script, without checking if these arguments are valid or supported by CockroachDB.
+
+**Consequences:**
+By appending additionalArgs directly, there is a significant risk that invalid or incorrect arguments can lead to operational issues, such as the failure to start the database service, as observed.
+
+## Expected behavior?
+
+The operator verifies the args before passing and not crash the system.
+
+**Fix in the Operator Code:**
+To prevent such issues, the operator code must be enhanced to include validation and sanitization steps for additionalArgs. This should involve:
+
+- **Validation of Arguments:** Implement a mechanism to validate each entry within additionalArgs against a list of supported or recognized arguments for the CockroachDB start command.
+- **Sanitization of Input:** Ensure that arguments passed through additionalArgs do not contain unsupported commands or syntax that could lead to command execution failures.
+- **Error Handling:** Provide clear and actionable feedback in the event of invalid additionalArgs entries, preventing the application of these arguments and potentially avoiding node startup failures.
+
+**Implementation Suggestion:**
+An additional step could be introduced in the dbArgs() function to iterate through AdditionalArgs and check each against a predefined list of acceptable arguments. This step would not only safeguard the startup process from invalid inputs but also enhance the robustness of the deployment strategy, ensuring stability and reliability of the system.
+
+
+
