@@ -123,6 +123,7 @@ This report reaffirms the necessity for the recommended fixes in the operator co
 | `testrun-2024-02-21-22-04/trial-09-0003/0000` | No mutation   | FALSE |
 | `testrun-2024-02-21-22-04/trial-10-0000/0000` | No mutation   | FALSE |
 
+
 ## What happened
 
 **Why were these alarms wrongly classified?**  
@@ -361,4 +362,44 @@ The operator should validate cache values against the expected formats before ap
 
 **Implementation Suggestion:**
 Enhance the `dbArgs()` function with a new validation routine that checks the format of the `cache` value. If the validation fails, the operator could either log a detailed error message explaining the reason or use a safe default value while notifying the user of the adjustment.
+
+---
+
+## 8)TestCases (20/33)
+
+| Test Case Identifier                          | Affected Field                                  | Test Case Description | isBug |
+|-----------------------------------------------|-------------------------------------------------|-----------------------|-------|
+| `testrun-2024-02-21-22-04/trial-05-0000/0001` | `spec.topologySpreadConstraints[0].topologyKey` | String change         | FALSE |
+
+## What happened
+
+**Why did Acto raise these alarms?**  
+An alarm was raised for a change in the `topologyKey` within `topologySpreadConstraints`, suggesting a potential issue. However, sandbox testing did not reproduce the reported problem, indicating the alarm might be a false positive.
+
+**Non-Reproducible Alarm:**  
+The alarm's message related to the `cockroach-operator-manager` container's restart count being `[5]` was not observed during sandbox environment testing, suggesting the issue may be specific to the initial testing environment or conditions.
+
+## Root Cause
+
+**Analysis:**  
+The alarm seems to have been triggered by an environmental or operational anomaly rather than an actual fault with the `topologySpreadConstraints` configuration. The inability to reproduce the alarm in a controlled sandbox environment suggests the original testing context may contain variables not present or accounted for in the sandbox.
+
+## Expected behavior?
+
+The operator and Acto's monitoring systems should accurately reflect the impact of configuration changes without generating false alarms under normal operational conditions.
+
+## Fix in the Operator Code
+
+- **Refine Alarm Mechanisms:** Enhance Acto's alarm detection logic to better differentiate between actual configuration issues and environmental anomalies.
+- **Improve Environmental Consistency:** Ensure testing environments, including sandbox setups, closely mirror production or the original test conditions to accurately capture potential issues.
+- **Enhanced Logging and Monitoring:** Implement more detailed logging and monitoring around `topologySpreadConstraints` changes to pinpoint the cause of restarts or failures, aiding in distinguishing false alarms from genuine issues.
+
+## Implementation Suggestion
+
+Introduce a mechanism to validate and log changes in `topologySpreadConstraints` configurations, including `topologyKey` modifications, to identify and mitigate potential issues proactively. Further, develop a protocol for analyzing and responding to alarms that considers the possibility of environment-specific anomalies.
+
+---
+
+## 9)TestCases (20/33)
+
 
