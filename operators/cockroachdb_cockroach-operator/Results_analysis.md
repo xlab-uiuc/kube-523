@@ -6,7 +6,7 @@ about: An analysis report for the alarms produced by Acto due to integer changes
 
 ## 1)TestCases (3/33)
 
-| Test Case Identifier                           | Affected Field | Test Case Description | ALARM |
+| Test Case Identifier                           | Affected Field | Test Case Description | isBug |
 |------------------------------------------------|----------------|-----------------------|-------|
 | `testrun-2024-02-21-22-04/trial-01-0001/0001`  | `grpcPort`     | Integer change        | TRUE  |
 | `testrun-2024-02-21-22-04/trial-06-0006/0001`  | `httpPort`     | Integer change        | TRUE  |
@@ -70,7 +70,7 @@ The implementation of these changes would enhance the build function with a robu
 
 ## 2)TestCases (6/33)
 
-| Test Case Identifier                           | Affected Field | Misclassification      | ALARM |
+| Test Case Identifier                           | Affected Field | Misclassification      | isBug |
 |------------------------------------------------|----------------|------------------------|-------|
 | `testrun-2024-02-21-22-04/trial-01-0000/0009`  | `grpcPort`     | Integer deletion       | TRUE  |
 | `testrun-2024-02-21-22-04/trial-06-0005/0001`  | `httpPort`     | Integer deletion       | TRUE  |
@@ -114,7 +114,7 @@ This report reaffirms the necessity for the recommended fixes in the operator co
 
 ## 3)TestCases (12/33)
 
-| Test Case Identifier                          | Description   | ALARM |
+| Test Case Identifier                          | Description   | isBug |
 |-----------------------------------------------|---------------|-------|
 | `testrun-2024-02-21-22-04/trial-04-0000/0000` | No mutation   | FALSE |
 | `testrun-2024-02-21-22-04/trial-06-0000/0000` | No mutation   | FALSE |
@@ -156,9 +156,9 @@ While the alarms were triggered due to perceived operational issues, the analysi
 ---
 
 
-## TestCases (15/33)
+## 4)TestCases (15/33)
 
-| Test Case Identifier                          | Affected Field      | Test Case Description | ALARM |
+| Test Case Identifier                          | Affected Field      | Test Case Description | isBug |
 |-----------------------------------------------|---------------------|-----------------------|-------|
 | `testrun-2024-02-21-22-04/trial-07-0001/0001` | `additionalArgs`    | Array deletion        | TRUE  |
 | `testrun-2024-02-21-22-04/trial-07-0002/0002` | `additionalArgs`    | Array push            | TRUE  |
@@ -203,9 +203,9 @@ An additional step could be introduced in the dbArgs() function to iterate throu
 
 ---
 
-## TestCases (17/33)
+## 5)TestCases (17/33)
 
-| Test Case Identifier                          | Affected Field           | Test Case Description | ALARM |
+| Test Case Identifier                          | Affected Field           | Test Case Description | isBug |
 |-----------------------------------------------|--------------------------|-----------------------|-------|
 | `testrun-2024-02-21-22-04/trial-07-0007/0008` | `nodeSelector.ACTOKEY`   | String deletion       | TRUE  |
 | `testrun-2024-02-21-22-04/trial-07-0008/0001` | `nodeSelector.ACTOKEY`   | String change         | TRUE  |
@@ -271,9 +271,9 @@ Integrating pre-deployment validation and post-deployment verification into the 
 
 ---
 
-## TestCases (18/33)
+## 6)TestCases (18/33)
 
-| Test Case Identifier                          | Affected Field           | Test Case Description | ALARM |
+| Test Case Identifier                          | Affected Field           | Test Case Description | isBug |
 |-----------------------------------------------|--------------------------|-----------------------|-------|
 | `testrun-2024-02-21-22-04/trial-07-0009/0001` | `nodeSelector.ACTOKEY`   | String-empty          | FALSE |
 
@@ -313,3 +313,52 @@ Ensure that the operator's behavior regarding empty or nil configurations is cle
 
 **Enhancement of Validation Logic:**
 Although not applicable in this specific case, generally, enhancing the operator's validation logic to provide immediate feedback on unsupported configurations can help preempt potential issues.
+
+
+--- 
+
+## 7)TestCases (19/33)
+
+| Test Case Identifier                          | Affected Field | Test Case Description | isBug |
+|-----------------------------------------------|----------------|-----------------------|-------|
+| `testrun-2024-02-21-22-04/trial-10-0004/0003` | `spec.cache`   | String deletion       | TRUE  |
+| `testrun-2024-02-21-22-04/trial-10-0005/0001` | `spec.cache`   | String change         | TRUE  |
+
+## What happened
+
+**Why did Acto raise these alarms?**  
+Alarms were raised for the `cache` configuration in the operator specs due to an invalid string input `"ACTOKEY"`. This input deviates from the expected integer (bytes) or percentage of memory format as defined for the `--cache` flag.
+
+**Description of --cache Flag:**  
+The `--cache` flag specifies the total size for caches, supporting both size suffixes (e.g., `1GB`) and percentages of physical memory (e.g., `.25`). The default setting is `128MiB` if left unspecified.
+
+**Error Encountered:**  
+The operator failed to parse and verify the invalid string `"ACTOKEY"` passed to the `--cache` flag, leading to a configuration error.
+
+## Root Cause
+
+**Analysis:**  
+The issue originates from inadequate validation logic in the `cockroach-operator/pkg/resource/statefulset.go:377` within the `dbArgs()` function:
+
+```go
+if b.Spec().Cache != "" {
+    aa = append(aa, "--cache="+b.Spec().Cache)
+} else {
+    aa = append(aa, "--cache $(expr $MEMORY_LIMIT_MIB / 4)MiB")
+}
+```
+This code block directly appends the `cache` value from the spec to the startup arguments without validating its format, resulting in operational failures when the input is invalid.
+
+**Consequences:**
+Passing an invalid string as the cache size directly affects the pod's startup process, potentially leading to the failure of the CockroachDB instance to start correctly.
+
+## Expected behavior?
+The operator should validate cache values against the expected formats before appending them to the database arguments. Specifically, it should check for valid size formats or percentage values and reject unsupported or nonsensical inputs like `"ACTOKEY"`.
+
+**Fix in the Operator Code:**
+- **Implement Input Validation:** Introduce a validation step for the `cache` field to ensure inputs adhere to supported formats (either bytes or percentage of memory). If the input is invalid, the operator should log an error or revert to a default value.
+- **Provide Feedback on Invalid Configurations:** Enhance error reporting to provide explicit feedback when configuration values are rejected due to validation failures.
+
+**Implementation Suggestion:**
+Enhance the `dbArgs()` function with a new validation routine that checks the format of the `cache` value. If the validation fails, the operator could either log a detailed error message explaining the reason or use a safe default value while notifying the user of the adjustment.
+
