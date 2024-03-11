@@ -446,3 +446,39 @@ The system should accurately distinguish between legitimate configuration issues
 ---
 
 ## 10)TestCases (27/33)
+| Unique Identifier                      | Alarm Status | Test Case Description                                                               |
+|----------------------------------------|--------------|-------------------------------------------------------------------------------------|
+| `3561c18ad74c6c5c263abe7ce6b12e78`     | TRUE         | Failed attempt recovering to seed state - system state diff                         |
+| `7b1627ac4a0e172a56632064e7ebe462`     | TRUE         | Failed attempt recovering to seed state - system state diff                         |
+| `b52166f7b46c83187408457fbb3a095c`     | TRUE         | Failed attempt recovering to seed state - system state diff                         |
+
+## What happened
+
+**Overview:**  
+Acto's differential oracle raised alarms for three test cases, each related to a failed attempt at recovering to a seed system state. These alarms suggest that after performing certain operations or tests, the system could not return to its initial, pre-test state, as indicated by system state differences.
+
+**Observation:**  
+Despite the alarms, it was noted that the nodes were still active and running, particularly highlighted by the log entry for "test-cluster-vcheck-*" being active. This suggests that while the system state differed from the seed state, the nodes remained operational.
+
+## Analysis
+
+**Differential Oracle's Role:**  
+The differential oracle is designed to detect discrepancies between expected and actual system states post-test executions. In this context, the alarms were triggered due to observed differences in the system state compared to the seed (initial) state.
+
+**Evaluation Process:**  
+The process involves examining `post_diff` logs and manually running diffs for the system states associated with each trial. This comprehensive approach aims to identify any deviations that might affect system reliability or functionality.
+
+## Is the Alarm Justified?
+
+**Correctness of Alarm:**  
+Given that the differential oracle's purpose is to ensure the system can revert to its original state after tests, the alarm is justified in highlighting discrepancies. However, the operational status of the nodes indicates that while the state differences exist, they may not necessarily compromise the system's functionality.
+
+**Considerations:**
+- **System's Resilience:** Active nodes post-testing suggest the system's resilience, capable of continuing operations despite state differences.
+- **Impact on Functionality:** The alarms indicate a need to investigate the nature of the state differences to assess their impact on system functionality and reliability.
+
+## Recommendations
+
+- **Review and Adjustment of Recovery Procedures:** Examine the recovery process to identify why the system failed to revert to the exact seed state and implement adjustments as necessary.
+- **Detailed Analysis of State Differences:** Conduct a thorough analysis of the differences detected by the differential oracle to determine their significance and potential impact on the system.
+- **Enhancement of Differential Oracle Logic:** Refine the oracle's logic to distinguish between critical state differences that affect functionality and non-critical discrepancies that do not impede operational capabilities.
