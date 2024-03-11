@@ -1,19 +1,11 @@
-# Kubernetes Tutorial 01/24/2024
+# Kubernetes Tutorial
 
 ## Learning Outcome
 
 After this tutorial, you will learn
 1. Basic concepts in Kubernetes.
-2. How to deploy an application(ZooKeeper) on Kubernetes using Pod and PVC
+2. How to deploy an application (ZooKeeper) on Kubernetes using Pod and PVC
 3. How to deploy a replicated application(ZooKeeper ensemble) on Kubernetes using StatefulSet.
-
-## **Recap - What is Kubernetes?**
-
-From the last lecture’s overview, we discussed VMs and containers. Containers ….
-
-We learned the high-level overview of the design of cluster managers, Borg, Omega, and Kubernetes which manage 100s or 1000s of containerized applications in a cluster.
-
-In this lecture, we will dive into Kubernetes and see it in action.
 
 ## **Setting up local Kubernetes cluster**
 
@@ -22,9 +14,9 @@ We will first go through a tutorial to set up a Kubernetes cluster on a local ma
 Kind is a tool built by the Kubernetes community for local development and easy testing of Kubernetes.
 We will use it to create a local Kubernetes cluster to play with.
 
-**All problems in computer science can be solved by another level of indirection. — Butler Lampson**
+**"All problems in computer science can be solved by another level of indirection." — David J. Wheeler**
 
-What Kind does is to create Kubernetes “node” containers that behave like a machine in a cluster. Each node runs a Kubernetes daemon and joins together to form a Kubernetes cluster. 
+What Kind does is to create Kubernetes "node" containers that behave like a machine in a cluster. Each node runs a Kubernetes daemon and joins together to form a Kubernetes cluster. 
 
 - Install [Golang](https://go.dev/doc/install)
 - Install [Docker](https://docs.docker.com/engine/install/)
