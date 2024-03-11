@@ -14,36 +14,36 @@ about: An analysis report for the alarms produced by Acto due to integer changes
 | `testrun-2024-02-21-22-04/trial-01-0000/0009`  | `grpcPort`                                           | Integer deletion         | TRUE  | Critical  |
 | `testrun-2024-02-21-22-04/trial-06-0005/0001`  | `httpPort`                                           | Integer deletion         | TRUE  | Critical  |
 | `testrun-2024-02-21-22-04/trial-11-0000/0009`  | `sqlPort`                                            | Integer deletion         | TRUE  | Critical  |
-| `testrun-2024-02-21-22-04/trial-04-0000/0000`  | No mutation                                          |                          | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-06-0000/0000`  | No mutation                                          |                          | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-07-0004/0000`  | No mutation                                          |                          | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-07-0006/0000`  | No mutation                                          |                          | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-09-0003/0000`  | No mutation                                          |                          | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-10-0000/0000`  | No mutation                                          |                          | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-07-0001/0001`  | `additionalArgs`                                     | Array deletion           | TRUE  | Critical  |
-| `testrun-2024-02-21-22-04/trial-07-0002/0002`  | `additionalArgs`                                     | Array push               | TRUE  | Critical  |
-| `testrun-2024-02-21-22-04/trial-07-0003/0001`  | `additionalArgs`                                     | Array pop                | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-04-0000/0000`  | No mutation                                          |                          | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-06-0000/0000`  | No mutation                                          |                          | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-07-0004/0000`  | No mutation                                          |                          | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-07-0006/0000`  | No mutation                                          |                          | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-09-0003/0000`  | No mutation                                          |                          | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-10-0000/0000`  | No mutation                                          |                          | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-07-0001/0001`  | `additionalArgs`                                     | Array deletion           | TRUE  | TODO  |
+| `testrun-2024-02-21-22-04/trial-07-0002/0002`  | `additionalArgs`                                     | Array push               | TRUE  | TODO  |
+| `testrun-2024-02-21-22-04/trial-07-0003/0001`  | `additionalArgs`                                     | Array pop                | TRUE  | TODO  |
 | `testrun-2024-02-21-22-04/trial-07-0007/0008`  | `nodeSelector.ACTOKEY`                               | String deletion          | TRUE  | Critical  |
 | `testrun-2024-02-21-22-04/trial-07-0008/0001`  | `nodeSelector.ACTOKEY`                               | String change            | TRUE  | Critical  |
-| `testrun-2024-02-21-22-04/trial-07-0009/0001`  | `nodeSelector.ACTOKEY`                               | String-empty             | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-07-0009/0001`  | `nodeSelector.ACTOKEY`                               | String-empty             | FALSE | Infra      |
 | `testrun-2024-02-21-22-04/trial-10-0004/0003`  | `spec.cache`                                         | String deletion          | TRUE  | Critical  |
 | `testrun-2024-02-21-22-04/trial-10-0005/0001`  | `spec.cache`                                         | String change            | TRUE  | Critical  |
-| `testrun-2024-02-21-22-04/trial-05-0000/0001`  | `spec.topologySpreadConstraints[0].topologyKey`      | String change            | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-04-0001/0003`  | `spec.ingress.sql.tls`                               | Array pop                | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-06-0002/0004`  | `spec.topologySpreadConstraints[0].maxSkew`          | Integer deletion         | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-06-0003/0002`  | `spec.topologySpreadConstraints[0].maxSkew`          | Integer change           | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-09-0001/0010`  | `spec.ingress.sql.annotations`                       | Object deletion          | FALSE | Info      |
-| `testrun-2024-02-21-22-04/trial-10-0006/0003`  | `spec.tolerations`                                   | Array deletion           | FALSE | Info      |
-| `3561c18ad74c6c5c263abe7ce6b12e78`            | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
-| `7b1627ac4a0e172a56632064e7ebe462`            | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
-| `b52166f7b46c83187408457fbb3a095c`            | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
-| `74bd14d94d705a5fee6f05920353dbe8/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
-| `acbdce8a2442b12d59ada515d659687a/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
-| `9efec46516fe516a15a314f437d3a7be/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-05-0000/0001`  | `spec.topologySpreadConstraints[0].topologyKey`      | String change            | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-04-0001/0003`  | `spec.ingress.sql.tls`                               | Array pop                | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-06-0002/0004`  | `spec.topologySpreadConstraints[0].maxSkew`          | Integer deletion         | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-06-0003/0002`  | `spec.topologySpreadConstraints[0].maxSkew`          | Integer change           | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-09-0001/0010`  | `spec.ingress.sql.annotations`                       | Object deletion          | FALSE | Infra      |
+| `testrun-2024-02-21-22-04/trial-10-0006/0003`  | `spec.tolerations`                                   | Array deletion           | FALSE | Infra      |
+| `3561c18ad74c6c5c263abe7ce6b12e78`            | System state diff                                    | Failed recovery to seed  | TRUE  | Infra  |
+| `7b1627ac4a0e172a56632064e7ebe462`            | System state diff                                    | Failed recovery to seed  | TRUE  | Infra  |
+| `b52166f7b46c83187408457fbb3a095c`            | System state diff                                    | Failed recovery to seed  | TRUE  | Infra  |
+| `74bd14d94d705a5fee6f05920353dbe8/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Infra  |
+| `acbdce8a2442b12d59ada515d659687a/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Infra  |
+| `9efec46516fe516a15a314f437d3a7be/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Infra  |
 
 **Note:** 
 - **isBug**: Indicates whether the alarm pointed to a legitimate issue within the system (`TRUE`) or was a false alarm/expected behavior (`FALSE`).
-- **Level**: Categorizes the severity or importance of the alarm, with `Critical` suggesting significant issues requiring immediate attention and `Info` denoting informative alarms.
+- **Level**: Categorizes the severity or importance of the alarm, with `Critical` suggesting significant issues requiring immediate attention. `Infra` issue with the infrastructure or acto, `TODO` are for bugs which might not be in critical path but are good to resolve.
 
 
 ---
@@ -502,7 +502,7 @@ The system should accurately distinguish between legitimate configuration issues
 Acto's differential oracle raised alarms for three test cases, each related to a failed attempt at recovering to a seed system state. These alarms suggest that after performing certain operations or tests, the system could not return to its initial, pre-test state, as indicated by system state differences.
 
 **Observation:**  
-Despite the alarms, it was noted that the nodes were still active and running, particularly highlighted by the log entry for "test-cluster-vcheck-*" being active. This suggests that while the system state differed from the seed state, the nodes remained operational.
+Despite the alarms, it was noted that the nodes were still in the init phase not completed, particularly highlighted by the log entry for "test-cluster-vcheck-*" being active.
 
 ## Analysis
 
