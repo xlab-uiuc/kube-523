@@ -4,6 +4,50 @@ about: An analysis report for the alarms produced by Acto due to integer changes
 
 ---
 
+## Consolidated Alarm Metadata Table
+
+| Test Case Identifier                           | Affected Field                                       | Test Case Description    | isBug | Level     |
+|------------------------------------------------|------------------------------------------------------|--------------------------|-------|-----------|
+| `testrun-2024-02-21-22-04/trial-01-0001/0001`  | `grpcPort`                                           | Integer change           | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-06-0006/0001`  | `httpPort`                                           | Integer change           | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-11-0001/0001`  | `sqlPort`                                            | Integer change           | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-01-0000/0009`  | `grpcPort`                                           | Integer deletion         | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-06-0005/0001`  | `httpPort`                                           | Integer deletion         | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-11-0000/0009`  | `sqlPort`                                            | Integer deletion         | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-04-0000/0000`  | No mutation                                          |                          | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-06-0000/0000`  | No mutation                                          |                          | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-07-0004/0000`  | No mutation                                          |                          | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-07-0006/0000`  | No mutation                                          |                          | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-09-0003/0000`  | No mutation                                          |                          | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-10-0000/0000`  | No mutation                                          |                          | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-07-0001/0001`  | `additionalArgs`                                     | Array deletion           | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-07-0002/0002`  | `additionalArgs`                                     | Array push               | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-07-0003/0001`  | `additionalArgs`                                     | Array pop                | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-07-0007/0008`  | `nodeSelector.ACTOKEY`                               | String deletion          | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-07-0008/0001`  | `nodeSelector.ACTOKEY`                               | String change            | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-07-0009/0001`  | `nodeSelector.ACTOKEY`                               | String-empty             | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-10-0004/0003`  | `spec.cache`                                         | String deletion          | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-10-0005/0001`  | `spec.cache`                                         | String change            | TRUE  | Critical  |
+| `testrun-2024-02-21-22-04/trial-05-0000/0001`  | `spec.topologySpreadConstraints[0].topologyKey`      | String change            | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-04-0001/0003`  | `spec.ingress.sql.tls`                               | Array pop                | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-06-0002/0004`  | `spec.topologySpreadConstraints[0].maxSkew`          | Integer deletion         | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-06-0003/0002`  | `spec.topologySpreadConstraints[0].maxSkew`          | Integer change           | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-09-0001/0010`  | `spec.ingress.sql.annotations`                       | Object deletion          | FALSE | Info      |
+| `testrun-2024-02-21-22-04/trial-10-0006/0003`  | `spec.tolerations`                                   | Array deletion           | FALSE | Info      |
+| `3561c18ad74c6c5c263abe7ce6b12e78`            | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
+| `7b1627ac4a0e172a56632064e7ebe462`            | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
+| `b52166f7b46c83187408457fbb3a095c`            | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
+| `74bd14d94d705a5fee6f05920353dbe8/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
+| `acbdce8a2442b12d59ada515d659687a/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
+| `9efec46516fe516a15a314f437d3a7be/0000`       | System state diff                                    | Failed recovery to seed  | TRUE  | Critical  |
+
+**Note:** 
+- **isBug**: Indicates whether the alarm pointed to a legitimate issue within the system (`TRUE`) or was a false alarm/expected behavior (`FALSE`).
+- **Level**: Categorizes the severity or importance of the alarm, with `Critical` suggesting significant issues requiring immediate attention and `Info` denoting informative alarms.
+
+
+---
+
 ## 1)TestCases (3/32)
 
 | Test Case Identifier                           | Affected Field | Test Case Description | isBug |
@@ -507,3 +551,22 @@ Without access to the relevant logs, it's challenging to perform a detailed anal
 
 Ideally, the system should be able to revert to its seed state after test executions to ensure consistency and reliability. Additionally, logs should be accessible and available to provide necessary details for analysis whenever alarms are raised.
 
+---
+
+## 11)TestCases (32/32)
+
+| Unique Identifier                      | Alarm Status | Test Case Description                                                               | Observation         |
+|----------------------------------------|--------------|-------------------------------------------------------------------------------------|---------------------|
+| `9efec46516fe516a15a314f437d3a7be/0000` | TRUE         | Failed attempt recovering to seed state - system state diff                         | No Clusters Deployed |
+
+## What happened
+
+**Alarm Overview:**  
+An alarm was triggered for a test case due to a reported failure in reverting the system back to its seed state, indicating discrepancies in the system state. Notably, this alarm was raised under circumstances where no clusters were deployed, suggesting the issue may not be rooted in the system's configuration or operation.
+
+**Contextual Insight:**  
+This scenario underscores an infrastructure availability issue rather than a fault within the system's configuration or operational logic. The alarm, while true in detecting a failure to achieve the desired state, essentially signals the impact of external factors—specifically, the unavailability of critical infrastructure components.
+
+## Analysis
+
+The true nature of the alarm, juxtaposed with the lack of infrastructure availability. It illustrates that the system's ability to revert to a seed state, or perform any stateful operations, is contingent upon the availability and reliability of the underlying infrastructure.
