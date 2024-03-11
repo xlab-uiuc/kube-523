@@ -1,6 +1,6 @@
 ---
 name: Combined Alarm Inspection Report
-about: An analysis report for the alarms produced by Acto due to integer changes on ports `grpcPort`, `httpPort`, and `sqlPort`. and False Alarms
+about: An analysis report for the alarms produced by Acto
 
 ---
 
