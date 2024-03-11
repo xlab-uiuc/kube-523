@@ -318,7 +318,7 @@ Although not applicable in this specific case, generally, enhancing the operator
 
 --- 
 
-## 7)TestCases (19/33)
+## 7)TestCases (20/33)
 
 | Test Case Identifier                          | Affected Field | Test Case Description | isBug |
 |-----------------------------------------------|----------------|-----------------------|-------|
@@ -365,7 +365,7 @@ Enhance the `dbArgs()` function with a new validation routine that checks the fo
 
 ---
 
-## 8)TestCases (20/33)
+## 8)TestCases (21/33)
 
 | Test Case Identifier                          | Affected Field                                  | Test Case Description | isBug |
 |-----------------------------------------------|-------------------------------------------------|-----------------------|-------|
@@ -400,6 +400,49 @@ Introduce a mechanism to validate and log changes in `topologySpreadConstraints`
 
 ---
 
-## 9)TestCases (20/33)
+## 9)TestCases (26/33)
 
+| Test Case Identifier                          | Affected Field                                       | Test Case Description   | isBug |
+|-----------------------------------------------|------------------------------------------------------|-------------------------|-------|
+| `testrun-2024-02-21-22-04/trial-04-0001/0003` | `spec.ingress.sql.tls`                               | Array pop               | FALSE |
+| `testrun-2024-02-21-22-04/trial-06-0002/0004` | `spec.topologySpreadConstraints[0].maxSkew`          | Integer deletion        | FALSE |
+| `testrun-2024-02-21-22-04/trial-06-0003/0002` | `spec.topologySpreadConstraints[0].maxSkew`          | Integer change          | FALSE |
+| `testrun-2024-02-21-22-04/trial-09-0001/0010` | `spec.ingress.sql.annotations`                       | Object deletion         | FALSE |
+| `testrun-2024-02-21-22-04/trial-10-0006/0003` | `spec.tolerations`                                   | Array deletion          | FALSE |
 
+## What happened
+
+**Alarm Overview:**  
+Alarms were raised across various spec configurations, all indicating issues such as "Found no matching fields for input." However, upon further inspection and testing within a sandbox environment, these alarms proved to be false positives. Changes were effectively applied, and functionalities behaved as expected without the issues indicated by the alarms.
+
+## Analysis of Each Test Case
+
+ `spec.ingress.sql.tls` Array Pop
+- **Alarm Message:** No matching fields for input after removing an item from the array.
+- **Reality:** Changes were successfully applied, indicating the alarm system might be misinterpreting the array modification as an error.
+
+`spec.topologySpreadConstraints[0].maxSkew` Modifications
+- **Alarm Messages:** No matching fields for input upon deletion and changing integer values of `maxSkew`.
+- **Reality:** Despite the alarms, modifications to `maxSkew` were valid and did not disrupt system state, suggesting an over-sensitivity of the alarm mechanism to changes in numerical values.
+
+`spec.ingress.sql.annotations` Object Deletion
+- **Alarm Message:** No matching fields for input after deletion of an object.
+- **Reality:** The deletion took effect as intended, demonstrating the alarm's failure to accurately reflect the operational outcome.
+
+`spec.tolerations` Array Deletion
+- **Alarm Message:** No matching fields for input after array deletion.
+- **Reality:** The system correctly processed the deletion, contradicting the alarm's indication of an error.
+
+## Expected Behavior
+
+The system should accurately distinguish between legitimate configuration issues and valid state changes or modifications.
+
+## Fix in the Monitoring System
+
+- **Refinement of Detection Logic:** Enhance the criteria and logic used to trigger alarms, focusing on genuine inconsistencies or errors that reflect actual operational issues.
+- **Enhanced Validation Checks:** Before raising an alarm, implement additional validation steps to confirm if the perceived issue truly impacts system functionality.
+- **Sandbox Testing Integration:** Consider incorporating results from sandbox testing environments into the alarm validation process to reduce false positives based on successful real-world application tests.
+
+---
+
+## 10)TestCases (27/33)
