@@ -4,7 +4,7 @@ about: An analysis report for the alarms produced by Acto due to integer changes
 
 ---
 
-## 1)TestCases (3/33)
+## 1)TestCases (3/32)
 
 | Test Case Identifier                           | Affected Field | Test Case Description | isBug |
 |------------------------------------------------|----------------|-----------------------|-------|
@@ -68,7 +68,7 @@ The implementation of these changes would enhance the build function with a robu
 
 ---
 
-## 2)TestCases (6/33)
+## 2)TestCases (6/32)
 
 | Test Case Identifier                           | Affected Field | Misclassification      | isBug |
 |------------------------------------------------|----------------|------------------------|-------|
@@ -112,7 +112,7 @@ This report reaffirms the necessity for the recommended fixes in the operator co
 
 ---
 
-## 3)TestCases (12/33)
+## 3)TestCases (12/32)
 
 | Test Case Identifier                          | Description   | isBug |
 |-----------------------------------------------|---------------|-------|
@@ -157,7 +157,7 @@ While the alarms were triggered due to perceived operational issues, the analysi
 ---
 
 
-## 4)TestCases (15/33)
+## 4)TestCases (15/32)
 
 | Test Case Identifier                          | Affected Field      | Test Case Description | isBug |
 |-----------------------------------------------|---------------------|-----------------------|-------|
@@ -204,7 +204,7 @@ An additional step could be introduced in the dbArgs() function to iterate throu
 
 ---
 
-## 5)TestCases (17/33)
+## 5)TestCases (17/32)
 
 | Test Case Identifier                          | Affected Field           | Test Case Description | isBug |
 |-----------------------------------------------|--------------------------|-----------------------|-------|
@@ -272,7 +272,7 @@ Integrating pre-deployment validation and post-deployment verification into the 
 
 ---
 
-## 6)TestCases (18/33)
+## 6)TestCases (18/32)
 
 | Test Case Identifier                          | Affected Field           | Test Case Description | isBug |
 |-----------------------------------------------|--------------------------|-----------------------|-------|
@@ -318,7 +318,7 @@ Although not applicable in this specific case, generally, enhancing the operator
 
 --- 
 
-## 7)TestCases (20/33)
+## 7)TestCases (20/32)
 
 | Test Case Identifier                          | Affected Field | Test Case Description | isBug |
 |-----------------------------------------------|----------------|-----------------------|-------|
@@ -365,7 +365,7 @@ Enhance the `dbArgs()` function with a new validation routine that checks the fo
 
 ---
 
-## 8)TestCases (21/33)
+## 8)TestCases (21/32)
 
 | Test Case Identifier                          | Affected Field                                  | Test Case Description | isBug |
 |-----------------------------------------------|-------------------------------------------------|-----------------------|-------|
@@ -400,7 +400,7 @@ Introduce a mechanism to validate and log changes in `topologySpreadConstraints`
 
 ---
 
-## 9)TestCases (26/33)
+## 9)TestCases (26/32)
 
 | Test Case Identifier                          | Affected Field                                       | Test Case Description   | isBug |
 |-----------------------------------------------|------------------------------------------------------|-------------------------|-------|
@@ -445,7 +445,7 @@ The system should accurately distinguish between legitimate configuration issues
 
 ---
 
-## 10)TestCases (27/33)
+## 10)TestCases (29/32)
 | Unique Identifier                      | Alarm Status | Test Case Description                                                               |
 |----------------------------------------|--------------|-------------------------------------------------------------------------------------|
 | `3561c18ad74c6c5c263abe7ce6b12e78`     | TRUE         | Failed attempt recovering to seed state - system state diff                         |
@@ -482,3 +482,28 @@ Given that the differential oracle's purpose is to ensure the system can revert 
 - **Review and Adjustment of Recovery Procedures:** Examine the recovery process to identify why the system failed to revert to the exact seed state and implement adjustments as necessary.
 - **Detailed Analysis of State Differences:** Conduct a thorough analysis of the differences detected by the differential oracle to determine their significance and potential impact on the system.
 - **Enhancement of Differential Oracle Logic:** Refine the oracle's logic to distinguish between critical state differences that affect functionality and non-critical discrepancies that do not impede operational capabilities.
+
+---
+
+## 11)TestCases (31/32)
+| Unique Identifier                      | Alarm Status | Test Case Description                                                               | Log Availability  |
+|----------------------------------------|--------------|-------------------------------------------------------------------------------------|-------------------|
+| `74bd14d94d705a5fee6f05920353dbe8/0000` | TRUE         | Failed attempt recovering to seed state - system state diff                         | Not Available     |
+| `acbdce8a2442b12d59ada515d659687a/0000` | TRUE         | Failed attempt recovering to seed state - system state diff                         | Not Available     |
+
+## What happened
+
+**Overview:**  
+Alarms were triggered for two test cases due to a failed attempt at reverting the system back to its seed state, as indicated by differences in the system state. These alarms suggest potential discrepancies or anomalies following test executions.
+
+**Challenge in Analysis:**  
+For both instances, the logs that would typically provide insight into the nature of the state differences and potential reasons for the failure to recover to the seed state are not available. This lack of data complicates the analysis and understanding of each case's specifics.
+
+## Analysis
+
+Without access to the relevant logs, it's challenging to perform a detailed analysis to understand why the system could not revert to its initial state. The absence of logs also means that determining the impact of these discrepancies on the system's functionality or reliability is not straightforward.
+
+## Expected Behavior
+
+Ideally, the system should be able to revert to its seed state after test executions to ensure consistency and reliability. Additionally, logs should be accessible and available to provide necessary details for analysis whenever alarms are raised.
+
