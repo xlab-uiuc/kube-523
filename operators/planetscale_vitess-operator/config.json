@@ -3,24 +3,12 @@
         "steps": [
             {
                 "apply": {
-                    "file": "/users/syc113/acto/namespaces.yaml"
-                }
-            },
-            {
-                "wait": {
-                    "duration": 10
-                }
-            },
-            {
-                "apply": {
                     "file": "/users/syc113/acto/operator.yaml",
-                    "namespace": "vitess-operator",
                     "operator": true
                 }
             }
-        ]
-    },
-
+	]    
+    },	
     "crd_name": "vitessclusters.planetscale.com",
     "seed_custom_resource":"/users/syc113/acto/seed_cr.yaml"
 }
