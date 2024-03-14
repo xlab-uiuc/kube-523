@@ -223,6 +223,13 @@ The schema of the runtime result is defined at [acto/result.py](https://github.
 - `custom`: result of custom oracles, defined by users
 - `differential`: if the recovery step is successful after the error state
 
+### Post Differetial Test Results
+In the `result.csv`, you may find that some alarms’ `testcase` column is a hash. This means that this alarm is from a postrun differential test, and the alarm is raised by the differential oracle. These alarms are raised by comparing two system states produced by the same CR input. To inspect these alarms, you can take a look at the `Differential` column of the alarm to figure out which two steps are being compared.
+
+The raw alarm file can be found in the `post_diff_test` directory under the `testrun-{}` directory. You should be able to find a list of files named as `compare-results-{HASH}.json` . The `compare-results-{HASH}.json` file contains a list of alarms corresponding to the same input (the hash is in fact computed based on the input CR). Inside each alarm, you can find the computed delta between the two system states, along with the two system states being compared.
+
+The difference in the system states on the same CR is usually caused by different previous existing system state. You can diagnose the alarms by figuring out what is the previous system state, and how does the operator behave differently under different existing system state.
+
 ### 3.1 Gathering Test Results
 
 After Acto finishes all the tests, you can use the following script to collect all the test results into a .csv file and inspect them in Google Sheet.
