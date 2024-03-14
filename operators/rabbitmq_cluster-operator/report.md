@@ -92,7 +92,7 @@ Misoperation
 
 **Root Cause**
 
-same as Alarm 7
+same as Alarm 6
 
 **ALARM 8**
 
@@ -104,7 +104,7 @@ Misoperation
 
 **Root Cause**
 
-Same as Alarm 7
+Same as Alarm 6
 
 **ALARM 9**
 
@@ -116,7 +116,7 @@ Misoperation
 
 **Root Cause**
 
-Same as Alarm 7
+Same as Alarm 6
 
 **ALARM 10**
 
@@ -128,7 +128,7 @@ Misoperation
 
 **Root Cause**
 
-Same as Alarm 7
+Same as Alarm 6
 
 **ALARM 11**
 
