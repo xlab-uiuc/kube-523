@@ -80,7 +80,7 @@ Misoperation
 
 **Root Cause**
 
-"Container image \"rabbitmqoperator/cluster-operator:2.7.0\" already present on machine" This shows that it tried to construct a container already onb the machine.
+"Container image \"rabbitmqoperator/cluster-operator:2.7.0\" already present on machine" This shows that it tried to construct a container already on the machine.
 
 **ALARM 7**
 
@@ -131,4 +131,74 @@ Misoperation
 Same as Alarm 6
 
 **ALARM 11**
+
+trial-00-0009/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 12**
+
+trial-00-0011/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 13**
+
+trial-00-0012/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 14**
+
+trial-00-0013/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 15**
+
+trial-00-0014/0008
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 16**
+
+trial-00-0016/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
 
