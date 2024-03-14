@@ -1,0 +1,195 @@
+apiVersion: apps.kubeblocks.io/v1alpha1
+kind: Cluster
+metadata:
+  creationTimestamp: "2024-02-05T23:39:32Z"
+  finalizers:
+  - cluster.kubeblocks.io/finalizer
+  generation: 1
+  labels:
+    clusterdefinition.kubeblocks.io/name: pulsar
+    clusterversion.kubeblocks.io/name: pulsar-2.11.2
+  name: rose90
+  namespace: default
+  resourceVersion: "37411"
+  uid: 632e7cc5-496a-4014-b008-d291070074e6
+spec:
+  affinity:
+    podAntiAffinity: Preferred
+    tenancy: SharedNode
+  clusterDefinitionRef: pulsar
+  clusterVersionRef: pulsar-2.11.2
+  componentSpecs:
+  - componentDefRef: pulsar-broker
+    monitor: false
+    name: pulsar-broker
+    noCreatePDB: false
+    replicas: 1
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: "1"
+        memory: 1Gi
+    rsmTransformPolicy: ToSts
+    serviceAccountName: kb-rose90
+    volumeClaimTemplates:
+    - name: data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+  - componentDefRef: pulsar-proxy
+    monitor: false
+    name: pulsar-proxy
+    noCreatePDB: false
+    replicas: 1
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: "1"
+        memory: 1Gi
+    rsmTransformPolicy: ToSts
+    serviceAccountName: kb-rose90
+    volumeClaimTemplates:
+    - name: data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+  - componentDefRef: bookies
+    monitor: false
+    name: bookies
+    noCreatePDB: false
+    replicas: 1
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: "1"
+        memory: 1Gi
+    rsmTransformPolicy: ToSts
+    serviceAccountName: kb-rose90
+    volumeClaimTemplates:
+    - name: journal
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+    - name: ledgers
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+  - componentDefRef: bookies-recovery
+    monitor: false
+    name: bookies-recovery
+    noCreatePDB: false
+    replicas: 1
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: "1"
+        memory: 1Gi
+    rsmTransformPolicy: ToSts
+    serviceAccountName: kb-rose90
+    volumeClaimTemplates:
+    - name: data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+  - componentDefRef: zookeeper
+    monitor: false
+    name: zookeeper
+    noCreatePDB: false
+    replicas: 1
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: "1"
+        memory: 1Gi
+    rsmTransformPolicy: ToSts
+    serviceAccountName: kb-rose90
+    volumeClaimTemplates:
+    - name: data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+  monitor: {}
+  resources:
+    cpu: "0"
+    memory: "0"
+  storage:
+    size: "0"
+  terminationPolicy: Delete
+status:
+  clusterDefGeneration: 2
+  components:
+    bookies:
+      phase: Updating
+      podsReady: false
+      podsReadyTime: "2024-02-14T20:20:47Z"
+    bookies-recovery:
+      phase: Running
+      podsReady: true
+      podsReadyTime: "2024-02-15T00:53:07Z"
+    pulsar-broker:
+      phase: Updating
+      podsReady: false
+      podsReadyTime: "2024-02-14T20:21:28Z"
+    pulsar-proxy:
+      phase: Updating
+      podsReady: false
+      podsReadyTime: "2024-02-14T20:21:59Z"
+    zookeeper:
+      phase: Running
+      podsReady: true
+      podsReadyTime: "2024-02-05T23:40:50Z"
+  conditions:
+  - lastTransitionTime: "2024-02-05T23:39:32Z"
+    message: 'The operator has started the provisioning of Cluster: rose90'
+    observedGeneration: 1
+    reason: PreCheckSucceed
+    status: "True"
+    type: ProvisioningStarted
+  - lastTransitionTime: "2024-02-05T23:39:32Z"
+    message: Successfully applied for resources
+    observedGeneration: 1
+    reason: ApplyResourcesSucceed
+    status: "True"
+    type: ApplyResources
+  - lastTransitionTime: "2024-02-15T00:52:58Z"
+    message: 'pods are not ready in Components: [bookies pulsar-broker pulsar-proxy],
+      refer to related component message in Cluster.status.components'
+    reason: ReplicasNotReady
+    status: "False"
+    type: ReplicasReady
+  - lastTransitionTime: "2024-02-15T00:52:58Z"
+    message: 'pods are unavailable in Components: [bookies pulsar-broker pulsar-proxy],
+      refer to related component message in Cluster.status.components'
+    reason: ComponentsNotReady
+    status: "False"
+    type: Ready
+  observedGeneration: 1
+  phase: Updating

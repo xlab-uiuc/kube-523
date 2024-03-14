@@ -1,0 +1,1157 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: flinkapplications.flink.k8s.io
+  annotations:
+    api-approved.kubernetes.io: "unapproved" # External validation or compliance annotation.
+spec:
+  group: flink.k8s.io # Application-specific resource group.
+  names:
+    kind: FlinkApplication # The kind of the Kubernetes resource, application-specific.
+    listKind: FlinkApplicationList # List kind for the resource, application-specific.
+    plural: flinkapplications # Plural name of the resource, application-specific.
+    singular: flinkapplication # Singular name of the resource, application-specific.
+    shortNames:
+      - flinkapp # Short name for easier CLI usage, application-specific.
+  scope: Namespaced # Determines the scope as namespace-level, Kubernetes core configuration.
+  versions:
+    - name: v1beta1 # Version of the CRD, application-specific.
+      served: true # Whether this version is served, Kubernetes core configuration.
+      storage: true # Whether this version is stored, Kubernetes core configuration.
+      subresources:
+        status: {} # Enables the status subresource, Kubernetes core configuration.
+      additionalPrinterColumns:
+        # Custom columns for CLI output, aiding in operational and health monitoring.
+        - name: Phase
+          type: string
+          description: The current state machine phase for this FlinkApplication
+          jsonPath: .status.phase
+        - name: Cluster Health
+          type: string
+          description: The health of the Flink cluster
+          jsonPath: .status.clusterStatus.health
+        - name: Job Health
+          type: string
+          description: The health of the Flink job
+          jsonPath: .status.jobStatus.health
+        - name: Healthy TMs
+          type: string
+          jsonPath: ".status.clusterStatus.healthyTaskManagers"
+          priority: 1
+        - name: Total TMs
+          type: string
+          jsonPath: ".status.clusterStatus.numberOfTaskManagers"
+          priority: 1
+        - name: Job Restarts
+          type: integer
+          description: Number of times the job has restarted
+          jsonPath: .status.jobStatus.jobRestartCount
+        - name: Age
+          type: date
+          jsonPath: .metadata.creationTimestamp
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+              properties:
+                phase:
+                  type: string
+                reason:
+                  type: string
+                failedDeployHash:
+                  type: string
+                rollbackHash:
+                  type: string
+                deployHash:
+                  type: string
+                retryCount:
+                  type: integer
+                startedAt:
+                  type: string
+                lastUpdatedAt:
+                  type: string
+                savepointTriggerId:
+                  type: string
+                savepointPath:
+                  type: string
+                clusterStatus:
+                  type: object
+                  properties:
+                    clusterOverviewURL:
+                      type: string
+                    numberOfTaskManagers:
+                      type: integer
+                    healthyTaskManagers:
+                      type: integer
+                    numberOfTaskSlots:
+                      type: integer
+                    availableTaskSlots:
+                      type: integer
+                    health:
+                      type: string
+                jobStatus:
+                  type: object
+                  properties:
+                    jobOverviewURL:
+                      type: string
+                    jobID:
+                      type: string
+                    health:
+                      type: string
+                    state:
+                      type: string
+                    jarName:
+                      type: string
+                    parallelism:
+                      type: integer
+                    entryClass:
+                      type: string
+                    programArgs:
+                      type: string
+                    allowNonRestoredState:
+                      type: boolean
+                    startTime:
+                      type: string
+                    jobRestartCount:
+                      type: integer
+                    completedCheckpointCount:
+                      type: integer
+                    failedCheckpointCount:
+                      type: integer
+                    restorePath:
+                      type: string
+                    restoreTime:
+                      type: string
+                    lastFailingTime:
+                      type: string
+                      nullable: true
+                    lastCheckpoint:
+                      type: string
+                    lastCheckpointTime:
+                      type: string
+                      nullable: true
+                    runningTasks:
+                      type: integer
+                    totalTasks:
+                      type: integer
+                lastSeenError:
+                  type: object
+                  properties:
+                    appError:
+                      type: string
+                    method:
+                      type: string
+                    errorCode:
+                      type: string
+                    isRetryable:
+                      type: boolean
+                    isFailFast:
+                      type: boolean
+                    maxRetries:
+                      type: integer
+            spec:
+              # Application-Specific Configuration: Defines how the Flink application is deployed and managed.
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+              properties:
+                # Image and pulling policy to ensure rolling pod update and minimum downtime.
+                image: # The Docker image for the Flink job.
+                  type: string
+                imagePullPolicy: # Kubernetes core configuration affecting how images are pulled.
+                  type: string
+                  enum: [Always, Never, IfNotPresent]
+                imagePullSecrets: # Kubernetes core, for pulling images from private registries.
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                # Permissions to Flink applications.
+                # Account settings are linked to pods.
+                serviceAccountName: # Kubernetes core, specifies the service account for the application.
+                  type: string
+                # Apply to new pods, and existing pods needs recreation.
+                securityContext: # Kubernetes core, security settings for the application pods.
+                  type: object
+                  properties:
+                    fsGroup:
+                      type: integer
+                      minimum: 1
+                      maximum: 65535
+                    runAsGroup:
+                      type: integer
+                      minimum: 1
+                      maximum: 65535
+                    runAsNonRoot:
+                      type: boolean
+                    runAsUser:
+                      type: integer
+                      minimum: 1
+                      maximum: 65535
+                    supplementalGroups:
+                      type: array
+                      items:
+                        type: integer
+                        minimum: 1
+                        maximum: 65535
+                    sysctls:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          value:
+                            type: string
+                # Jar file, entry class, arguments: Flink job characteristics.
+                jarName: # Application-specific, the Flink job jar filename.
+                  type: string
+                programArgs: # Application-specific, arguments passed to the Flink program.
+                  type: string
+                entryClass: # Application-specific, the entry class for the Flink job.
+                  type: string
+                # How flink versions are updated?
+                flinkVersion: # Application-specific, version of Flink used by the application.
+                  type: string
+                # Mannually trigger a restart of the application
+                restartNonce: # Operational, a unique value to trigger restarts without changing the spec.
+                  type: string
+                # Managed by the Operator.
+                parallelism: # Application-specific, controls the parallelism level of the Flink job.
+                  type: integer
+                  minimum: 1 # At least 1 process/node/container at a time!
+                # How the application is deleted. Savepoint? Cleanup?
+                deleteMode: # Operational, defines the behavior when the FlinkApplication is deleted.
+                  type: string
+                  enum: [Savepoint, None, ForceCancel]
+                # Updates and scaling operations.
+                scaleMode: # Application-specific, determines scaling strategy (e.g., stateless or stateful).
+                  type: string
+                  enum: [NewCluster, InPlace]
+                allowNonRestoredState: # Application-specific, allows running jobs with non-restored state.
+                  type: boolean
+                deploymentMode: # Application-specific, defines how the application is deployed (e.g., blue/green).
+                  type: string
+                  enum: [Dual, BlueGreen]
+                # Networking, ports for various Flink interfaces; communications within the Flink cluster.
+                rpcPort:
+                  type: integer
+                  minimum: 1
+                  maximum: 65535
+                blobPort:
+                  type: integer
+                  minimum: 1
+                  maximum: 65535
+                queryPort:
+                  type: integer
+                  minimum: 1
+                  maximum: 65535
+                metricsQueryPort:
+                  type: integer
+                  minimum: 1
+                  maximum: 65535
+                # Change job behavior, performance, and compatibility.
+                flinkConfig: # Application-specific, custom Flink configuration parameters.
+                  type: object
+                  additionalProperties:
+                    type: string
+                # Savepoint characteristics.
+                savepointInfo: # State management, configurations related to Flink savepoints.
+                  type: object
+                  properties:
+                    savepointLocation:
+                      type: string
+                savepointPath:
+                  type: string
+                savepointDisabled:
+                  type: boolean
+                maxCheckpointRestoreAgeSeconds:
+                  type: integer
+                  minimum: 1
+                fallbackWithoutState:
+                  type: boolean
+                # Resource allocation, scaling, and performance of the Flink application.
+                jobManagerConfig: # Cluster configuration, specific settings for the Flink JobManager component.
+                  type: object
+                  properties:
+                    # Defines replicas, memory, CPU settings, and more...
+                    replicas:
+                      type: integer
+                      minimum: 1
+                    offHeapMemoryFraction:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    systemMemoryFraction:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    nodeSelector:
+                      type: object
+                      properties:
+                        additionalProperties:
+                          type: string
+                      x-kubernetes-preserve-unknown-fields: true
+                    tolerations:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          key:
+                            type: string
+                          operator:
+                            type: string
+                          tolerationSeconds:
+                            type: integer
+                            format: int64
+                          value:
+                            type: string
+                    affinity:
+                      properties:
+                        nodeAffinity:
+                          properties:
+                            preferredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  preference:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchFields:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                    type: object
+                                  weight:
+                                    format: int32
+                                    type: integer
+                                required:
+                                  - preference
+                                  - weight
+                                type: object
+                              type: array
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              properties:
+                                nodeSelectorTerms:
+                                  items:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchFields:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                    type: object
+                                  type: array
+                              required:
+                                - nodeSelectorTerms
+                              type: object
+                          type: object
+                        podAffinity:
+                          properties:
+                            preferredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  podAffinityTerm:
+                                    properties:
+                                      labelSelector:
+                                        properties:
+                                          matchExpressions:
+                                            items:
+                                              properties:
+                                                key:
+                                                  type: string
+                                                  x-kubernetes-patch-strategy: merge
+                                                  x-kubernetes-patch-merge-key: key
+                                                operator:
+                                                  type: string
+                                                values:
+                                                  items:
+                                                    type: string
+                                                  type: array
+                                              required:
+                                                - key
+                                                - operator
+                                              type: object
+                                            type: array
+                                          matchLabels:
+                                            additionalProperties:
+                                              type: string
+                                            type: object
+                                        type: object
+                                      namespaces:
+                                        items:
+                                          type: string
+                                        type: array
+                                      topologyKey:
+                                        type: string
+                                    required:
+                                      - topologyKey
+                                    type: object
+                                  weight:
+                                    format: int32
+                                    type: integer
+                                required:
+                                  - podAffinityTerm
+                                  - weight
+                                type: object
+                              type: array
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  labelSelector:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                              x-kubernetes-patch-strategy: merge
+                                              x-kubernetes-patch-merge-key: key
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchLabels:
+                                        additionalProperties:
+                                          type: string
+                                        type: object
+                                    type: object
+                                  namespaces:
+                                    items:
+                                      type: string
+                                    type: array
+                                  topologyKey:
+                                    type: string
+                                required:
+                                  - topologyKey
+                                type: object
+                              type: array
+                          type: object
+                        podAntiAffinity:
+                          properties:
+                            preferredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  podAffinityTerm:
+                                    properties:
+                                      labelSelector:
+                                        properties:
+                                          matchExpressions:
+                                            items:
+                                              properties:
+                                                key:
+                                                  type: string
+                                                  x-kubernetes-patch-strategy: merge
+                                                  x-kubernetes-patch-merge-key: key
+                                                operator:
+                                                  type: string
+                                                values:
+                                                  items:
+                                                    type: string
+                                                  type: array
+                                              required:
+                                                - key
+                                                - operator
+                                              type: object
+                                            type: array
+                                          matchLabels:
+                                            additionalProperties:
+                                              type: string
+                                            type: object
+                                        type: object
+                                      namespaces:
+                                        items:
+                                          type: string
+                                        type: array
+                                      topologyKey:
+                                        type: string
+                                    required:
+                                      - topologyKey
+                                    type: object
+                                  weight:
+                                    format: int32
+                                    type: integer
+                                required:
+                                  - podAffinityTerm
+                                  - weight
+                                type: object
+                              type: array
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  labelSelector:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                              x-kubernetes-patch-strategy: merge
+                                              x-kubernetes-patch-merge-key: key
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchLabels:
+                                        additionalProperties:
+                                          type: string
+                                        type: object
+                                    type: object
+                                  namespaces:
+                                    items:
+                                      type: string
+                                    type: array
+                                  topologyKey:
+                                    type: string
+                                required:
+                                  - topologyKey
+                                type: object
+                              type: array
+                          type: object
+                      type: object
+                    envConfig:
+                      type: object
+                      properties:
+                        env:
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              value:
+                                type: string
+                              valueFrom:
+                                properties:
+                                  configMapKeyRef:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                      - key
+                                    type: object
+                                  fieldRef:
+                                    properties:
+                                      apiVersion:
+                                        type: string
+                                      fieldPath:
+                                        type: string
+                                    required:
+                                      - fieldPath
+                                    type: object
+                                  resourceFieldRef:
+                                    properties:
+                                      containerName:
+                                        type: string
+                                      divisor:
+                                        type: string
+                                      resource:
+                                        type: string
+                                    required:
+                                      - resource
+                                    type: object
+                                  secretKeyRef:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                      - key
+                                    type: object
+                                type: object
+                            required:
+                              - name
+                            type: object
+                          type: array
+                        envFrom:
+                          items:
+                            properties:
+                              configMapRef:
+                                properties:
+                                  name:
+                                    type: string
+                                  optional:
+                                    type: boolean
+                                type: object
+                              prefix:
+                                type: string
+                              secretRef:
+                                properties:
+                                  name:
+                                    type: string
+                                  optional:
+                                    type: boolean
+                                type: object
+                            type: object
+                          type: array
+                    resources:
+                      type: object
+                      properties:
+                        requests:
+                          type: object
+                          properties:
+                            memory:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            cpu:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            ephemeral-storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                        limits:
+                          type: object
+                          properties:
+                            memory:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            cpu:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            ephemeral-storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                taskManagerConfig: # Cluster configuration, specific settings for the Flink TaskManager component.
+                  type: object
+                  properties:
+                     # Defines task slots, memory, CPU settings, and more...
+                    taskSlots:
+                      type: integer
+                      minimum: 1
+                    offHeapMemoryFraction:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    systemMemoryFraction:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    nodeSelector:
+                      type: object
+                      properties:
+                        additionalProperties:
+                          type: string
+                      x-kubernetes-preserve-unknown-fields: true
+                    tolerations:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          key:
+                            type: string
+                          operator:
+                            type: string
+
+                          tolerationSeconds:
+                            type: integer
+                            format: int64
+                          value:
+                            type: string
+                    affinity:
+                      # Set of rules to determine pod scheduling.
+                      # Controls how pods are scheduled and placed within the Kubernetes cluster.
+                      properties:
+                        nodeAffinity: # Schedules pods based on node labels and conditions.
+                          properties:
+                            preferredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  preference:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchFields:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                    type: object
+                                  weight:
+                                    format: int32
+                                    type: integer
+                                required:
+                                  - preference
+                                  - weight
+                                type: object
+                              type: array
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              properties:
+                                nodeSelectorTerms:
+                                  items:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchFields:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                    type: object
+                                  type: array
+                              required:
+                                - nodeSelectorTerms
+                              type: object
+                          type: object
+                        podAffinity: # Ensures pods are co-located in the same node or zone based on labels.
+                          properties:
+                            preferredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  podAffinityTerm:
+                                    properties:
+                                      labelSelector:
+                                        properties:
+                                          matchExpressions:
+                                            items:
+                                              properties:
+                                                key:
+                                                  type: string
+                                                  x-kubernetes-patch-strategy: merge
+                                                  x-kubernetes-patch-merge-key: key
+                                                operator:
+                                                  type: string
+                                                values:
+                                                  items:
+                                                    type: string
+                                                  type: array
+                                              required:
+                                                - key
+                                                - operator
+                                              type: object
+                                            type: array
+                                          matchLabels:
+                                            additionalProperties:
+                                              type: string
+                                            type: object
+                                        type: object
+                                      namespaces:
+                                        items:
+                                          type: string
+                                        type: array
+                                      topologyKey:
+                                        type: string
+                                    required:
+                                      - topologyKey
+                                    type: object
+                                  weight:
+                                    format: int32
+                                    type: integer
+                                required:
+                                  - podAffinityTerm
+                                  - weight
+                                type: object
+                              type: array
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  labelSelector:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                              x-kubernetes-patch-strategy: merge
+                                              x-kubernetes-patch-merge-key: key
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchLabels:
+                                        additionalProperties:
+                                          type: string
+                                        type: object
+                                    type: object
+                                  namespaces:
+                                    items:
+                                      type: string
+                                    type: array
+                                  topologyKey:
+                                    type: string
+                                required:
+                                  - topologyKey
+                                type: object
+                              type: array
+                          type: object
+                        podAntiAffinity: # Ensures pods are not co-located on the same node or zone based on labels.
+                          properties:
+                            preferredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  podAffinityTerm:
+                                    properties:
+                                      labelSelector:
+                                        properties:
+                                          matchExpressions:
+                                            items:
+                                              properties:
+                                                key:
+                                                  type: string
+                                                  x-kubernetes-patch-strategy: merge
+                                                  x-kubernetes-patch-merge-key: key
+                                                operator:
+                                                  type: string
+                                                values:
+                                                  items:
+                                                    type: string
+                                                  type: array
+                                              required:
+                                                - key
+                                                - operator
+                                              type: object
+                                            type: array
+                                          matchLabels:
+                                            additionalProperties:
+                                              type: string
+                                            type: object
+                                        type: object
+                                      namespaces:
+                                        items:
+                                          type: string
+                                        type: array
+                                      topologyKey:
+                                        type: string
+                                    required:
+                                      - topologyKey
+                                    type: object
+                                  weight:
+                                    format: int32
+                                    type: integer
+                                required:
+                                  - podAffinityTerm
+                                  - weight
+                                type: object
+                              type: array
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              items:
+                                properties:
+                                  labelSelector:
+                                    properties:
+                                      matchExpressions:
+                                        items:
+                                          properties:
+                                            key:
+                                              type: string
+                                              x-kubernetes-patch-strategy: merge
+                                              x-kubernetes-patch-merge-key: key
+                                            operator:
+                                              type: string
+                                            values:
+                                              items:
+                                                type: string
+                                              type: array
+                                          required:
+                                            - key
+                                            - operator
+                                          type: object
+                                        type: array
+                                      matchLabels:
+                                        additionalProperties:
+                                          type: string
+                                        type: object
+                                    type: object
+                                  namespaces:
+                                    items:
+                                      type: string
+                                    type: array
+                                  topologyKey:
+                                    type: string
+                                required:
+                                  - topologyKey
+                                type: object
+                              type: array
+                          type: object
+                      type: object
+                    # Adjust the Flink Application behavior.
+                    envConfig: # Configuration for setting environment variables in Flink pods.
+                      type: object
+                      properties:
+                        env: # Defines individual environment variables.
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              value:
+                                type: string
+                              valueFrom: # Allows setting environment variables from other Kubernetes resources.
+                                properties:
+                                  configMapKeyRef:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                      - key
+                                    type: object
+                                  fieldRef:
+                                    properties:
+                                      apiVersion:
+                                        type: string
+                                      fieldPath:
+                                        type: string
+                                    required:
+                                      - fieldPath
+                                    type: object
+                                  resourceFieldRef:
+                                    properties:
+                                      containerName:
+                                        type: string
+                                      divisor:
+                                        type: string
+                                      resource:
+                                        type: string
+                                    required:
+                                      - resource
+                                    type: object
+                                  secretKeyRef:
+                                    properties:
+                                      key:
+                                        type: string
+                                      name:
+                                        type: string
+                                      optional:
+                                        type: boolean
+                                    required:
+                                      - key
+                                    type: object
+                                type: object
+                            required:
+                              - name
+                            type: object
+                          type: array
+                        envFrom: # Import all key-value pairs from a ConfigMap or Secret as environment variables.
+                          items:
+                            properties:
+                              configMapRef:
+                                properties:
+                                  name:
+                                    type: string
+                                  optional:
+                                    type: boolean
+                                type: object
+                              prefix:
+                                type: string
+                              secretRef:
+                                properties:
+                                  name:
+                                    type: string
+                                  optional:
+                                    type: boolean
+                                type: object
+                            type: object
+                          type: array
+                    # Define container characteristics.
+                    resources: # Define compute resource requirements (CPU, memory) for the Flink pods.
+                      type: object
+                      properties:
+                        requests: # Minimum resource required.
+                          type: object
+                          properties:
+                            memory:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            cpu:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            ephemeral-storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                        limits: # Maximum resources that the pod can use.
+                          type: object
+                          properties:
+                            memory:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            cpu:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                            ephemeral-storage:
+                              type: string
+                              pattern: ^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$
+                volumes: # Kubernetes core configuration for attaching storage to pods.
+                  type: array
+                  items:
+                    type: object
+                    x-kubernetes-preserve-unknown-fields: true
+                    properties:
+                      name:
+                        type: string
+                    required:
+                      - name
+                volumeMounts: # Kubernetes core configuration for mounting volumes into pods.
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      mountPath:
+                        type: string
+                      mountPropagation:
+                        type: string
+                      name:
+                        type: string
+                      readOnly:
+                        type: boolean
+                      subPath:
+                        type: string
+                      subPathExpr:
+                        type: string
+                    required:
+                      - name
+                      - mountPath
+              required:
+                - image
+                - jarName
+                - parallelism
+                - entryClass
