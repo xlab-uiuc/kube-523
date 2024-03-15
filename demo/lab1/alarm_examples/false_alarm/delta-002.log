@@ -1,0 +1,70 @@
+---------- INPUT DELTA  ----------
+{
+      "values_changed": {
+            "root['spec']['ephemeral']['emptydirvolumesource']['sizeLimit']": {
+                  "prev": "1Gi",
+                  "curr": "2Gi",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "ephemeral",
+                              "emptydirvolumesource",
+                              "sizeLimit"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {
+            "values_changed": {
+                  "root['test-cluster']['metadata']['labels']['owner-rv']": {
+                        "prev": "1049",
+                        "curr": "1123",
+                        "path": {
+                              "path": [
+                                    "test-cluster",
+                                    "metadata",
+                                    "labels",
+                                    "owner-rv"
+                              ]
+                        }
+                  }
+            }
+      },
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "values_changed": {
+                  "root['ephemeral']['emptydirvolumesource']['sizeLimit']": {
+                        "prev": "1Gi",
+                        "curr": "2Gi",
+                        "path": {
+                              "path": [
+                                    "ephemeral",
+                                    "emptydirvolumesource",
+                                    "sizeLimit"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}
