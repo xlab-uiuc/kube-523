@@ -873,3 +873,339 @@ Misoperation
 **Root Cause**
 
 Same as Alarm 6
+
+**ALARM 73**
+
+trial-00-0064/0004
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+The right kubernetes API was not specified.
+
+**ALARM 74**
+
+trial-00-0064/0005
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 75**
+
+trial-00-0064/0006
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 76**
+
+trial-00-0064/0007
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 77**
+
+trial-00-0065/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 78**
+
+trial-00-0065/0001
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 79**
+
+trial-00-0066/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 80**
+
+trial-00-0067/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 81**
+
+trial-00-0068/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 82**
+
+trial-00-0069/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 83**
+
+trial-00-0070/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 84**
+
+trial-00-0071/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 85**
+
+trial-00-0072/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 86**
+
+trial-00-0073/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 87**
+
+trial-00-0074/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 88**
+
+trial-00-0075/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 89**
+
+trial-00-0076/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 90**
+
+trial-00-0077/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 91**
+
+trial-00-0000/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 92**
+
+trial-00-0001/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 93**
+
+trial-00-0001/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 94**
+
+trial-00-0003/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 95**
+
+trial-00-0004/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 96**
+
+trial-00-0005/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 97**
+
+trial-00-0006/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 98**
+
+trial-00-0007/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 99**
+
+trial-00-0008/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
+
+**ALARM 100**
+
+trial-00-0009/0000
+
+**Categorization**
+
+False Alarm
+
+**Root Cause**
+
+Same as alarm 73
