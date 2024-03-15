@@ -1,0 +1,9 @@
+# True Alarm Report
+
+## Bug before running acto
+
+After the operator is deployed, we need to deploy the Seed_cr file. First etcd will be deployed, and then [vtadmin](https://vitess.io/docs/16.0/reference/vtadmin/), [vtctld]([The Vitess Docs | vtctld](https://vitess.io/docs/17.0/reference/programs/vtctld/)) and [vtgate]([The Vitess Docs | VTGate](https://vitess.io/docs/17.0/concepts/vtgate/)) will be deployed. Their functions are the management interface of the Vitess cluster respectively. This is the topology service of the Vitess cluster and the gateway of the Vitess cluster. Serve. Because they need to rely on etcd's unified storage system to implement functions, and when etcd was deployed, 'apply request took too long' and 'read-only range' warnings appeared in the log. Although the startup was successful in the end, it consumed a lot of time. This is As a result, vtadmin, vtctld and vtgate were unable to connect to etcd in the log before successful deployment, and they kept restarting. I think the connection waiting time of the latter three is too short (perhaps because deploying vitess requires larger equipment), that is, vtadmin, vtctld and vtgate do not wait for etcd deployment at all when deployed, but are deployed at the same time as etcd. Once etcd is deployed, If the time is too long, the latter three will keep restarting.
+
+## Cause
+
+The crash of the test-cluster-vttablet-zone1-0790125915-7ca27da0 Pod can be attributed to persistent storage issues. Specifically, there was a failure in mounting the required persistent volume within the Pod. This failure might stem from various factors such as storage system failures, permission conflicts, resource constraints, or network connectivity issues between the Pod and the storage backend. To resolve this issue, a thorough investigation focusing on the persistent storage configuration and its connectivity with the Pod is necessary.
