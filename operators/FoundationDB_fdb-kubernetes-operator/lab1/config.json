@@ -1,0 +1,44 @@
+{
+    "deploy": {
+        "steps": [
+            {
+                "apply": {
+                    "file": "data/fdb-operator/apps.foundationdb.org_foundationdbclusters.yaml"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "data/fdb-operator/apps.foundationdb.org_foundationdbbackups.yaml"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "data/fdb-operator/apps.foundationdb.org_foundationdbrestores.yaml"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "data/fdb-operator/deployment.yaml",
+		            "operator": true
+                }
+            }
+        ]
+    },
+    "crd_name": "foundationdbclusters.apps.foundationdb.org",
+    "seed_custom_resource": "data/fdb-operator/cluster.yaml"
+}
