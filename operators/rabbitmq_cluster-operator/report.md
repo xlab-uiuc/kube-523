@@ -202,3 +202,674 @@ Misoperation
 
 Same as Alarm 6
 
+**ALARM 17**
+
+trial-00-0017/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 18**
+
+trial-00-0018/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 19**
+
+trial-00-0019/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 20**
+
+trial-00-0019/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 21**
+
+trial-00-0019/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 22**
+
+trial-00-0020/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 23**
+
+trial-00-0020/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 24**
+
+trial-00-0021/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 25**
+
+trial-00-0021/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 26**
+
+trial-00-0023/0005
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 27**
+
+trial-00-0024/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 28**
+
+trial-00-0025/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 29**
+
+trial-00-0027/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 30**
+
+trial-00-0028/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 31**
+
+trial-00-0029/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 32**
+
+trial-00-0030/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 33**
+
+trial-00-0031/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 34**
+
+trial-00-0032/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 35**
+
+trial-00-0034/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 36**
+
+trial-00-0035/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 37**
+
+trial-00-0036/0006
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 38**
+
+trial-00-0038/0006
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 39**
+
+trial-00-0039/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 40**
+
+trial-00-0040/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 41**
+
+trial-00-0042/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 42**
+
+trial-00-0043/0006
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 43**
+
+trial-00-0045/0005
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 44**
+
+trial-00-0046/0007
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 45**
+
+trial-00-0047/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 46**
+
+trial-00-0049/0004
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 47**
+
+trial-00-0050/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 48**
+
+trial-00-0051/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 49**
+
+trial-00-0052/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 50**
+
+trial-00-0053/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 51**
+
+trial-00-0055/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 52**
+
+trial-00-0056/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 53**
+
+trial-00-0056/0004
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 54**
+
+trial-00-0057/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 55**
+
+trial-00-0057/0005
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 56**
+
+trial-00-0059/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 57**
+
+trial-00-0060/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 58**
+
+trial-00-0061/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 59**
+
+trial-00-0062/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 60**
+
+trial-00-0063/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 61**
+
+trial-00-0065/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 62**
+
+trial-00-0066/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 63**
+
+trial-00-0067/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 64**
+
+trial-00-0068/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 65**
+
+trial-00-0069/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 66**
+
+trial-00-0070/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 67**
+
+trial-00-0071/0003
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 68**
+
+trial-00-0073/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 69**
+
+trial-00-0074/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 70**
+
+trial-00-0075/0001
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 71**
+
+trial-00-0076/0002
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
+
+**ALARM 72**
+
+trial-00-0000/0005
+
+**Categorization**
+
+Misoperation
+
+**Root Cause**
+
+Same as Alarm 6
