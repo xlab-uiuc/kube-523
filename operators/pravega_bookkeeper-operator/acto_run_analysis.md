@@ -10,7 +10,7 @@ operator: [bookkeeper-operator](https://github.com/pravega/bookkeeper-operator?t
 
 ### Consistency Alarms
 - Total True Alarms: 21
-- Analyzed Alarms: 18
+- Analyzed Alarms: 21
 
 ### Differential Alarms
 - Total True Alarms: 38
@@ -107,6 +107,17 @@ func (s *Probes) withDefaults() (changed bool) {
     return changed;
 }
 ```
+
+## Incorrect acto behaviour 
+- `trial-04-0000/0002`
+- `trial-04-0009/0006`
+- `trial-04-0010/0003`
+
+### What happened
+In these test cases, acto tries to modify the `storageClassName` sub property for the PVCs used by bookkeeper. However, actos behaviour is not consistent with the logs. For example, acto tries to add ACTOKEY as a storage class name, and when viewing the system state clearly there is no change that reflects this, however none of actos oracles raise an alarm. Later when removing this ACTOKEY and modifying it to `''`, acto correctly raises an alarm that no corresponding state change exists. 
+
+In either case, these testcases are misoperations as changing the storage class name to something that does not exist is not okay. However, setting the storage class name as an empty string is a valid operation as in such a case the default storage class will be picked. 
+
 
 ## False Differential Alarms Type 1
 - `071a184e0a9b9b0ad9013bb830799308/0000`
