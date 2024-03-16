@@ -1,0 +1,107 @@
+# The following example is minimalist. The security policies
+# and resource specifications are not meant to be used in production.
+# Please refer to the operator documentation for recommendations on
+# production settings.
+apiVersion: planetscale.com/v2
+kind: VitessCluster
+metadata:
+  name: test-cluster
+spec:
+  images:
+    vtctld: vitess/lite:latest
+    vtadmin: vitess/vtadmin:latest
+    vtgate: vitess/lite:latest
+    vttablet: vitess/lite:latest
+    vtorc: vitess/lite:latest
+    mysqld:
+      mysql80Compatible: mysql:8.0.30
+    mysqldExporter: prom/mysqld-exporter:v0.11.0
+  cells:
+  - name: zone1
+    gateway:
+      authentication:
+        static:
+          secret:
+            name: example-cluster-config
+            key: users.json
+      replicas: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          memory: 256Mi
+  vitessDashboard:
+    cells:
+    - zone1
+    extraFlags:
+      security_policy: read-only
+    replicas: 1
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+  vtadmin:
+    rbac:
+      name: example-cluster-config
+      key: rbac.yaml
+    cells:
+      - zone1
+    apiAddresses:
+      - http://localhost:14001
+    replicas: 1
+    readOnly: false
+    apiResources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    webResources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  keyspaces:
+  - name: commerce
+    durabilityPolicy: semi_sync
+    turndownPolicy: Immediate
+    partitionings:
+    - equal:
+        parts: 1
+        shardTemplate:
+          databaseInitScriptSecret:
+            name: example-cluster-config
+            key: init_db.sql
+          tabletPools:
+          - cell: zone1
+            type: replica
+            replicas: 3
+            vttablet:
+              extraFlags:
+                disable_active_reparents: "true"
+                db_charset: utf8mb4
+              resources:
+                limits:
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+            mysqld:
+              resources:
+                limits:
+                  memory: 1024Mi
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+            dataVolumeClaimTemplate:
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 1Gi
+  updateStrategy:
+    type: Immediate
