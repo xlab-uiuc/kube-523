@@ -1,0 +1,48 @@
+---
+# Source: commons-operator/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commons-operator-deployment
+  labels:
+    helm.sh/chart: commons-operator-23.11.0
+    app.kubernetes.io/name: commons-operator
+    app.kubernetes.io/instance: commons-operator
+    app.kubernetes.io/version: "23.11.0"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: commons-operator
+      app.kubernetes.io/instance: commons-operator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: commons-operator
+        app.kubernetes.io/instance: commons-operator
+    spec:
+      serviceAccountName: commons-operator-serviceaccount
+      securityContext:
+        {}
+      containers:
+        - name: commons-operator
+          securityContext:
+            {}
+          image: "docker.stackable.tech/stackable/commons-operator:23.11.0"
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 200m
+              memory: 1024Mi
+            requests:
+              cpu: 200m
+              memory: 1024Mi
+          volumeMounts:
+            - mountPath: /etc/stackable/commons-operator/config-spec
+              name: config-spec
+      volumes:
+        - name: config-spec
+          configMap:
+            name: commons-operator-configmap
