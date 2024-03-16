@@ -114,7 +114,7 @@ func (s *Probes) withDefaults() (changed bool) {
 - `trial-04-0010/0003`
 
 ### What happened
-In these test cases, acto tries to modify the `storageClassName` sub property for the PVCs used by bookkeeper. However, actos behaviour is not consistent with the logs. For example, acto tries to add ACTOKEY as a storage class name, and when viewing the system state clearly there is no change that reflects this, however none of actos oracles raise an alarm. Later when removing this ACTOKEY and modifying it to `''`, acto correctly raises an alarm that no corresponding state change exists. 
+In these test cases, acto tries to modify the `storageClassName` sub property for the PVCs used by bookkeeper. However, actos behaviour is not consistent with the logs. For example, acto tries to add ACTOKEY as a storage class name, and when viewing the system state clearly there is no change that reflects this, however none of actos oracles raise an alarm. Later when removing this ACTOKEY and modifying it to `''`, acto correctly raises an alarm that no corresponding state change exists. I will look into acto's code to see why this behaviour happens in the future.
 
 In either case, these testcases are misoperations as changing the storage class name to something that does not exist is not okay. However, setting the storage class name as an empty string is a valid operation as in such a case the default storage class will be picked. 
 
