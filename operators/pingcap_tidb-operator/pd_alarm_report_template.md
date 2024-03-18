@@ -114,4 +114,78 @@ During the attempt to scale the operator to overload levels the operator reachs 
 Changing the state to 1000 replicas causes a case were multiple writes are attempted `test-cluster-pd` causing an indeterminate state where two writers are present.
 
 ## Expected behavior?
-True alarm, some modifcation should be made to allow for only one writer to exist to modifying `test-cluster-pd`
+True alarm, some modification should be made to allow for only one writer to exist to modifying `test-cluster-pd`
+
+# Alarm 11
+
+## What happened 
+After inserting the `requiredDuringSchedulingIgnoredDuringExecution` in `podAffinity` a PD failover is caused marking the pod as unhealthy.
+
+## Root Cause
+After being put into an unhealthy state from the PD failover the pod attempted to correct the unhealthy pod but fail to find the pod contiously trying to upgrade.
+
+## Expected behavior?
+True alarm, some modification should be made to allow for a change in podAffinity member tags without the operater reaching an unreconcilable state.
+
+# Alarm 12
+
+## What happened 
+After inserting the `preferedDuringSchedulingIgnoredDuringExecution` in `podAntiAffinity` and then deleting the contents of `topologyKey` a PD failover is caused marking the pod as unhealthy.
+
+## Root Cause
+After being put into an unhealthy state from the PD failover the pod attempted to correct the unhealthy pod but fail to find the pod contiously trying to upgrade. The pod is initally elected leader but transfers leadership after trying to sync after updating with its new contents.
+
+## Expected behavior?
+True alarm, some modification should be made to allow for a change in podAntiAffinity member tags without the operater reaching an unreconcilable state.
+
+# Alarm 13 
+
+## What happened 
+After inserting the `requiredDuringSchedulingIgnoredDuringExecution` in `podAntiAffinity` and putting a random string for `namespace` a PD failover is caused marking the pod as unhealthy.
+
+## Root Cause
+After being put into an unhealthy state the pod becomes unselectable from the operator with a null label selector causing no pod matches.
+
+## Expected behavior?
+True alarm, some modification should be made to allow for a change in podAntiAffinity member tags without the operater reaching an unreconcilable state.
+
+# Alarm 14
+
+## What happened 
+After inserting the `requiredDuringSchedulingIgnoredDuringExecution` in `podAntiAffinity` and then deleting the contents of `namespace` a PD failover is caused marking the pod as unhealthy.
+
+## Root Cause
+After being put into an unhealthy state the pod becomes unselectable from the operator with a null label selector causing no pod matches.
+
+## Expected behavior?
+True alarm, some modification should be made to allow for a change in podAntiAffinity member tags without the operater reaching an unreconcilable state.
+
+# Alarm 15
+
+## What happened 
+After inserting the `requiredDuringSchedulingIgnoredDuringExecution` in `podAntiAffinity` and putting an empty string for `namespace` a PD failover is caused marking the pod as unhealthy.
+
+## Root Cause
+After being put into an unhealthy state the pod becomes unselectable from the operator with a null label selector causing no pod matches.
+
+## Expected behavior?
+True alarm, some modification should be made to allow for a change in podAntiAffinity member tags without the operater reaching an unreconcilable state.
+
+# Alarm 16
+
+## What happened 
+After inserting the `requiredDuringSchedulingIgnoredDuringExecution` in `podAffinity` and testing the deletion of an object a PD failover is caused.
+
+## Root Cause
+After being put into an unhealthy state from the PD failover the pod attempted to correct the unhealthy pod but fail to find the pod contiously trying to upgrade.
+
+## Expected behavior?
+True alarm, some modification should be made to allow for a change in podAffinity member tags without the operater reaching an unreconcilable state.
+
+
+
+
+
+
+
+
