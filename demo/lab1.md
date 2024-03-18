@@ -179,6 +179,25 @@ We do not expect you to debug Acto if it crashes. Please raise a question on Pia
 
 ## 3. Inspecting Acto’s Test Results
 
+### Regenerating the result.csv
+
+Previously there was a required manual step to specify the regular expressions for the non-deterministic property paths. If not done correctly, Acto’s differential oracle would produce many false alarms.
+
+Fortunately, Acto is splitted into multple phases, and they can be rerun independently. To rerun the differential oracle for the post processing steps, you just need to run the following command to remove the previous results and regenerate the new results:
+
+```bash
+git pull
+
+rm -f testrun-{}/post_diff_test/compare-results-*
+python3 -m acto.post_process.post_diff_test --config OPERATOR_CONFIG --num-workers 32 --testrun-dir TESTRUN_DIR --workdir {TESTRUN_DIR}/post_diff_test/ --checkonly
+```
+
+This command would take 5 mins to 30 mins to run.
+
+Afterwards, you can run the result collection script to generate the result.csv again.
+
+### Interpreting the Result
+
 Acto will first generate a test plan using the operator's CRD and the semantic information. The test plan is serialized at `testrun-cass/testplan.json` (You don't need to manually inspect the `testplan.json`, it is just to give an overview of the tests going to be run). Note that Acto does not run the tests according to the order in the `testplan.json`, the tests are run in a random order at runtime.
 
 Acto then constructs the number of Kubernetes clusters according to the `--num-workers` argument, and start to run tests. Tests are run in parallel in separate Kubernetes clusters. Under the `testrun-cass` directory, Acto creates directories `trial-XX-YYYY`. `XX` corresponds to the worker ID, i.e. `XX` ranges from `0` to `3` if there are 4 workers. `YYYY` starts from `0000`, and Acto increments `YYYY` every time it has to restart the cluster. This means every step inside the same `trial-xx-yyyy` directory runs in the same instance of Kubernetes cluster.
@@ -203,6 +222,13 @@ The schema of the runtime result is defined at [acto/result.py](https://github.
 - `operator_log`: if the log indicates invalid input
 - `custom`: result of custom oracles, defined by users
 - `differential`: if the recovery step is successful after the error state
+
+### Post Differetial Test Results
+In the `result.csv`, you may find that some alarms’ `testcase` column is a hash. This means that this alarm is from a postrun differential test, and the alarm is raised by the differential oracle. These alarms are raised by comparing two system states produced by the same CR input. To inspect these alarms, you can take a look at the `Differential` column of the alarm to figure out which two steps are being compared.
+
+The raw alarm file can be found in the `post_diff_test` directory under the `testrun-{}` directory. You should be able to find a list of files named as `compare-results-{HASH}.json` . The `compare-results-{HASH}.json` file contains a list of alarms corresponding to the same input (the hash is in fact computed based on the input CR). Inside each alarm, you can find the computed delta between the two system states, along with the two system states being compared.
+
+The difference in the system states on the same CR is usually caused by different previous existing system state. You can diagnose the alarms by figuring out what is the previous system state, and how does the operator behave differently under different existing system state.
 
 ### 3.1 Gathering Test Results
 
@@ -336,7 +362,7 @@ This alarm is thus a false alarm. The operator’s behavior is correct. It did n
 ## Deliverables
 
 1. Please finish testing the operator using Acto
-2. There would be many alarms produced by Acto, and you are expected to inspect at least 100 alarms, and write a report for them.
+2. There would be many alarms produced by Acto, and you are expected to inspect at least 100 alarms, and write a report for them. You can use the report template here: https://github.com/xlab-uiuc/kube-523/blob/main/demo/lab1/alarm_report_template.md
     1. For each alarm, you need to determine if this is a True alarm or False alarm
     2. Please describe what is the CR change introduced by Acto in this alarm, and what is the operator’s behavior
     3. If it is a false alarm, please explain why do you think it is a false alarm. Is Acto’s correctness assumption broken?
