@@ -835,9 +835,86 @@ False Alarm Sections, "False" in the "Alarm" column
 Type: Alarm False
 
 ### What happened
-No errors.
+Acto raised an alarm.
 
-### It seems that all "False" in the "Alarm" column are just normal execution with no errors.
+### Root cause
+No specific root cause. Acto raise this alarm when everything is working well.
+
+### Expected behavior
+Acto should not raise this alarm.
+
+### Alarms since 260 if they are "False" in the "Alarm" column, they are not alarms.
+
+### For all hashed Alarm False, no matter what trial and step, their system state cannot reconcile to seed state.
+
+### Alarm-2
+010c29fbb3ae04580f67e8f1ef3a5383/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 2 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the two other clusters should be acto launching more clusters concurrently to test the operator.
+
+### Alarm-3
+010c29fbb3ae04580f67e8f1ef3a5383/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 2 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the two other clusters should be acto launching more clusters concurrently to test the operator.
+
+### Alarm-4
+0179e2c3ba67a94ee677c92d321f51dd/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 5 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the five other clusters should be acto launching more clusters concurrently to test the operator.
+
+### Alarm-5
+01ac4a129e24c5a9389c46d8b6f74f66/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 5 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the three other clusters should be acto launching more clusters concurrently to test the operator.
+
+### No need to extend more on the hashed test cases.
+In all the hashed test cases, the previous or benchmark system state is the state with only one cluster, and the analyzed system state has several other clusters. The difference or un-recoverability is that the new clusters are not comparable to old clusters.
+This is because acto tries to launch a new cluster in each step of a test trial, which entails creating a new cluster. But acto does not delete the clusters created in the previous steps or generations. As a result, the system state is unable to reconcile to seed.
+Acto should have been able to delete the clusters created in each generation.
 
 There is an open question on how to improve the usability of Acto by grouping the duplicated alarms. Can you think of some features which can be used to determine if two alarms are duplicated?
 
