@@ -1,0 +1,35 @@
+{
+    "deploy": {
+        "steps": [
+            {
+                "apply": {
+                    "file": "zookeeper.yaml"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 5
+                }
+            },
+            {
+                "apply": {
+                    "file": "zk.yaml"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "crd.yaml",
+                    "operator": true,
+                    "operator_container_name": "manager"
+                }
+            }
+        ]
+    },
+    "crd_name": "kafkaclusters.kafka.banzaicloud.io",
+    "seed_custom_resource": "simplekafkacluster.yaml"
+}
