@@ -1,0 +1,72 @@
+---
+# Source: listener-operator/templates/controller-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listener-operator-controller-deployment
+  labels:
+    app.kubernetes.io/name: listener-operator
+    app.kubernetes.io/instance: listener-operator
+    app.kubernetes.io/version: "23.11.0"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/role: controller
+      app.kubernetes.io/name: listener-operator
+      app.kubernetes.io/instance: listener-operator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/role: controller
+        app.kubernetes.io/name: listener-operator
+        app.kubernetes.io/instance: listener-operator
+    spec:
+      serviceAccountName: listener-operator-serviceaccount
+      securityContext:
+        {}
+      containers:
+        - name: listener-operator
+          securityContext:
+            runAsUser: 0
+            seLinuxOptions:
+              type: spc_t
+          image: "docker.stackable.tech/stackable/listener-operator:23.11.0"
+          imagePullPolicy: IfNotPresent
+          resources:
+            
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          args:
+            - run
+            - controller
+          env:
+            - name: CSI_ENDPOINT
+              value: /csi/csi.sock
+          volumeMounts:
+            - name: csi
+              mountPath: /csi
+        - name: external-provisioner
+          image: "docker.stackable.tech/k8s/sig-storage/csi-provisioner:v3.1.0"
+          imagePullPolicy: IfNotPresent
+          resources:
+            
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          args:
+            - --csi-address=/csi/csi.sock
+            - --feature-gates=Topology=true
+            - --extra-create-metadata
+          volumeMounts:
+            - name: csi
+              mountPath: /csi
+      volumes:
+        - name: csi
+          emptyDir: {}
