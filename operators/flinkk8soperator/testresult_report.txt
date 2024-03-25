@@ -1,0 +1,923 @@
+name: Alarm Insepction Report
+about: An analysis report for the alarms produced by Acto
+
+What happened
+Why did Acto raise this alarm? What happened in the state transition? Why Acto’s oracles raised an alarm?
+
+Root Cause
+Why did the operator behave in this way? Please find the exact block in the operator source code resulting in the behavior.
+
+Expected behavior?
+If it is a true alarm, how to fix it in the operator code? If it is a false alarm, how to fix it in Acto code?
+
+###
+Before anything
+###
+When setting up the operator, I didn't add the Ingress resource to the application configuration. The associated source code is in deploy/config.yaml:
+    operator:
+      ingressUrlFormat: "{{$jobCluster}}.{ingress_suffix}"
+
+According to the guidance, no ingress setup should be suitable for testing and debuging usage, as it is not a must for the cluster to communicate with the external world when running.
+I realized that some alarms about the job Manager and task Manager components may be caused by this. Without an Ingress, it seems that the operator is not able to scale up or create the job Manager and task Manager components. This happens in each test run, which may lead to Acto not being able to detect changes made to their configs.
+This will not be messioned every time an alarm is assessed.
+
+###
+True Alarm Sections, "True" in the "Alarm" column
+###
+
+### Alarm-280
+/testrun-8workers-3-6-14-28/trial-00-0002/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.0.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There rised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the requiredDuringSchedulingIgnoredDuringExectuion space. It seems that the crd is not capable of changing a modified or initialized field.
+In flinkk8soperator/pkg/apis/app/v1beta1/zz_generated.deepcopy.go#L340, any changes to jobManagerConfig.Affinity should be kept when the DeepCopyInto is called.
+I cannot find may further source code about jobManagerConfig.Affinity.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-285
+/testrun-8workers-3-6-14-28/trial-00-0003/generation-004-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.0.topologykey from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-004.yaml records that the change was successful, but the change is not completed in the system-state-004.json. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-290
+/testrun-8workers-3-6-14-28/trial-00-0004/generation-004-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAntiAffinity.perferredDuringSchedulingIgnoredDuringExecution.0.podAddinityTerm.topologyKey from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-004.yaml and system-state-004.json all records that the field is successfully changed.
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-302
+/testrun-8workers-3-6-14-28/trial-00-0006/generation-007-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.tolerations.0.effect from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.tolerations space. It seems that the crd is not capable of changing a modified or initialized field.
+In flinkk8soperator/pkg/apis/app/v1beta1/zz_generated.deepcopy.go#L412, any changes to taskManagerConfig.Affinity should be kept when the DeepCopyInto is called.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-306
+/testrun-8workers-3-6-14-28/trial-00-0007/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.tolerations.0.effect from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.tolerations space. It seems that the crd is not capable of changing a modified or initialized field.
+In flinkk8soperator/pkg/apis/app/v1beta1/zz_generated.deepcopy.go#L412, any changes to taskManagerConfig.Affinity should be kept when the DeepCopyInto is called.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-311
+/testrun-8workers-3-6-14-28/trial-00-0008/generation-004-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.savepointInfo.savepointLocation from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-004.yaml and system-state-004.json all records that the field is successfully changed. There is an inconsistency in Acto?
+Meanwhile, concurrent to the 004 phase, the tolerations for taskManagerConfig is also removed. There may be some relationships between the two.
+But I cannot find any more source code associated with these fields. I searched the whole flinkk8soperator directory and examined the four files found to contain the word "tolerations", which are types.go, zz_generated.deepcopy.go, job_manager_controller.go, and test_manager_controller.go, but there are no specific functions or settings I can find related to this phenomenon. Maybe it is because that the developers didn't define such behaviors that such failures exist.
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-352
+/testrun-8workers-3-6-14-28/trial-01-0000/generation-004-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.restartNonce from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-004.yaml and system-state-004.json all records that the field is successfully changed. There is an inconsistency in Acto?
+In flinkk8soperator/pkg/container/flink/container_utils.go#L64, when the application's restartnonce is not "", its application annotation will be updated. This should be a very simple updating machenism, but it may have not left any records or interactions with K8S.
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-367
+/testrun-8workers-3-6-14-28/trial-01-0002/generation-004-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAntiAffinity.perferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchLabels from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-376
+/testrun-8workers-3-6-14-28/trial-01-0004/generation-007-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.nodeSelector.additionalProperties from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-007.yaml and system-state-007.json all records that the field is successfully changed. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-397
+/testrun-8workers-3-6-14-28/trial-01-0008/generation-001-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-001.json#L1813 and 1880, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-438
+/testrun-8workers-3-6-14-28/trial-01-0014/generation-005-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.programArgs from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-005.yaml and system-state-005.json all records that the field is successfully changed. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-446
+/testrun-8workers-3-6-14-28/trial-02-0000/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAntiAffinity.perferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-450
+/testrun-8workers-3-6-14-28/trial-02-0001/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.0.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole requiredDuringSchedulingIgnoredDuringExecution space instead. The whole preferredDuringSchedulingIgnoredDuringExecution space was also deleted.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-454
+/testrun-8workers-3-6-14-28/trial-02-0002/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution.0.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole requiredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-483
+/testrun-8workers-3-6-14-28/trial-02-0006/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.potAffinityTerm.labelSelector.matchLabels.ACTOKEY from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+Acto added a custom property under matchLabels and now tries to delete it.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-490
+/testrun-8workers-3-6-14-28/trial-02-0007/generation-006-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.envConfig.env.0.name from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+Acto added a custom property under matchLabels and now tries to delete it.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.envConfig space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole env space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-524
+/testrun-8workers-3-6-14-28/trial-02-0013/generation-003-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.savepointDisabled from false to true but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. The change was also completed. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-003.yaml records that the change was successful, and so is system-state-003.json There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-527
+/testrun-8workers-3-6-14-28/trial-02-0014/generation-002-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchLabels.ACTOKEY from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+Acto added a custom property under matchLabels and now tries to delete it.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole podAntiAffinity space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-542
+/testrun-8workers-3-6-14-28/trial-03-0000/generation-004-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.allowNonRestoredState from false to true but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. The change was also completed. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-004.yaml records that the change was successful, and so is system-state-004.json There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-546
+testrun-8workers-3-6-14-28/trial-03-0001/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-550
+/testrun-8workers-3-6-14-28/trial-03-0002/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchLabels.ACTOKEY from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+Acto added a custom property under matchLabels and now tries to delete it.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-560
+/testrun-8workers-3-6-14-28/trial-03-0004/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchLabels.ACTOKEY from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+Acto added a custom property under matchLabels and now tries to delete it.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole podAntiAffinity space instead.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-588
+/testrun-8workers-3-6-14-28/trial-03-0008/generation-003-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.entryClass from ACTOKEY to "" but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. The change was also completed. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-003.yaml records that the change was successful, and so is system-state-003.json There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-601
+/testrun-8workers-3-6-14-28/trial-03-0010/generation-009-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.0.topologyKey from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+Acto added a custom property under matchLabels and now tries to delete it.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole requiredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-605
+/testrun-8workers-3-6-14-28/trial-03-0011/generation-003-runtime/json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.0.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole requiredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-638
+/testrun-8workers-3-6-14-28/trial-04-0000/generation-008-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.imagePullSecrets.0.name from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the imagePullSecrets space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole imagePullSecrets space.
+There are no obvious code pieces related to this field.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-642
+/testrun-8workers-3-6-14-28/trial-04-0001/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.imagePullSecrets.0.name from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the imagePullSecrets space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole imagePullSecrets space.
+There are no obvious code pieces related to this field.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-657
+/testrun-8workers-3-6-14-28/trial-04-0003/generation-009-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchLabels.ACTOKEY from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole affinity space.
+There are no obvious code pieces related to this field.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-680
+/testrun-8workers-3-6-14-28/trial-04-0006/generation-003-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.fallbackWithoutState from false to true but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. The change was also completed. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-003.yaml and system-state-003.json both record that the change was successful. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-692
+/testrun-8workers-3-6-14-28/trial-04-0008/generation-005-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.savepointPath from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. The change was also completed. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-005.yaml and system-state-005.json both record that the change was successful. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-712
+/testrun-8workers-3-6-14-28/trial-04-0011/generation-005-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAffinity.perferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-716
+/testrun-8workers-3-6-14-28/trial-04-0012/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.affinity.podAffinity.perferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-724
+/testrun-8workers-3-6-14-28/trial-04-0013/generation-007-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAffinity.perferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+Note that the preferredDuringSchedulingIgnoredDuringExecution under taskManagerConfig was also deleted.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-732
+/testrun-8workers-3-6-14-28/trial-05-0000/generation-004-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.envConfig.envFrom.0.configMapRef.name from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.envConfig space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole envFrom space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-736
+/testrun-8workers-3-6-14-28/trial-05-0001/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.envConfig.envFrom.0.configMapRef.name from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the taskManagerConfig.envConfig space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole envFrom space instead.
+There are no obvious code pieces related to this field. The taskManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-754
+/testrun-8workers-3-6-14-28/trial-05-0004/generation-005-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-005.json#L2568 and 2635, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-756
+/testrun-8workers-3-6-14-28/trial-05-0005/generation-001-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-001.json#L1673 and 1740, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-758
+/testrun-8workers-3-6-14-28/trial-05-0006/generation-001-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-001.json#L1673 and 1740, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-795
+/testrun-8workers-3-6-14-28/trial-05-0011/generation-008-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.topologykey from ACTOKEY to "" but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-008.yaml records that the change was successful, and so does the system-state-008.json. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-802
+/testrun-8workers-3-6-14-28/trial-05-0013/generation-002-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAffinity.perferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.topologyKey from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole preferredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-830
+/testrun-8workers-3-6-14-28/trial-06-0001/generation-003-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.0.podAffinityTerm.topologykey from ACTOKEY to "" but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-008.yaml records that the change was successful, and so does the system-state-008.json. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-845
+/testrun-8workers-3-6-14-28/trial-06-0003/generation-007-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-007.json#L2638 and 2705, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-847
+/testrun-8workers-3-6-14-28/trial-06-0004/generation-001-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-001.json#L1743 and 1810, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-852
+/testrun-8workers-3-6-14-28/trial-06-0005/generation-004-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.deleteMode from Savepoint to None but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-004.yaml and system-state-004.json all records that the field is successfully changed.
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-859
+/testrun-8workers-3-6-14-28/trial-06-0007/generation-004-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-004.json#L2708 and 2775, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-861
+/testrun-8workers-3-6-14-28/trial-06-0008/generation-001-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-001.json#L1813 and 1880, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-863
+/testrun-8workers-3-6-14-28/trial-06-0009/generation-001-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1 replica, but only 0 are available.
+
+### Root cause
+According to events-001.json#L1813 and 1880, when trying to scaling up the job manager for the deployment, because Ingress does not have a matching part in k8s v1beta1 or Ingress is not explicitely defined.
+According to the user guide of the operator, the absense of the Ingress should not interfere the normal operation of the operator, or it is permitted to not define an Ingress. I thus didn't define it.
+Maybe in later runs I can define an Ingress and retry acto testruns.
+
+### Expected behavior
+The operator should have successfully scaled up to 1, which is merely creating an instance.
+
+### Alarm-897
+/testrun-8workers-3-6-14-28/trial-06-0013/generation-004-runtime.json
+Type: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.replicas from 3 to 1 but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-004.yaml records that the change was successful, so is the system-state-004.json. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-899
+/testrun-8workers-3-6-14-28/trial-06-0014/generation-001-runtime.json
+Type: Alarm True, detected to be a Misoperation
+
+### What happened
+The deployment should have 1000 replica, but only 102 are ready or available.
+
+### Root cause
+The flinkk8soperator is not able to scale up the number of job managers through increasing replicas to 1000. This is a misoperation and vulnerability of the operator.
+
+### Expected behavior
+The operator should have successfully scaled up to 1000, because there are no maximum limit on number of replicas.
+
+### Alarm-903
+/testrun-8workers-3-6-14-28/trial-06-0015/generation-003-runtime.json
+ype: Alarm True, but may be a False Alarm or acto bug
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.potAntiAffinity.requiredDuringSchedulingIgnoredDuringExectuion.0.topologykey from "" to ACTOKEY but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-003.yaml records that the change was successful, so is the system-state-003.json. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-907
+/testrun-8workers-3-6-14-28/trial-06-0016/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.taskManagerConfig.envConfig.env.0.valueFrom.resourceFieldRef.divisor from 2000m to 4 but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change. But there actually exist the field in the system state at that time. It seems that Acto falsely behaviored or attributed an alarm.
+The mutated-003.yaml and system-state-003.json both record that the change was successful. There is an inconsistency in Acto?
+
+### Expected behavior
+Acto should have found the records.
+
+### Alarm-923
+/testrun-8workers-3-6-14-28/trial-07-0000/generation-008-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExectuion.0.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole requiredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-927
+/testrun-8workers-3-6-14-28/trial-07-0001/generation-003-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExectuion.0.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole requiredDuringSchedulingIgnoredDuringExecution space instead.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+### Alarm-936
+/testrun-8workers-3-6-14-28/trial-07-0002/generation-008-runtime.json
+Type: Alarm True
+
+### What happened
+Acto tried to change the spec.jobManagerConfig.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExectuion.0.labelSelector.matchExpressions.0.key from ACTOKEY to NotPresent but failed.
+
+### Root cause
+There raised a consistency error that Acto does not find matching fields for this input change.
+The discrepency is caused by the removal of these subfields when testing the operator's ability to reconcile when changing fields under the jobManagerConfig.affinity space. It seems that the crd is not capable of changing a modified or initialized field. It deleted the whole requiredDuringSchedulingIgnoredDuringExecution space instead. Meanwhile, the requiredDuringSchedulingIgnoredDuringExectuion space under the podAntiAffinity is also removed.
+There are no obvious code pieces related to this field. The jobManagerConfig is updated by deep copy in zz_generated.deepcopy.go, which may be a cause why there are no record of reconcilation. It just accepts every change.
+
+### Expected behavior
+The operator should have found the field and make the correct modification instead of removing it, and Acto should have found the records.
+
+###
+False Alarm Sections, "False" in the "Alarm" column
+###
+
+### Alarm-260
+/testrun-8workers-3-6-14-28/trial-00-0000/generation-000-runtime.json
+Type: Alarm False
+
+### What happened
+Acto raised an alarm.
+
+### Root cause
+No specific root cause. Acto raise this alarm when everything is working well.
+
+### Expected behavior
+Acto should not raise this alarm.
+
+### Alarms since 260 if they are "False" in the "Alarm" column, they are not alarms.
+
+### For all hashed Alarm False, no matter what trial and step, their system state cannot reconcile to seed state.
+
+### Alarm-2
+010c29fbb3ae04580f67e8f1ef3a5383/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 2 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the two other clusters should be acto launching more clusters concurrently to test the operator.
+
+### Alarm-3
+010c29fbb3ae04580f67e8f1ef3a5383/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 2 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the two other clusters should be acto launching more clusters concurrently to test the operator.
+
+### Alarm-4
+0179e2c3ba67a94ee677c92d321f51dd/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 5 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the five other clusters should be acto launching more clusters concurrently to test the operator.
+
+### Alarm-5
+01ac4a129e24c5a9389c46d8b6f74f66/0000
+Type: Alarm False, but hashed, meaning raised by the differential oracle.
+
+### What happened
+Acto raised a differential oracle alarm when comparing two system states.
+
+### Root cause
+Acto finds the current system state not recorvable to seed states.
+The differences in the system state is that the two other pods in the cluster were deleted/removed from the system.
+The changed values are the root['service']['test-cluster']['spec']['selector']['flink-app-hash'], which is technically the application runned in each term.
+This means that there are two more clusters in the system in generation 5 then in generation 0.
+
+### Expected behavior
+This should not be an error, since the three other clusters should be acto launching more clusters concurrently to test the operator.
+
+### No need to extend more on the hashed test cases.
+In all the hashed test cases, the previous or benchmark system state is the state with only one cluster, and the analyzed system state has several other clusters. The difference or un-recoverability is that the new clusters are not comparable to old clusters.
+This is because acto tries to launch a new cluster in each step of a test trial, which entails creating a new cluster. But acto does not delete the clusters created in the previous steps or generations. As a result, the system state is unable to reconcile to seed.
+Acto should have been able to delete the clusters created in each generation.
+
+There is an open question on how to improve the usability of Acto by grouping the duplicated alarms. Can you think of some features which can be used to determine if two alarms are duplicated?
+
+When examining alarms, I find sometimes two alarms are duplicated. An common situation is that acto is trying to execute two different operations on the same field.
+The two operations may be of different moves, e.g., changing from "" to ACTOKEY and from ACTOKEY to NotPresent, but they are on the same field.
+If may be possible to check if such modifications are necessary.
