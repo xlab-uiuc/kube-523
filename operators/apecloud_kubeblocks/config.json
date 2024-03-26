@@ -1,0 +1,42 @@
+{
+    "deploy": {
+        "steps": [
+            {
+                "create": {
+                    "file": "data/kubeblocks-redis/kubeblocks_crds.yaml"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "data/kubeblocks-redis/kubeblocks.yaml",
+                    "operator": true,
+                    "namespace": "kb-system"
+                }
+            },
+            {
+                "apply": {
+                    "file": "data/kubeblocks-redis/kb-addon-snapshot-controller.yaml",
+                    "namespace": "kb-system"
+                }
+            },
+            {
+                "apply": {
+                    "file": "data/kubeblocks-redis/kb-addon-redis.yaml",
+                    "namespace": "kb-system"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 60
+                }
+            }
+        ]
+    },
+    "crd_name": "clusters.apps.kubeblocks.io",
+    "seed_custom_resource": "data/kubeblocks-redis/sample_cr.yaml"
+}
