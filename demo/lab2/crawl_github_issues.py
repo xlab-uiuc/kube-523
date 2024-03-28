@@ -27,6 +27,7 @@ if __name__ == "__main__":
         csv_writer = csv.writer(
             f, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
         )
+        csv_writer.writerow(["URL", "Title", "Issue Number"])
         issues = repo.get_issues(state="closed")
 
         for issue in issues:

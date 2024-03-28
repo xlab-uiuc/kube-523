@@ -36,6 +36,14 @@ Then export the issues into a CSV file.
 
 ### 2. Shuffle the Rows in the CSV File
 
+You can use the following Python3 code to produce a shuffled CSV file:
+```python
+
+df = pd.read_csv(file_name) 
+shuffled_df = df.sample(frac=1, random_state=3973120037)
+shuffled_df.to_csv(new_file_name, index=False)
+```
+
 ### 3. Manually Inspect the Issues to Make Sure They:
 
 - are actually bugs
