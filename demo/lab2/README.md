@@ -44,7 +44,7 @@ shuffled_df = df.sample(frac=1, random_state=3973120037)
 shuffled_df.to_csv(new_file_name, index=False)
 ```
 
-### 3. Manually Inspect the Issues to Make Sure They:
+### 3. Starting from Beginning of the Shuffled CSV, Manually Inspect the Issues to Make Sure They:
 
 - are actually bugs
 - are confirmed by the developers
