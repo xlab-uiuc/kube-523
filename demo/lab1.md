@@ -9,6 +9,16 @@ You would need to have a working environment to run Acto, and the Acto repo clon
 3. [Inspecting Acto’s Test Results](#3-inspecting-actos-test-results)
 4. [Deliverables](#deliverables)
 
+## Deadlines
+- Submit the test results without inspecting them -- next Friday (02/23)
+  - Please finish running Acto and use the test result collection [script](https://github.com/xlab-uiuc/kube-523/blob/main/demo/lab1.md#31-gathering-test-results) to generate the `result.csv` file.
+  - Create a PR to the repo to upload the `result.csv` file to the operator directory.
+- Submit the inspection results of 10 reports -- next next Tuesday (02/27)
+  - Please pick ten alarms from the `result.csv`, follow the instructions in the [deliverables](https://github.com/xlab-uiuc/kube-523/blob/main/demo/lab1.md#deliverables) to write a report analyzing the alarms.
+  - Create a PR with your report.
+- Submit all the inspection results  -- next next next Tuesday (03/05)
+  - Create a PR with all the 100 alarm analysis.
+
 ## 1. Porting Your Operator to Acto by Writing `config.json`
 
 Acto requires the following essential information to test an operator:
@@ -52,6 +62,14 @@ The operator deploy for cass-operator is written in the following format, split 
 }
 ```
 
+**Added 02/20**
+In case your operator uses helm to deploy, please check out the `helm template` command to export the helm chart into YAML files:
+https://helm.sh/docs/helm/helm_template/
+
+```
+helm template --output-dir './yaml' ...
+```
+
 ### 1.2 Providing the Name of the CRD to be Tested
 
 You would also need to provide the full name of the CRD to be tested (Acto only supports to test one CRD at a time).
@@ -78,6 +96,9 @@ P.S. Check if your CRD is complete. Check if the schema defined in the CRD is op
 ### 1.3 Providing a Seed CR
 
 Provide a sample CR which will be used by Acto as the seed. This can be any valid CR, usually operator repos contain multiple sample CRs. Specify this through the `seed_custom_resource` property in the configuration.
+
+**Added 02/20**
+Please specify the `metadata.name` as `test-cluster` in the CR YAML
 
 For example, cass-operator provides a list of sample CRs in their [repo](https://github.com/k8ssandra/cass-operator/tree/master/config/samples)
 
@@ -158,6 +179,25 @@ We do not expect you to debug Acto if it crashes. Please raise a question on Pia
 
 ## 3. Inspecting Acto’s Test Results
 
+### Regenerating the result.csv
+
+Previously there was a required manual step to specify the regular expressions for the non-deterministic property paths. If not done correctly, Acto’s differential oracle would produce many false alarms.
+
+Fortunately, Acto is splitted into multple phases, and they can be rerun independently. To rerun the differential oracle for the post processing steps, you just need to run the following command to remove the previous results and regenerate the new results:
+
+```bash
+git pull
+
+rm -f testrun-{}/post_diff_test/compare-results-*
+python3 -m acto.post_process.post_diff_test --config OPERATOR_CONFIG --num-workers 32 --testrun-dir TESTRUN_DIR --workdir {TESTRUN_DIR}/post_diff_test/ --checkonly
+```
+
+This command would take 5 mins to 30 mins to run.
+
+Afterwards, you can run the result collection script to generate the result.csv again.
+
+### Interpreting the Result
+
 Acto will first generate a test plan using the operator's CRD and the semantic information. The test plan is serialized at `testrun-cass/testplan.json` (You don't need to manually inspect the `testplan.json`, it is just to give an overview of the tests going to be run). Note that Acto does not run the tests according to the order in the `testplan.json`, the tests are run in a random order at runtime.
 
 Acto then constructs the number of Kubernetes clusters according to the `--num-workers` argument, and start to run tests. Tests are run in parallel in separate Kubernetes clusters. Under the `testrun-cass` directory, Acto creates directories `trial-XX-YYYY`. `XX` corresponds to the worker ID, i.e. `XX` ranges from `0` to `3` if there are 4 workers. `YYYY` starts from `0000`, and Acto increments `YYYY` every time it has to restart the cluster. This means every step inside the same `trial-xx-yyyy` directory runs in the same instance of Kubernetes cluster.
@@ -183,16 +223,146 @@ The schema of the runtime result is defined at [acto/result.py](https://github.
 - `custom`: result of custom oracles, defined by users
 - `differential`: if the recovery step is successful after the error state
 
+### Post Differetial Test Results
+In the `result.csv`, you may find that some alarms’ `testcase` column is a hash. This means that this alarm is from a postrun differential test, and the alarm is raised by the differential oracle. These alarms are raised by comparing two system states produced by the same CR input. To inspect these alarms, you can take a look at the `Differential` column of the alarm to figure out which two steps are being compared.
+
+The raw alarm file can be found in the `post_diff_test` directory under the `testrun-{}` directory. You should be able to find a list of files named as `compare-results-{HASH}.json` . The `compare-results-{HASH}.json` file contains a list of alarms corresponding to the same input (the hash is in fact computed based on the input CR). Inside each alarm, you can find the computed delta between the two system states, along with the two system states being compared.
+
+The difference in the system states on the same CR is usually caused by different previous existing system state. You can diagnose the alarms by figuring out what is the previous system state, and how does the operator behave differently under different existing system state.
+
 ### 3.1 Gathering Test Results
 
-After Acto finishes all the tests, you can use the following script to collect all the test results into a .xlsx file and inspect them in Google Sheet.
+After Acto finishes all the tests, you can use the following script to collect all the test results into a .csv file and inspect them in Google Sheet.
 
-**We will release the collection script soon.**
+Please upload the csv file as the first part of the lab1, and analyze the results based on it.
+
+**Added 02/17**
+Run the following command in the Acto repo, it will produce a csv file under the testrun directory(workdir).
+```
+python3 -m acto.post_process.collect_test_result --config OPERATOR_CONFIG --testrun-dir TESTRUN_DIR
+```
+
+Usage documentation:
+```
+usage: collect_test_result.py [-h] --config CONFIG --testrun-dir TESTRUN_DIR
+
+Collect all test results into a CSV file for analysis.
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       Path to the operator config file
+  --testrun-dir TESTRUN_DIR
+                        Path to the testrun dir which contains the testing result
+```
+
+### Example of A True Alarm
+
+Let’s take a look at one example how we analyzed one alarm produced by Acto and found the https://github.com/k8ssandra/cass-operator/issues/330
+
+You can find the trial which produced the result [here](lab1/alarm_examples/true_alarm/), and the alarm is raise inside [this file](lab1/alarm_examples/true_alarm/generation-002-runtime.json)
+
+Inside the [generation-002-runtime.json](lab1/alarm_examples/true_alarm/generation-002-runtime.json), you can find the following the alarm:
+
+```json
+"consistency": {
+    "message": "Found no matching fields for input",
+    "input_diff": {
+        "prev": "ACTOKEY",
+        "curr": "NotPresent",
+        "path": {
+            "path": [
+                "spec",
+                "additionalServiceConfig",
+                "seedService",
+                "additionalLabels",
+                "ACTOKEY"
+            ]
+        }
+    },
+    "system_state_diff": null
+},
+```
+
+This shows that the alarm is raised by Acto’s consistency oracle. In the alarm description, you can see three fields: `message`, `input_diff`, and `system_state_diff`. In the `input_diff`, it shows the following information:
+
+- In this step, Acto changed the property of path `spec.additionalServiceConfig.seedService.additionalLabels.ACTOKEY` from `ACTOKEY` to `NotPresent`. This basically means that Acto deleted the `spec.additionalServiceConfig.seedService.additionalLabels.ACTOKEY` from the CR.
+- Acto checked through the system state change, and could not find a matching change.
+
+To look deeper into this alarm, we can check the [delta-002.log](lab1/alarm_examples/true_alarm/delta-002.log) file. The `delta-002.log` file contains two sections: `INPUT DELTA` and `SYSTEM DELTA`. In the `INPUT DELTA`, you can see the diff from the `mutated-001.yaml` to `mutated-002.yaml`. In the `SYSTEM DELTA`, you can see the diff from `system-state-001.json` to `system-state-002.json`. You can also view the `mutated-*.yaml` and `system-state-*.json` files directly to see the full CR or full states.
+
+These files tell us the behavior of the operator when reacting to the CR transition. Next, we need to understand why the operator behaves in this way. We need to look into the operator source code to understand the behavior.
+
+The operator codebase may be large, so we need to pinpoint the subset of the operator source code which is related to the `spec.additionalServiceConfig.seedService.additionalLabels.ACTOKEY` property.
+
+We first need to find the places in the source code which reference the property. 
+
+- We can find the type definition for the property at [https://github.com/k8ssandra/cass-operator/blob/9d320dd1960706adb092541a2dc30f186a76338e/apis/cassandra/v1beta1/cassandradatacenter_types.go#L342.](https://github.com/k8ssandra/cass-operator/blob/53c637c22f0d5f1e2f4c09156591a47f7919e0b5/apis/cassandra/v1beta1/cassandradatacenter_types.go#L299)
+- Then we trace through the code to find the uses of this field, and eventually we arrive at this line: [https://github.com/k8ssandra/cass-operator/blob/9d320dd1960706adb092541a2dc30f186a76338e/pkg/reconciliation/construct_service.go#L91.](https://github.com/k8ssandra/cass-operator/blob/53c637c22f0d5f1e2f4c09156591a47f7919e0b5/pkg/reconciliation/construct_service.go#L90)
+- Tracing backward to see how the returned values are used, we arrive at this line: https://github.com/k8ssandra/cass-operator/blob/53c637c22f0d5f1e2f4c09156591a47f7919e0b5/pkg/reconciliation/reconcile_services.go#L59.
+- We can see that the operator always merge the existing annotations with the annotations specified in the CR. This “merge” behavior causes the old annotations to be never deleted: https://github.com/k8ssandra/cass-operator/blob/53c637c22f0d5f1e2f4c09156591a47f7919e0b5/pkg/reconciliation/reconcile_services.go#L104.
+
+### Example of Misoperation
+
+Let’s take a look at one example of an alarm caused by a misoperation vulnerability in the tidb-operator. A misoperation vulnerability means that the operator failed to reject an erroneous desired state, and caused the system to be in an error state.
+
+You can look at the example alarm [here](lab1/alarm_examples/misoperation/)
+
+Inside the [alarm file](lab1/alarm_examples/misoperation/generation-001-runtime.json), you can find the following alarm message:
+
+```json
+"health": {
+    "message": "statefulset: test-cluster-tidb replicas [3] ready_replicas [2]"
+},
+```
+
+This shows the alarm is raised by the health oracle, which checks if the Kubernetes resources have desired number of replicas. In this alarm, Acto found that the StatefulSet object named `test-cluster-tidb` only has two ready replicas, whereas the desired number of replicas is three.
+
+To find out what happened, we can take a look at the [delta-001.log](lab1/alarm_examples/misoperation/delta-001.log) . It tells us that from the previous step, Acto added an Affinity rule to the tidb’s CR. And in the system state, the tidb-2 pod is recreated with the Affinity rule.
+
+Next, we need to figure out why the tidb-2 pod is recreated, but cannot be scheduled. After taking a look at the [events-001.json](lab1/alarm_examples/misoperation/events-001.json) file, we can find an error event issued by the `Pod` with the message: `"0/4 nodes are available: 1 node(s) had untolerated taint {node-role.kubernetes.io/control-plane: }, 3 node(s) didn't match Pod's node affinity/selector. preemption: 0/4 nodes are available: 4 Preemption is not helpful for scheduling.."` indicating that the new Pod cannot be properly scheduled to nodes.
+
+The root cause is because the desired Affinity specified in the TiDB CR cannot be satisfied in the current cluster state. The tidb-operator fails to reject the erroneous desired state, updates the TiDB cluster with the unsatisfiable Affinity rule, causing the cluster to lose one replica.
+
+### Example of False Alarm
+
+Acto’s oracles are not sound, meaning that Acto may report an alarm, but the operator’s behavior is correct. [Here](lab1/alarm_examples/false_alarm/) is an example of false alarms produced by Acto.
+
+Looking at the [generation-002-runtime.json](lab1/alarm_examples/false_alarm/generation-002-runtime.json), you can find the following error message from the consistency oracle: 
+
+```json
+"oracle_result": {
+    "crash": null,
+    "health": null,
+    "operator_log": null,
+    "consistency": {
+        "message": "Found no matching fields for input",
+        "input_diff": {
+            "prev": "1Gi",
+            "curr": "2Gi",
+            "path": {
+                "path": [
+                    "spec",
+                    "ephemeral",
+                    "emptydirvolumesource",
+                    "sizeLimit"
+                ]
+            }
+        },
+        "system_state_diff": null
+    },
+    "differential": null,
+    "custom": null
+},
+```
+
+This indicates that Acto expects a corresponding system state change for the input delta of path `spec.ephemeral.emptydirvolumesource.sizeLimit`. To understand the operator’s behavior, we trace through the operator source. We can see that the property has a control-flow dependency on another property: https://github.com/pravega/zookeeper-operator/blob/9fc6151757018cd99acd7b73c24870dce24ba3d5/pkg/zk/generators.go#L48C1-L52C54. And in the CR generated by Acto, the property `spec.storageType` is set to `persistent` instead of `ephemeral`.
+
+This alarm is thus a false alarm. The operator’s behavior is correct. It did not update the system state because the storageType is not set to `ephemeral`. Acto raised this alarm because it fails to recognize the control-flow dependency among the properties `spec.ephemeral.emptydirvolumesource.sizeLimit` and `spec.storageType`.
 
 ## Deliverables
 
 1. Please finish testing the operator using Acto
-2. There would be many alarms produced by Acto, and you are expected to inspect at least 100 alarms, and write a report for them.
+2. There would be many alarms produced by Acto, and you are expected to inspect at least 100 alarms, and write a report for them. You can use the report template here: https://github.com/xlab-uiuc/kube-523/blob/main/demo/lab1/alarm_report_template.md
     1. For each alarm, you need to determine if this is a True alarm or False alarm
     2. Please describe what is the CR change introduced by Acto in this alarm, and what is the operator’s behavior
     3. If it is a false alarm, please explain why do you think it is a false alarm. Is Acto’s correctness assumption broken?
