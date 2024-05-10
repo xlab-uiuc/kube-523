@@ -1,0 +1,16 @@
+{
+"deploy": {
+    "steps": [
+
+        {
+            "apply": {
+                "file":  "/Users/sallyr/Documents/cs523/operator.yaml",
+                "namespace": "acto-namespace",
+                "operator": true
+            }
+        }
+    ]
+},
+"crd_name": "perconapgclusters.pgv2.percona.com",
+"seed_custom_resource": "/Users/sallyr/Documents/cs523/cr.yaml"
+}
