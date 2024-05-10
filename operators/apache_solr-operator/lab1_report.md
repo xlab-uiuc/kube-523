@@ -260,6 +260,7 @@ Acto adds a new label with key ACTOKEY to `customSolrKubeOptions.nodeServiceOpti
 
 ### Root Cause
 The operator will not reconcile the state of NodeService if solrAddressibility.External is not configured correctly. 
+
 ```go
 if instance.UsesIndividualNodeServices() { // true only when solrAddressibility.External is configured
     for _, nodeName := range solrNodeNames {
@@ -440,6 +441,7 @@ Acto changes the values of `customSolrKubeOptions.podOptions.podSecurityContext.
 
 ### Root Cause
 The operator will setup the containers with a non-existed user, which directly crashes the command. 
+
 ```go
 setupCommands = append(setupCommands, fmt.Sprintf(
     "(%s || chown -R %d:%d %s)",
@@ -1540,3 +1542,4 @@ if !retryLater {
 
 ### Expected Behavior
 The operator should bring all the solr-cloud pods to the ready state even though the accessMode is not set correctly. Alternatively, the operator should reject the erroneous desired state at the first place.
+
