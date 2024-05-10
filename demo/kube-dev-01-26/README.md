@@ -1,8 +1,8 @@
-# Operator Tutorial
+# Kubernetes Operator Tutorial
 
 ## Recap
 
-From the last lecture, we learned to use the Kubernetes built-in resources to deploy the ZooKeeper ensemble. We used Pod resources to deploy ZooKeeper container, and PVC resources to deploy storage. We learned that Kubernetes provides the StatefulSet resource, creating a layer of abstraction over Pods and PVCs.
+We [learned to use the Kubernetes built-in resources to deploy the ZooKeeper ensemble](https://github.com/xlab-uiuc/kube-523/blob/main/demo/kube-dev-01-24/README.md). We used Pod resources to deploy ZooKeeper container, and PVC resources to deploy storage. We learned that Kubernetes provides the StatefulSet resource, creating a layer of abstraction over Pods and PVCs.
 
 Remember the State-Reconciliation Principle, where the controller reconciles the system state to match the resources declared in the etcd. For the Pod controller, the **system state** managed by the Pod controller is the containers running in the system. For the PVC controller, the system state is the volumes on the disk.
 
