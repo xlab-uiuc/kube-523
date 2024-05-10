@@ -1,0 +1,14 @@
+{
+    "deploy": {
+        "steps": [
+            {
+                "apply": {
+                    "file": "./data/mysql-op/ndb-operator.yaml",
+                    "operator": true
+                }
+            }
+        ]
+    },
+    "crd_name": "ndbclusters.mysql.oracle.com",
+    "seed_custom_resource": "./data/mysql-op/example-ndb.yaml"
+}
