@@ -1,0 +1,70 @@
+---------- INPUT DELTA  ----------
+{
+      "dictionary_item_added": {
+            "root['spec']['ephemeral'][emptydirvolumesource][sizeLimit]": {
+                  "prev": "NotPresent",
+                  "curr": "1Gi",
+                  "path": {
+                        "path": [
+                              "spec",
+                              "ephemeral",
+                              "emptydirvolumesource",
+                              "sizeLimit"
+                        ]
+                  }
+            }
+      }
+}
+---------- SYSTEM DELTA ----------
+{
+      "pod": {},
+      "deployment_pods": {},
+      "daemonset_pods": {},
+      "stateful_set": {
+            "values_changed": {
+                  "root['test-cluster']['metadata']['labels']['owner-rv']": {
+                        "prev": "704",
+                        "curr": "1049",
+                        "path": {
+                              "path": [
+                                    "test-cluster",
+                                    "metadata",
+                                    "labels",
+                                    "owner-rv"
+                              ]
+                        }
+                  }
+            }
+      },
+      "deployment": {},
+      "daemon_set": {},
+      "config_map": {},
+      "service": {},
+      "pvc": {},
+      "cronjob": {},
+      "ingress": {},
+      "network_policy": {},
+      "pod_disruption_budget": {},
+      "secret": {},
+      "endpoints": {},
+      "service_account": {},
+      "job": {},
+      "role": {},
+      "role_binding": {},
+      "custom_resource_spec": {
+            "dictionary_item_added": {
+                  "root['ephemeral'][emptydirvolumesource][sizeLimit]": {
+                        "prev": "NotPresent",
+                        "curr": "1Gi",
+                        "path": {
+                              "path": [
+                                    "ephemeral",
+                                    "emptydirvolumesource",
+                                    "sizeLimit"
+                              ]
+                        }
+                  }
+            }
+      },
+      "custom_resource_status": {}
+}
