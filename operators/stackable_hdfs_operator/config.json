@@ -1,0 +1,135 @@
+{
+    "deploy": {
+        "steps": [
+            {
+                "apply": {
+                    "file": "../hdfs_helm/zookeeper-operator/crds/crds.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 5
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/zookeeper-operator/templates/bundle.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/hdfs-operator/crds/crds.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 5
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/hdfs-operator/templates/bundle.yaml",
+                    "operator": true
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/commons-operator/crds/crds.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 5
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/commons-operator/templates/bundle.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/secret-operator/crds/crds.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 5
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/secret-operator/templates/bundle.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/listener-operator/crds/crds.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 5
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs_helm/listener-operator/templates/bundle.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs/zk.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "apply": {
+                    "file": "../hdfs/znode.yaml",
+                    "namespace": null
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            }
+        ]
+    },
+    "crd_name": "hdfsclusters.hdfs.stackable.tech",
+    "seed_custom_resource": "../hdfs/hdfs.yaml"
+}
