@@ -1,0 +1,315 @@
+#!/usr/bin/env python3
+'''
+Copyright (C) 2024 qsdrqs
+
+Author: qsdrqs <qsdrqs@gmail.com>
+All Right Reserved
+
+This file automatically collect result and write into markdown
+
+'''
+
+import os
+import json
+import re
+
+data = "./acto/testrun-2024-02-23-16-45/results.csv"
+
+
+class Result:
+    def __init__(self, type, explain=""):
+        self.type = type
+        self.explain = explain
+
+
+def collect_result():
+    result = []
+    with open(data, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            if line.find("True") != -1:
+                items = line.split(',')
+                result.append(items[0])
+    return result
+
+
+def collect_json(data):
+    last = data.split('/')[-1]
+    last = last[1:]
+    base = data.split('/')[:-1]
+    file_name = f"generation-{last}-runtime.json"
+    path = "/".join(base)
+    path = os.path.join("acto", path, file_name)
+    with open(path, 'r') as f:
+        return f.read()
+
+
+def mismatch_misoperation(line):
+    explain = f'''
+This is a misoperation. From the corresponding event.json, here is the log:
+
+> {line}
+
+This log indicates that the pod creation failed because of the mismatch of the constraints.
+And it can be avoided by setting the constraints correctly.'''
+    return Result("Misoperation", explain)
+
+
+def error_secret_misoperation(line):
+    explain = f'''
+This is a misoperation. From the corresponding event.json, here is the log:
+
+> {line}
+
+This log indicates that the secret is not founded.
+
+From the document:
+
+> By setting the secretName value, the cluster will switch to load the given Kubernetes Secret into the container as a volume and uses that as the certificate instead. It is up to the user to create and manage the Kubernetes Secret either by hand or using a tool like the CertManager operator.
+
+Thus, the `secretName` should be set correctly corresponding to the secret in the cluster, which can not be a random string.'''
+    return Result("Misoperation", explain)
+
+
+def error_secret_not_found_misoperation(line):
+    explain = f'''
+This is a misoperation. From the corresponding event.json, here is the log:
+
+> {line}
+
+This log indicates that the secret is not founded. This is because a mis-config of `spec.clone.cluster`.
+When setting this field, the corresponding secret should also be set correctly.'''
+    return Result("Misoperation", explain)
+
+
+def error_image_name_misoperation(line):
+    explain = f'''
+This is a misoperation. From the corresponding event.json, here is the log:
+
+> {line}
+
+This log indicates that the image name is invaild. The repository name must be lowercase.'''
+    return Result("Misoperation", explain)
+
+
+def error_user_group_misoperation(line):
+    explain = f'''
+This is a misoperation. From the corresponding event.json, here is the log:
+
+> {line}
+
+This log indicates that the user group is specified without the user details. It can be avoided by setting the user details correctly.'''
+    return Result("Misoperation", explain)
+
+
+def error_restart_misoperation(line):
+    explain = f'''
+This is a misoperation. From the corresponding event.json, here is the log:
+
+> {line}
+
+This log indicates that the container is restarting failed. It might be able to avoid by trying again.'''
+    return Result("Misoperation", explain)
+
+
+def error_annotation_true_alarm(line):
+    explain = '''
+This is a True alarm. The key is deleted from the annotation field
+in the new config file, but it is still present in the system state file.
+
+For `ANNOTATION` field,
+The corresponding source code is at `pkg/cluster/k8sres.go:2039`:
+
+```go
+if spec != nil {
+	maps.Copy(annotations, spec.ServiceAnnotations)
+
+	switch role {
+	case Master:
+		maps.Copy(annotations, spec.MasterServiceAnnotations)
+	case Replica:
+		maps.Copy(annotations, spec.ReplicaServiceAnnotations)
+	}
+}
+```
+In GoLang, the implementation of `maps.Copy` is:
+```go
+func Copy[M1 ~map[K]V, M2 ~map[K]V, K comparable, V any](dst M1, src M2) {
+	for k, v := range src {
+		dst[k] = v
+	}
+}
+```
+
+It won't delete the existing key-value pairs in the `dst` map. It just appends
+or updates the `dst` map with the `src` map.
+
+So that, `maps.Copy` will not delete the `ACTOKEY` from the `ANNOTATION` field.
+It's a true alarm.'''
+    explain.replace("ANNOTATION", line)
+    return Result("True Alarm", explain)
+
+
+def error_false_alarm():
+    explain = '''
+False alarm. The Acto should not report this alarm because the `eventType` field
+does change from `ACTOKEY` to  `""` in the system state fileself.
+'''
+    return Result("False Alarm", explain)
+
+
+def default_false_alarm():
+    explain = '''
+False alarm. The Acto should not report this alarm because the `default` field
+change from `True` to `False` will not cause any change in the system if the
+non-default field is not set.'''
+    return Result("False Alarm", explain)
+
+
+def patroni_maybe_true_alarm(field):
+    explain = f'''
+This alarm is generated by the deletion of the `ACTOKEY` field in the
+`spec.patroni.ipkg/cluster/k8sres.gonitdb` object. Although the `ACTOKEY`
+is deleted, the `ACTOKEY` is still present in the system state file.
+
+This may be a True alarm. The related source code is at `pkg/cluster/k8sres.go:418`.
+It seems that they just append the `{field}` value to the existing one. To
+ultimately determine if this is a true alarm, we may need to rerun the test and
+debug the changes.'''
+    return Result("Maybe True Alarm", explain)
+
+def secret_namespace_true_alarm():
+    explain = '''
+This is a True alarm. The `secretNamespace` field is deleted from the `spec` object
+in the new config file, but it is still present in the system state file.'''
+    return Result("True Alarm", explain)
+
+def status_true_alarm():
+    explain = '''
+This is a True alarm. The `status` field contains status of the PostgreSQL cluster,
+but it is not present in the new config file, which is unexpected.'''
+    return Result("True Alarm", explain)
+
+def detemine_result(raw_result, json_str: str):
+    data = json.loads(json_str)
+    last = raw_result.split('/')[-1]
+    last = last[1:]
+    base = raw_result.split('/')[:-1]
+    event_file = f"events-{last}.json"
+    path = "/".join(base)
+    path = os.path.join("acto", path, event_file)
+    if data["oracle_result"]["health"] != None:
+        with open(path, 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                # match 'create Pod test-cluster-1 in StatefulSet test-cluster failed error:'
+                regex = re.compile(
+                    r'.*create Pod .* in StatefulSet .* failed error:.*')
+                if regex.match(line):
+                    return mismatch_misoperation(line)
+            for line in lines:
+                # second match 'MountVolume.SetUp failed for volume \"dpbequzjba\" : secret \"dpbequzjba\" not found'
+                regex = re.compile(
+                    r'.*MountVolume.SetUp failed for volume .* : secret .* not found.*')
+                if regex.match(line):
+                    return error_secret_misoperation(line)
+            for line in lines:
+                # third match 'Error: secret \"standby.qzzwdgfocn.credentials.postgresql.acid.zalan.do\" not found'
+                regex = re.compile(
+                    r'.*Error: secret .* not found.*')
+                if regex.match(line):
+                    return error_secret_not_found_misoperation(line)
+            for line in lines:
+                # fourth match 'invalid reference format: repository name must be lowercase`
+                regex = re.compile(
+                    r'.*invalid reference format: repository name must be lowercase.*')
+                if regex.match(line):
+                    return error_image_name_misoperation(line)
+            for line in lines:
+                # fifth match 'user group \"5\" is specified without user'
+                regex = re.compile(
+                    r'.*user group .* is specified without user.*')
+                if regex.match(line):
+                    return error_user_group_misoperation(line)
+            for line in lines:
+                # 'Back-off restarting failed container postgres in pod test-cluster-1_acto-namespace(d5e581dc-1de9-4145-a073-72df30b6c097)'
+                regex = re.compile(
+                    r'.*Back-off restarting failed container .* in pod .*')
+                if regex.match(line):
+                    return error_restart_misoperation(line)
+            for line in lines:
+                if line.find("failed") != -1:
+                    print(path)
+                    print(line)
+        print('------------------------')
+
+        return Result("Misoperation", "FIXME")
+    else:
+        input_diff = data["oracle_result"]["consistency"]['input_diff']
+        input_diff_path = input_diff['path']['path']
+        for i in input_diff_path:
+            if str(i).find("Annotations") != -1:
+                return error_annotation_true_alarm(i)
+
+        if input_diff_path == [
+            "spec",
+            "streams",
+            0,
+            "tables",
+            "ACTOKEY",
+            "eventType"
+        ]:
+            return error_false_alarm()
+
+        if input_diff["prev"] == True and input_diff["curr"] == False \
+                and str(input_diff_path[-1]).find("default") != -1:
+            return default_false_alarm()
+
+        if input_diff["prev"] == "ACTOKEY" and input_diff["curr"] == "NotPresent":
+            for i in range(len(input_diff_path)):
+                if str(input_diff_path[i]).find("patroni") != -1:
+                    return patroni_maybe_true_alarm(input_diff_path[i + 1])
+
+        if input_diff["prev"] == "ACTOKEY" and input_diff["curr"] == "" \
+                and str(input_diff_path[-1]) == "secretNamespace":
+            return secret_namespace_true_alarm()
+        if input_diff["prev"] == "NotPresent" and input_diff["curr"] == "ACTOKEY" \
+                and str(input_diff_path[0]) == "status":
+            return status_true_alarm()
+
+        print(path)
+        print('------------------------')
+        return Result("Maybe False Alarm", '''
+This is a Maybe False Alarm. It's difficult for me to determine whether it's a true alarm or not because
+I can't find enough corresponding information from the log to determine.''')
+
+
+def main():
+    raw_result = collect_result()
+    json = []
+    results = []
+    for i in raw_result:
+        collected = collect_json(i)
+        result = detemine_result(i, collected)
+        json.append(collected)
+        results.append(result)
+    with open("lab1-full-results.md", 'w') as f:
+        f.write("# Inspect the result of alarms\n\n")
+        minus = 0
+        for i in range(len(raw_result)):
+            if (results[i].type == "TODO"):
+                minus += 1
+                continue
+            f.write(f"## {i-minus+1}. {raw_result[i]}\n")
+            f.write(f"```json\n{json[i]}\n```\n")
+            f.write("\n")
+            f.write("### Type\n")
+            f.write(f"{results[i].type}\n")
+            f.write("\n")
+            f.write("### Explain\n")
+            f.write(f"{results[i].explain}\n")
+            f.write("\n\n")
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,27 @@
+{
+    "deploy": {
+        "steps": [
+            {
+                "apply": {
+                    "file": "/home/robert/Desktop/kube-523/operators/CrunchyData_postgres-operator/namespace.yaml"
+                }
+            },
+            {
+                "wait": {
+                    "duration": 10
+                }
+            },
+            {
+                "apply": {
+                    "file": "/home/robert/Desktop/kube-523/operators/CrunchyData_postgres-operator/operator.yaml",
+                    "namespace": "postgres-operator",
+                    "operator": true
+                }
+            }
+        ]
+    },
+
+    "crd_name": "postgresclusters.postgres-operator.crunchydata.com",
+    "seed_custom_resource": "/home/robert/Desktop/kube-523/operators/CrunchyData_postgres-operator/seed-cr.yaml"
+
+}
